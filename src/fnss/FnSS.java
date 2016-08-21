@@ -5,6 +5,7 @@
  */
 package fnss;
 
+import fnss.gui.Home;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -23,9 +24,9 @@ public class FnSS {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            Home home = new Home();
+            home.setVisible(true);
             
-            pos.gui.POS_MainFrame pos = new POS_MainFrame();
-            pos.setVisible(true);
             
             // TODO code application logic here
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
