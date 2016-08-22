@@ -5,7 +5,12 @@
  */
 package fnss;
 
-import fnss.gui.mainlogin;
+import fnss.gui.Home;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import pos.gui.POS_MainFrame;
 
 /**
  *
@@ -17,9 +22,17 @@ public class FnSS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        mainlogin main = new mainlogin();
-        main.setVisible(true);
-        // TODO code application logic here
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            Home home = new Home();
+            home.setVisible(true);
+            
+            
+            // TODO code application logic here
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(FnSS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
