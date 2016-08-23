@@ -5,7 +5,9 @@
  */
 package fnss.gui;
 
+import emp.Emp;
 import pos.gui.POS_MainFrame;
+import sst.gui.sstHome;
 import tms.gui.TMS_home;
 
 /**
@@ -13,10 +15,13 @@ import tms.gui.TMS_home;
  * @author afkii
  */
 public class Home extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Home
-     */
+    
+    private pos.gui.POS_MainFrame pos;
+    private tms.gui.TMS_home tms;
+    private emp.Emp emp;
+    private inv.gui.Home inv;
+    private sst.gui.sstHome sst;
+    
     public Home() {
         initComponents();
     }
@@ -31,26 +36,56 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnTMS = new javax.swing.JLabel();
+        btnPOS = new javax.swing.JLabel();
+        btnINV = new javax.swing.JLabel();
+        btnEMP = new javax.swing.JLabel();
+        btnSST = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TMS");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTMS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTMS.setText("TMS");
+        btnTMS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnTMS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                btnTMSMouseClicked(evt);
             }
         });
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("POS");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPOS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnPOS.setText("POS");
+        btnPOS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPOS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                btnPOSMouseClicked(evt);
+            }
+        });
+
+        btnINV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnINV.setText("INV");
+        btnINV.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnINV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnINVMouseClicked(evt);
+            }
+        });
+
+        btnEMP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnEMP.setText("EMP");
+        btnEMP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnEMP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEMPMouseClicked(evt);
+            }
+        });
+
+        btnSST.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSST.setText("SST");
+        btnSST.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSST.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSSTMouseClicked(evt);
             }
         });
 
@@ -59,33 +94,36 @@ public class Home extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(303, Short.MAX_VALUE)))
+                .addGap(50, 50, 50)
+                .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnTMS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTMS, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(216, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,14 +133,40 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        tms.gui.TMS_home tms = new TMS_home();
+    private void btnTMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTMSMouseClicked
+        if (tms == null) {
+            tms = new TMS_home();
+        }
         tms.setVisible(true);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_btnTMSMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseClicked
+    private void btnPOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPOSMouseClicked
+        if (pos == null) {
+            pos = new POS_MainFrame();
+        }
+        pos.setVisible(true);
+    }//GEN-LAST:event_btnPOSMouseClicked
+
+    private void btnINVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnINVMouseClicked
+        if (inv == null) {
+            inv = new inv.gui.Home();
+        }
+        inv.setVisible(true);
+    }//GEN-LAST:event_btnINVMouseClicked
+
+    private void btnEMPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEMPMouseClicked
+        if (emp == null) {
+            emp = new Emp();
+        }
+        emp.setVisible(true);
+    }//GEN-LAST:event_btnEMPMouseClicked
+
+    private void btnSSTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSSTMouseClicked
+        if (sst == null) {
+            sst = new sstHome();
+        }
+        sst.setVisible(true);
+    }//GEN-LAST:event_btnSSTMouseClicked
 
     /**
      * @param args the command line arguments
@@ -140,8 +204,11 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel btnEMP;
+    private javax.swing.JLabel btnINV;
+    private javax.swing.JLabel btnPOS;
+    private javax.swing.JLabel btnSST;
+    private javax.swing.JLabel btnTMS;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
