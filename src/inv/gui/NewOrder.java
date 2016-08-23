@@ -29,53 +29,62 @@ public class NewOrder extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        txtOrderID = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtOrderItemCode = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtOrderQty = new javax.swing.JTextField();
-        Units = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lblProceedOrder = new javax.swing.JLabel();
-        cmbSupplierSearch = new javax.swing.JComboBox();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtOrderDesc = new javax.swing.JTextArea();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
-        lblMinutes = new javax.swing.JLabel();
-        lblHours = new javax.swing.JLabel();
-        lblSearchNewOrder = new javax.swing.JLabel();
-        lblAdd = new javax.swing.JLabel();
-        lblBackgound = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(950, 660));
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1083, 610));
+        jDesktopPane1.setMaximumSize(new java.awt.Dimension(950, 660));
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(950, 660));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jDesktopPane1.add(txtOrderID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 230, 50));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/itp/search.png"))); // NOI18N
-        jDesktopPane1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 168, -1, 22));
+        jPanel1.setBackground(new java.awt.Color(22, 160, 133));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtOrderItemCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrderItemCodeActionPerformed(evt);
-            }
-        });
-        jDesktopPane1.add(txtOrderItemCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 180, 50));
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("New Order");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 140, 50));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/itp/search.png"))); // NOI18N
-        jDesktopPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 349, -1, -1));
-        jDesktopPane1.add(txtOrderQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 180, 50));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 110));
 
-        Units.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Unit", "Item 2", "Item 3", "Item 4" }));
-        jDesktopPane1.add(Units, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, -1, 50));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setBackground(new java.awt.Color(127, 140, 141));
+        jLabel2.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Order ID");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jScrollPane2.setBackground(new java.awt.Color(153, 255, 153));
+
+        jTable1.setBackground(new java.awt.Color(204, 255, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -92,49 +101,56 @@ public class NewOrder extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jDesktopPane1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 660, 160));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 840, 180));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
 
-        lblProceedOrder.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        lblProceedOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jDesktopPane1.add(lblProceedOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 554, 180, 40));
+        jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel3.setText("Supplier");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
-        cmbSupplierSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Supplier" }));
-        jDesktopPane1.add(cmbSupplierSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 230, 40));
+        jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel4.setText("Date");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 80, 20));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 280, -1));
 
-        txtOrderDesc.setColumns(20);
-        txtOrderDesc.setRows(5);
-        txtOrderDesc.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jScrollPane3.setViewportView(txtOrderDesc);
+        jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel5.setText("User");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
+        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 280, -1));
 
-        jDesktopPane1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 660, 50));
+        jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel6.setText("Description");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 640, 50));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jDesktopPane1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 80, 50));
+        jLabel7.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel7.setText("Item Code");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" }));
-        jDesktopPane1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 90, 50));
+        jLabel8.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
+        jLabel8.setText("Qty");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 190, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
-        jDesktopPane1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 100, 50));
-        jDesktopPane1.add(lblMinutes, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 70, 40));
-        jDesktopPane1.add(lblHours, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 70, 40));
-        jDesktopPane1.add(lblSearchNewOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 50, 40));
-        jDesktopPane1.add(lblAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 276, 50, 40));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unit", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
-        lblBackgound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/gui/newOrder1.jpg"))); // NOI18N
-        lblBackgound.setText("jLabel15");
-        lblBackgound.setMaximumSize(new java.awt.Dimension(1083, 610));
-        lblBackgound.setMinimumSize(new java.awt.Dimension(1083, 610));
-        jDesktopPane1.add(lblBackgound, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 1, 1090, 610));
+        jLabel9.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel9.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Proceed");
+        jLabel9.setOpaque(true);
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 950, 540));
+
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtOrderItemCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderItemCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOrderItemCodeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,26 +188,27 @@ public class NewOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Units;
-    private javax.swing.JComboBox cmbSupplierSearch;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblAdd;
-    private javax.swing.JLabel lblBackgound;
-    private javax.swing.JLabel lblHours;
-    private javax.swing.JLabel lblMinutes;
-    private javax.swing.JLabel lblProceedOrder;
-    private javax.swing.JLabel lblSearchNewOrder;
-    private javax.swing.JTextArea txtOrderDesc;
-    private javax.swing.JTextField txtOrderID;
-    private javax.swing.JTextField txtOrderItemCode;
-    private javax.swing.JTextField txtOrderQty;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
