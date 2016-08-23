@@ -5,6 +5,8 @@
  */
 package inv.gui;
 
+import fnss.functions.DB;
+
 
 
 /**
@@ -43,9 +45,12 @@ public class AddCategory extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
+        jDesktopPane1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
@@ -74,14 +79,13 @@ public class AddCategory extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(236, 240, 241));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Add");
-        jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel4.setOpaque(true);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 236, 70, -1));
+        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 236, 70, 30));
 
         jPanel1.setBackground(new java.awt.Color(22, 160, 133));
 
@@ -122,7 +126,16 @@ public class AddCategory extends javax.swing.JFrame {
         String CategoryID = new String(txtCategoryID.getText());
         String CategoryName = new String(txtCategoryName.getText());
         String sql = "INSERT INTO category (CategoryID,CategoryName) values ('" + CategoryID + "','" + CategoryName + "')";
+        try{
+           // DB d;
+            //d = new DB();
+            //d.insert(sql);
         
+        }
+        catch(Exception e)
+        {
+        
+        }
 
 
     }//GEN-LAST:event_jLabel4MouseClicked
