@@ -6,7 +6,7 @@
 package fnss.gui;
 
 import pos.gui.POS_MainFrame;
-import tms.gui.tmsHome;
+import tms.gui.TMS_home;
 
 /**
  *
@@ -96,7 +96,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        tms.gui.tmsHome tms = new tmsHome();
+        tms.gui.TMS_home tms = new TMS_home();
         tms.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
