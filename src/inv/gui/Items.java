@@ -23,6 +23,7 @@ public class Items extends javax.swing.JFrame {
      */
     public Items() {
         initComponents();
+        this.setLocationRelativeTo(null);
         try
         {
         String sql="SELECT CategoryName FROM category";
@@ -64,11 +65,11 @@ public class Items extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         lblUser = new javax.swing.JLabel();
         lblBack = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtItemName = new javax.swing.JTextField();
@@ -97,6 +98,8 @@ public class Items extends javax.swing.JFrame {
         iSearchSubCat = new javax.swing.JComboBox();
         txtItemQty = new javax.swing.JLabel();
         txtIQty = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtReOrder = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -113,6 +116,7 @@ public class Items extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(810, 690));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -121,15 +125,11 @@ public class Items extends javax.swing.JFrame {
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(810, 690));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
-        jLabel1.setText("ITEMS");
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 13, -1, -1));
-
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 365, 807, 10));
+        jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 365, 1000, 10));
 
         jPanel1.setBackground(new java.awt.Color(26, 188, 156));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,64 +141,61 @@ public class Items extends javax.swing.JFrame {
                 lblUserMouseClicked(evt);
             }
         });
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 54, 50));
 
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.setText("Back");
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);
             }
         });
+        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 55, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 690, Short.MAX_VALUE)
-                .addComponent(lblUser)
-                .addGap(28, 28, 28))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblUser)
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ITEMS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 90));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(127, 140, 141));
         jLabel3.setText("Item Name");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 87, -1, -1));
+        jPanel2.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 86, 124, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(127, 140, 141));
         jLabel2.setText("Item Code");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 35, -1, 25));
+        jPanel2.add(txtItemCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 37, 124, -1));
+        jPanel2.add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 133, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(127, 140, 141));
         jLabel6.setText("Date");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(127, 140, 141));
         jLabel4.setText("Category");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 91, -1));
 
-        iCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fuel", "Item 2", "Item 3", "Item 4" }));
+        iCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        jPanel2.add(iCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 120, -1));
 
-        iSubCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Petrol", "Item 2", "Item 3", "Item 4" }));
+        iSubCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        jPanel2.add(iSubCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 99, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(127, 140, 141));
         jLabel5.setText("Sub-Category");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(26, 188, 156));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -211,6 +208,7 @@ public class Items extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 123, 40));
 
         jLabel8.setBackground(new java.awt.Color(26, 188, 156));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -223,6 +221,7 @@ public class Items extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 118, 40));
 
         jLabel9.setBackground(new java.awt.Color(26, 188, 156));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -235,10 +234,12 @@ public class Items extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 122, 40));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(127, 140, 141));
         jLabel14.setText("Buying Price");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
 
         txtBuyingPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,16 +251,19 @@ public class Items extends javax.swing.JFrame {
                 txtBuyingPriceKeyTyped(evt);
             }
         });
+        jPanel2.add(txtBuyingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 131, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(127, 140, 141));
         jLabel15.setText("Selling Price");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, -1, -1));
 
         txtSellingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSellingPriceKeyTyped(evt);
             }
         });
+        jPanel2.add(txtSellingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 131, -1));
 
         tblItems.setBackground(new java.awt.Color(153, 255, 255));
         tblItems.setModel(new javax.swing.table.DefaultTableModel(
@@ -281,6 +285,8 @@ public class Items extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblItems);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 736, 194));
+
         jLabel10.setBackground(new java.awt.Color(26, 188, 156));
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -292,162 +298,65 @@ public class Items extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 84, 40));
+        jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 269, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(127, 140, 141));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Category");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
 
-        iSearchCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fuel", "Item 2", "Item 3", "Item 4" }));
+        iSearchCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        jPanel2.add(iSearchCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 94, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(127, 140, 141));
         jLabel12.setText("Sub-Category");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
 
-        iSearchSubCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Petrol", "Item 2", "Item 3", "Item 4" }));
+        iSearchSubCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         iSearchSubCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iSearchSubCatActionPerformed(evt);
             }
         });
+        jPanel2.add(iSearchSubCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, 94, -1));
 
         txtItemQty.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtItemQty.setForeground(new java.awt.Color(127, 140, 141));
         txtItemQty.setText("Quantity");
+        jPanel2.add(txtItemQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
         txtIQty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIQtyKeyTyped(evt);
             }
         });
+        jPanel2.add(txtIQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 99, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtItemCode, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(iCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtItemQty))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(iSubCategory, 0, 99, Short.MAX_VALUE)
-                            .addComponent(txtIQty))
-                        .addGap(29, 29, 29))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtSearchItems, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(iSearchCat, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(iSearchSubCat, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(7, 7, 7))
-                                .addComponent(txtBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(22, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtItemCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(iCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iSubCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtIQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtItemQty)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtBuyingPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSearchItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(iSearchCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(iSearchSubCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(133, 133, 133)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel13.setText("ReorderLevel");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, -1, -1));
 
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 810, 620));
+        txtReOrder.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtReOrderKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtReOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 120, -1));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 690));
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 660));
+
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
        String srch=new String(txtSearchItems.getText());
-       String sql= "SELECT (ItemCode,ItemName,Description) FROM stock where ItemName LIKE '%"+srch+"%'";
+       String sql= "SELECT ItemCode,ItemName,SellingPrice FROM `stock` where ItemName LIKE '%"+srch+"%'";
        try
        {
            ResultSet rs=DB.getDbCon().query(sql);
@@ -456,7 +365,7 @@ public class Items extends javax.swing.JFrame {
        }
        catch(Exception e)
        {
-       
+           System.out.println(e);
        }
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -469,7 +378,8 @@ public class Items extends javax.swing.JFrame {
       String qty=new String(txtIQty.getText());
       String buy=new String(txtBuyingPrice.getText());
       String sell=new String(txtBuyingPrice.getText());
-      String sql="INSERT INTO stock values('"+icode+"','"+iname+"','"+date+"','"+qty+"','"+buy+"','"+sell+"','"+cat+"','"+subcat+"')";
+      String ro=new String(txtReOrder.getText());
+      String sql="INSERT INTO stock values('"+icode+"','"+iname+"','"+date+"','"+qty+"','"+buy+"','"+sell+"','"+cat+"','"+subcat+"','"+ro+"','1')";
       try
       {
       DB.getDbCon().insert(sql);
@@ -484,6 +394,7 @@ public class Items extends javax.swing.JFrame {
       txtIQty.setText("");
       txtBuyingPrice.setText("");
       txtSellingPrice.setText("");
+      txtReOrder.setText("");
       
       
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -491,14 +402,15 @@ public class Items extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
        String icode=new String(txtItemCode.getText());
      
-      String sql ="DELETE  FROM stock where ItemCode='"+icode+"'";
+      String sql ="UPDATE stock SET Status='0' where ItemCode='"+icode+"'";
       try{
-      DB.getDbCon().query(sql);
+      DB.getDbCon().insert(sql);
       }
       catch(Exception e)
       { 
-      
+          System.out.println(e);
       }
+      txtItemCode.setText("");
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -510,7 +422,8 @@ public class Items extends javax.swing.JFrame {
       String qty=new String(txtIQty.getText());
       String buy=new String(txtBuyingPrice.getText());
       String sell=new String(txtBuyingPrice.getText());
-      String sql="UPDATE stock SET ItemCode='"+icode+"',ItemName='"+iname+"',Date='"+date+"',Quantity='"+qty+"',BuyingPrice='"+buy+"',SellingPrice='"+sell+"',Category='"+cat+"',SubCatgory='"+subcat+"',Date='"+date+"'";
+       String ro=new String(txtReOrder.getText());
+      String sql="UPDATE stock SET ItemName='"+iname+"',Date='"+date+"',Quantity='"+qty+"',BuyingPrice='"+buy+"',SellingPrice='"+sell+"',Category='"+cat+"',SubCategory='"+subcat+"',Date='"+date+"',ReorderLevel='"+ro+"' where ItemCode='"+icode+"'";
       
       try
       {
@@ -518,6 +431,7 @@ public class Items extends javax.swing.JFrame {
       }
       catch(Exception e)
       {
+          System.out.println(e);
       
       }
       
@@ -527,6 +441,7 @@ public class Items extends javax.swing.JFrame {
       txtIQty.setText("");
       txtBuyingPrice.setText("");
       txtSellingPrice.setText("");
+      txtReOrder.setText("");
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void txtBuyingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuyingPriceActionPerformed
@@ -574,6 +489,15 @@ public class Items extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSellingPriceKeyTyped
 
+    private void txtReOrderKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReOrderKeyTyped
+         char c = evt.getKeyChar();
+         if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
+               || (c==KeyEvent.VK_DELETE))){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtReOrderKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -619,6 +543,7 @@ public class Items extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -644,6 +569,7 @@ public class Items extends javax.swing.JFrame {
     private javax.swing.JTextField txtItemCode;
     private javax.swing.JTextField txtItemName;
     private javax.swing.JLabel txtItemQty;
+    private javax.swing.JTextField txtReOrder;
     private javax.swing.JTextField txtSearchItems;
     private javax.swing.JTextField txtSellingPrice;
     // End of variables declaration//GEN-END:variables

@@ -22,6 +22,7 @@ public class OrderStatus extends javax.swing.JFrame {
      */
     public OrderStatus() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -46,6 +47,7 @@ public class OrderStatus extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(940, 528));
+        setUndecorated(true);
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
@@ -60,7 +62,7 @@ public class OrderStatus extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Order Status");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 28, 393, 32));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 393, 32));
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,13 +76,13 @@ public class OrderStatus extends javax.swing.JFrame {
         });
         jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, -1, -1));
 
-        lblBack.setText("Back");
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);
             }
         });
-        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, 40));
+        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 70, -1));
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 100));
 
@@ -89,31 +91,39 @@ public class OrderStatus extends javax.swing.JFrame {
         tblStatus.setBackground(new java.awt.Color(153, 255, 153));
         tblStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "SupplierID", "Description"
+                "Order ID", "Quantity", "SupplierID", "Description", "ItemID", "Unit", "Date", "User", "Status"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblStatus);
 
         jLabel1.setBackground(new java.awt.Color(231, 76, 60));
@@ -189,7 +199,7 @@ public class OrderStatus extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        String sql="SELECT OrderID, SupplierID, OrderDetails from order";
+        String sql="SELECT * FROM fnss.`order`";
         try{
         ResultSet rs=DB.getDbCon().query(sql);
         tblStatus.setModel(DbUtils.resultSetToTableModel(rs));

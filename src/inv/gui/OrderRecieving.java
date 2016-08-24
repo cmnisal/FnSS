@@ -23,7 +23,7 @@ public class OrderRecieving extends javax.swing.JFrame {
      */
     public OrderRecieving() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
       
     }
 
@@ -37,7 +37,6 @@ public class OrderRecieving extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
@@ -58,6 +57,7 @@ public class OrderRecieving extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(940, 528));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -65,13 +65,6 @@ public class OrderRecieving extends javax.swing.JFrame {
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(940, 528));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(940, 528));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
         jPanel1.setBackground(new java.awt.Color(52, 152, 219));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,7 +87,7 @@ public class OrderRecieving extends javax.swing.JFrame {
         });
         jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, -1, -1));
 
-        lblBack.setText("Back");
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);
@@ -237,22 +230,21 @@ public class OrderRecieving extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        new Home().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void txtOrderRSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderRSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrderRSupplierActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
       String oid=new String(txtOrderRID.getText());
+      String q1="Select SupplierID from `order` where OrderID='"+oid+"'";
         try
         {
-        String q1="Select SupplierID from order where OrderID='"+oid+"'";
+        
         ResultSet rs=DB.getDbCon().query(q1);
+        while(rs.next())
+        {
         txtOrderRSupplier.setText(rs.getString("SupplierID"));
+        }
         Date date=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd ");
         
@@ -260,6 +252,7 @@ public class OrderRecieving extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -313,7 +306,6 @@ public class OrderRecieving extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

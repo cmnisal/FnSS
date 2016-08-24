@@ -7,7 +7,10 @@
 package inv.gui;
 
 import com.sun.glass.events.KeyEvent;
+import fnss.functions.DB;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -20,6 +23,7 @@ public class NewOrder extends javax.swing.JFrame {
      */
     public NewOrder() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -55,9 +59,12 @@ public class NewOrder extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtNewOrderSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(950, 660));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,15 +92,15 @@ public class NewOrder extends javax.swing.JFrame {
                 lblUserMouseClicked(evt);
             }
         });
-        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, -1, -1));
 
-        lblBack.setText("Back");
+        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBackMouseClicked(evt);
             }
         });
-        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 110));
 
@@ -125,12 +132,18 @@ public class NewOrder extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 840, 180));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 840, 180));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel3.setText("Supplier");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
@@ -164,7 +177,7 @@ public class NewOrder extends javax.swing.JFrame {
         });
         jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 190, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unit", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Units", "Gallons", "Liters", "Kilos" }));
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(22, 160, 133));
@@ -174,6 +187,20 @@ public class NewOrder extends javax.swing.JFrame {
         jLabel9.setText("Proceed");
         jLabel9.setOpaque(true);
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
+
+        jLabel10.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Search");
+        jLabel10.setOpaque(true);
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 80, 30));
+        jPanel2.add(txtNewOrderSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 230, 30));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 950, 540));
 
@@ -199,6 +226,28 @@ public class NewOrder extends javax.swing.JFrame {
         evt.consume();
         }
     }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        char c = evt.getKeyChar();
+         if(Character.isDigit(c)){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        String srch=new String(txtNewOrderSearch.getText());
+        String sql="SELECT ItemCode, ItemName,Quantity FROM `stock` where ItemName LIKE '%"+srch+"%'";
+        try
+        {
+        ResultSet rs=DB.getDbCon().query(sql);
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,6 +288,7 @@ public class NewOrder extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,6 +310,7 @@ public class NewOrder extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTextField txtNewOrderSearch;
     // End of variables declaration//GEN-END:variables
 private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
