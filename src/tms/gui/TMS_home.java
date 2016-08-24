@@ -30,11 +30,12 @@ public class TMS_home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         exitButtonLable = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        newHireLable = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -44,6 +45,9 @@ public class TMS_home extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 50, 50));
 
         exitButtonLable.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         exitButtonLable.setForeground(new java.awt.Color(255, 255, 255));
@@ -64,12 +68,17 @@ public class TMS_home extends javax.swing.JFrame {
 
         jPanel3.setOpaque(false);
 
-        jLabel3.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel3.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("New Hire");
-        jLabel3.setOpaque(true);
+        newHireLable.setBackground(new java.awt.Color(231, 76, 60));
+        newHireLable.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        newHireLable.setForeground(new java.awt.Color(255, 255, 255));
+        newHireLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newHireLable.setText("New Hire");
+        newHireLable.setOpaque(true);
+        newHireLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newHireLableMouseClicked(evt);
+            }
+        });
 
         jLabel5.setBackground(new java.awt.Color(231, 76, 60));
         jLabel5.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
@@ -93,7 +102,7 @@ public class TMS_home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newHireLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -101,7 +110,7 @@ public class TMS_home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newHireLable, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -148,6 +157,11 @@ public class TMS_home extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_exitButtonLableMouseClicked
 
+    private void newHireLableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newHireLableMouseClicked
+        new TMS_newHire().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_newHireLableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -188,11 +202,12 @@ public class TMS_home extends javax.swing.JFrame {
     private javax.swing.JLabel exitButtonLable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel newHireLable;
     // End of variables declaration//GEN-END:variables
 }
