@@ -16,6 +16,7 @@ public class sstHome extends javax.swing.JFrame {
      */
     public sstHome() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,12 +33,16 @@ public class sstHome extends javax.swing.JFrame {
         newjob = new javax.swing.JLabel();
         manage = new javax.swing.JLabel();
         history = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        cus = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(600, 500));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         newjob.setBackground(new java.awt.Color(255, 0, 0));
@@ -64,20 +69,43 @@ public class sstHome extends javax.swing.JFrame {
                 historyMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(history, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 290, 160, 50));
+        jDesktopPane1.add(history, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 160, 40));
+
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 30, 20));
+
+        cus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cusMouseClicked(evt);
+            }
+        });
+        jDesktopPane1.add(cus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 160, 40));
+
+        jLabel5.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel5.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Customer");
+        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jLabel5.setOpaque(true);
+        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 160, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sst/gui/IMG-20160822-WA0001.jpg"))); // NOI18N
-        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 700, 410));
+        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 700, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         pack();
@@ -100,6 +128,18 @@ public class sstHome extends javax.swing.JFrame {
         new sstAddJob().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_newjobMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        new fnss.gui.Home().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void cusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusMouseClicked
+        // TODO add your handling code here:
+        new sstCustomer().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cusMouseClicked
 
     /**
      * @param args the command line arguments
@@ -128,6 +168,8 @@ public class sstHome extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -138,9 +180,12 @@ public class sstHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cus;
     private javax.swing.JLabel history;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel manage;
     private javax.swing.JLabel newjob;

@@ -5,17 +5,29 @@
  */
 package sst.gui;
 
+import com.mysql.jdbc.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+import java.sql.*;
+
 /**
  *
  * @author CheeBhagyani
  */
 public class sstHistory extends javax.swing.JFrame {
 
+   Connection con = null;
+   PreparedStatement stm = null;
+   ResultSet rs = null;
     /**
      * Creates new form sstHistory
      */
     public sstHistory() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        dbconnect db = new dbconnect(); 
+        con=db.getConnection();
     }
 
     /**
@@ -28,22 +40,25 @@ public class sstHistory extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        historytable = new javax.swing.JTable();
+        cusid = new javax.swing.JTextField();
+        search = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Service History");
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 174, 47));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sstlogo.png"))); // NOI18N
+        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 160, 90));
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -51,39 +66,79 @@ public class sstHistory extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jDesktopPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+        jDesktopPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        historytable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date", "Customer Name", "Job ID", "Veicle No", "Service Type"
+                "", "", "", "", "", " ", "", ""
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(historytable);
 
-        jDesktopPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 470, 160));
-        jDesktopPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 320, 20));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 720, 210));
 
-        jButton2.setText("Search");
-        jDesktopPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 120, 20));
+        cusid.setForeground(new java.awt.Color(204, 204, 204));
+        cusid.setText("Search by customer ID..");
+        jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 550, 30));
 
-        jButton3.setText("View full history");
-        jDesktopPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+        search.setBackground(new java.awt.Color(231, 76, 60));
+        search.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(255, 255, 255));
+        search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        search.setText("Search");
+        search.setOpaque(true);
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 150, 30));
+
+        jLabel2.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel2.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("View Full History");
+        jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 110, 40));
+
+        jLabel1.setFont(new java.awt.Font("Lato Heavy", 0, 24)); // NOI18N
+        jLabel1.setText("Service History");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 174, 47));
+
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 810, 420));
+
+        jLabel5.setBackground(new java.awt.Color(236, 240, 241));
+        jLabel5.setOpaque(true);
+        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 160, 860, 410));
+
+        jLabel3.setBackground(new java.awt.Color(46, 204, 113));
+        jLabel3.setOpaque(true);
+        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 850, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
 
         pack();
@@ -94,6 +149,44 @@ public class sstHistory extends javax.swing.JFrame {
         new sstHome().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        // TODO add your handling code here:
+        String name = cusid.getText();
+        String sql = "Select * from service where CustomerID = '"+name+"' ";
+        
+        try{
+            
+            //dbconnect db = new dbconnect();
+            //this.con = db.getConnection();
+            stm = con.prepareStatement(sql);
+            rs = stm.executeQuery(sql);
+            
+            cusid.setText("");
+            
+            historytable.setModel(DbUtils.resultSetToTableModel(rs));
+                     
+            
+        }catch(Exception e){
+        }
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        String sql2 = "select * from service";
+        
+        try{    
+            
+          //  dbconnect db = new dbconnect();
+           // this.con = db.getConnection();
+            stm = con.prepareStatement(sql2);
+            rs = stm.executeQuery(sql2);
+                
+           historytable.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(Exception e){
+        }
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,6 +215,8 @@ public class sstHistory extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -132,13 +227,17 @@ public class sstHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JTextField cusid;
+    private javax.swing.JTable historytable;
     private javax.swing.JButton jButton4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel search;
     // End of variables declaration//GEN-END:variables
 }
