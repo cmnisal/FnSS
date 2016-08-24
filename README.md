@@ -6,6 +6,6 @@ emp - Employee Management
 inv - Inventory Stock & Order Management  
 sst - Service Station Management  
 tms - Transportation Management  
-ast - Asset Management
+ast - Asset Management  
 anf - Accounts & Finance Management  
 pos -  Point of Sale   
