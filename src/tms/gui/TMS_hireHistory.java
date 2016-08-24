@@ -1,5 +1,10 @@
 package tms.gui;
+import fnss.functions.DB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -11,8 +16,23 @@ public class TMS_hireHistory extends javax.swing.JFrame {
      * Creates new form tmsNewHire
      */
     public TMS_hireHistory() {
-        initComponents();
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            this.setLocationRelativeTo(null);
+            this.setExtendedState(MAXIMIZED_BOTH);
+            
+            hireHistoryTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hiretransaction`.`hireID`,\n" +
+                                                                "    `tms_hiretransaction`.`cusID`,\n" +
+                                                                "    `tms_hiretransaction`.`vehicleReg`,\n" +
+                                                                "    `tms_hiretransaction`.`duration`,\n" +
+                                                                "    `tms_hiretransaction`.`travelledMilage`,\n" +
+                                                                "    `tms_hiretransaction`.`actualRental`,\n" +
+                                                                "    `tms_hiretransaction`.`calcMethod`\n" +
+                                                                "FROM `fnss`.`tms_hiretransaction`;")));
+            //this.setExtendedState(MAXIMIZED_BOTH);
+        } catch (SQLException ex) {
+            Logger.getLogger(TMS_hireHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //close button function
@@ -31,20 +51,207 @@ public class TMS_hireHistory extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
-        exitButtonLable = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        FunctionImage = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        ContentArea = new javax.swing.JPanel();
+        panelWhiteArea = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        hireHistoryTable = new javax.swing.JTable();
+        panelSideButtons = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        BackButton = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        ExitButton = new javax.swing.JPanel();
+        exitButtonLable = new javax.swing.JLabel();
+        BlueStrip = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setUndecorated(true);
+
+        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
+
+        FunctionImage.setOpaque(false);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tms/gui/images/tanker 116 x 116.png"))); // NOI18N
+
+        javax.swing.GroupLayout FunctionImageLayout = new javax.swing.GroupLayout(FunctionImage);
+        FunctionImage.setLayout(FunctionImageLayout);
+        FunctionImageLayout.setHorizontalGroup(
+            FunctionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FunctionImageLayout.createSequentialGroup()
+                .addContainerGap(623, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(621, Short.MAX_VALUE))
+        );
+        FunctionImageLayout.setVerticalGroup(
+            FunctionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FunctionImageLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(469, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(FunctionImage);
+
+        ContentArea.setOpaque(false);
+
+        panelWhiteArea.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setFont(new java.awt.Font("Clarendon Blk BT", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(71, 71, 71));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Hire History");
+
+        hireHistoryTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        hireHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Hire ID", "Customer ID", "Vehicle Number", "Duration", "Total Milage", "Total Rental", "Calc. Method"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        hireHistoryTable.setGridColor(new java.awt.Color(255, 255, 255));
+        hireHistoryTable.setRowHeight(26);
+        hireHistoryTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        hireHistoryTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(hireHistoryTable);
+        if (hireHistoryTable.getColumnModel().getColumnCount() > 0) {
+            hireHistoryTable.getColumnModel().getColumn(0).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(1).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(2).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(3).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(4).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(5).setResizable(false);
+            hireHistoryTable.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        javax.swing.GroupLayout panelWhiteAreaLayout = new javax.swing.GroupLayout(panelWhiteArea);
+        panelWhiteArea.setLayout(panelWhiteAreaLayout);
+        panelWhiteAreaLayout.setHorizontalGroup(
+            panelWhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWhiteAreaLayout.createSequentialGroup()
+                .addGroup(panelWhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelWhiteAreaLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelWhiteAreaLayout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
+        );
+        panelWhiteAreaLayout.setVerticalGroup(
+            panelWhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelWhiteAreaLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        panelSideButtons.setOpaque(false);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tms/gui/images/add button.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel5MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelSideButtonsLayout = new javax.swing.GroupLayout(panelSideButtons);
+        panelSideButtons.setLayout(panelSideButtonsLayout);
+        panelSideButtonsLayout.setHorizontalGroup(
+            panelSideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSideButtonsLayout.createSequentialGroup()
+                .addContainerGap(1169, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(127, 127, 127))
+        );
+        panelSideButtonsLayout.setVerticalGroup(
+            panelSideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSideButtonsLayout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jLabel5)
+                .addContainerGap(417, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ContentAreaLayout = new javax.swing.GroupLayout(ContentArea);
+        ContentArea.setLayout(ContentAreaLayout);
+        ContentAreaLayout.setHorizontalGroup(
+            ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentAreaLayout.createSequentialGroup()
+                .addContainerGap(329, Short.MAX_VALUE)
+                .addComponent(panelWhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(323, Short.MAX_VALUE))
+            .addGroup(ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ContentAreaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelSideButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        ContentAreaLayout.setVerticalGroup(
+            ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentAreaLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(panelWhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+            .addGroup(ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ContentAreaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelSideButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jLayeredPane1.add(ContentArea);
+
+        BackButton.setOpaque(false);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 50, 50));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel4MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BackButtonLayout = new javax.swing.GroupLayout(BackButton);
+        BackButton.setLayout(BackButtonLayout);
+        BackButtonLayout.setHorizontalGroup(
+            BackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackButtonLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel4)
+                .addContainerGap(1210, Short.MAX_VALUE))
+        );
+        BackButtonLayout.setVerticalGroup(
+            BackButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackButtonLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel4)
+                .addContainerGap(570, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(BackButton);
+
+        ExitButton.setOpaque(false);
 
         exitButtonLable.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         exitButtonLable.setForeground(new java.awt.Color(255, 255, 255));
@@ -56,83 +263,63 @@ public class TMS_hireHistory extends javax.swing.JFrame {
                 exitButtonLableMouseClicked(evt);
             }
         });
-        getContentPane().add(exitButtonLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tms/gui/images/tanker 95 x 95.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, -1, 100));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel6.setFont(new java.awt.Font("Clarendon Blk BT", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Manage Hires");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout ExitButtonLayout = new javax.swing.GroupLayout(ExitButton);
+        ExitButton.setLayout(ExitButtonLayout);
+        ExitButtonLayout.setHorizontalGroup(
+            ExitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ExitButtonLayout.createSequentialGroup()
+                .addContainerGap(1320, Short.MAX_VALUE)
+                .addComponent(exitButtonLable)
+                .addContainerGap())
+        );
+        ExitButtonLayout.setVerticalGroup(
+            ExitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ExitButtonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addComponent(exitButtonLable)
+                .addContainerGap(679, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 760, 440));
+        jLayeredPane1.add(ExitButton);
+
+        BlueStrip.setOpaque(false);
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 270));
+
+        javax.swing.GroupLayout BlueStripLayout = new javax.swing.GroupLayout(BlueStrip);
+        BlueStrip.setLayout(BlueStripLayout);
+        BlueStripLayout.setHorizontalGroup(
+            BlueStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BlueStripLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1360, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        BlueStripLayout.setVerticalGroup(
+            BlueStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BlueStripLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 450, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(BlueStrip);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLayeredPane1)
+                .addGap(0, 0, 0))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,6 +327,16 @@ public class TMS_hireHistory extends javax.swing.JFrame {
     private void exitButtonLableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonLableMouseClicked
         close();
     }//GEN-LAST:event_exitButtonLableMouseClicked
+
+    private void jLabel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseReleased
+        new TMS_home().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseReleased
+
+    private void jLabel5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseReleased
+        new TMS_newHire(this).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseReleased
 
     /**
      * @param args the command line arguments
@@ -180,13 +377,21 @@ public class TMS_hireHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BackButton;
+    private javax.swing.JPanel BlueStrip;
+    private javax.swing.JPanel ContentArea;
+    private javax.swing.JPanel ExitButton;
+    private javax.swing.JPanel FunctionImage;
     private javax.swing.JLabel exitButtonLable;
+    private javax.swing.JTable hireHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel panelSideButtons;
+    private javax.swing.JPanel panelWhiteArea;
     // End of variables declaration//GEN-END:variables
 }
