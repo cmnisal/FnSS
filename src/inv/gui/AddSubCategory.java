@@ -6,6 +6,11 @@
 
 package inv.gui;
 
+import fnss.functions.DB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sachini
@@ -17,6 +22,20 @@ public class AddSubCategory extends javax.swing.JFrame {
      */
     public AddSubCategory() {
         initComponents();
+        
+        try{
+     String cat="SELECT CategoryName FROM category";
+       ResultSet rs=DB.getDbCon().query(cat);
+       while(rs.next())
+       {
+           Category.addItem(rs.getString("CategoryName"));
+       }
+}
+catch(Exception e)
+{
+
+}
+       
     }
 
     /**
@@ -29,7 +48,6 @@ public class AddSubCategory extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtSubCatID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -38,23 +56,18 @@ public class AddSubCategory extends javax.swing.JFrame {
         txtSubCatName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblUser = new javax.swing.JLabel();
+        lblBack1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 300));
-        setMinimumSize(new java.awt.Dimension(0, 0));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setBackground(new java.awt.Color(236, 240, 241));
-        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
-        jLabel1.setText("ADD SUB-CATEGORY");
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 13, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(44, 62, 80));
@@ -67,8 +80,13 @@ public class AddSubCategory extends javax.swing.JFrame {
         jLabel3.setText("Category");
         jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 142, -1, -1));
 
-        Category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...Select...", "Fuel", "Spare Parts", "Lubricants", " " }));
+        Category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         Category.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoryActionPerformed(evt);
+            }
+        });
         jDesktopPane1.add(Category, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 142, 161, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
@@ -93,15 +111,52 @@ public class AddSubCategory extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(26, 188, 156));
 
+        lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUserMouseClicked(evt);
+            }
+        });
+
+        lblBack1.setText("Back");
+        lblBack1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBack1MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(236, 240, 241));
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel1.setText("ADD SUB-CATEGORY");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(lblUser)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(lblBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUser))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 70));
@@ -130,13 +185,40 @@ public class AddSubCategory extends javax.swing.JFrame {
        String subCatID=new String(txtSubCatID.getText());
        String subCatName=new String(txtSubCatName.getText());
        String Cat=String.valueOf(Category.getSelectedItem());
-       String sql="INSERT INTO subcategory (SudCatID,Category,SubCatName) values ('"+subCatID+"','"+Cat+"','"+subCatName+"')";
+       String sql="INSERT INTO subcategory  values ('"+subCatID+"','"+Cat+"','"+subCatName+"')";
+       try{
+       DB.getDbCon().insert(sql);
+       }
+       catch(Exception e)
+       {
+       
+       }
+       
+       txtSubCatID.setText("");
+       txtSubCatName.setText("");
+       //Category.setSelectedItem(0);
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
+      
+    }//GEN-LAST:event_CategoryActionPerformed
+
+    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
+        close();
+    }//GEN-LAST:event_lblUserMouseClicked
+
+    private void lblBack1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBack1MouseClicked
+        new StockManagement().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblBack1MouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
+        
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -178,7 +260,16 @@ public class AddSubCategory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblBack1;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtSubCatID;
     private javax.swing.JTextField txtSubCatName;
     // End of variables declaration//GEN-END:variables
+private void close() {
+        if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
+            this.dispose();
+        }
+ }
+
+
 }

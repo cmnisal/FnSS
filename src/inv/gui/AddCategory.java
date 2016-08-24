@@ -6,6 +6,8 @@
 package inv.gui;
 
 import fnss.functions.DB;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 
 
@@ -20,6 +22,7 @@ public class AddCategory extends javax.swing.JFrame {
      */
     public AddCategory() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +43,8 @@ public class AddCategory extends javax.swing.JFrame {
         txtCategoryName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        lblUser = new javax.swing.JLabel();
+        lblBack = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         jLabel5.setText("jLabel5");
@@ -88,17 +93,27 @@ public class AddCategory extends javax.swing.JFrame {
         jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 236, 70, 30));
 
         jPanel1.setBackground(new java.awt.Color(22, 160, 133));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
+        lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUserMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 13, -1, -1));
+
+        lblBack.setText("Back");
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 80));
 
@@ -127,18 +142,27 @@ public class AddCategory extends javax.swing.JFrame {
         String CategoryName = new String(txtCategoryName.getText());
         String sql = "INSERT INTO category (CategoryID,CategoryName) values ('" + CategoryID + "','" + CategoryName + "')";
         try{
-           // DB d;
-            //d = new DB();
-            //d.insert(sql);
+           DB.getDbCon().insert(sql);
         
         }
         catch(Exception e)
         {
-        
+            System.out.println(e);
         }
+        txtCategoryID.setText("");
+        txtCategoryName.setText("");
 
 
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
+        close();
+    }//GEN-LAST:event_lblUserMouseClicked
+
+    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
+        new StockManagement().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -184,7 +208,18 @@ public class AddCategory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblBack;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtCategoryID;
     private javax.swing.JTextField txtCategoryName;
     // End of variables declaration//GEN-END:variables
+private void close() {
+        if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
+            this.dispose();
+        }
+ }
+
+
+
+
 }
