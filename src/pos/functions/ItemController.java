@@ -27,10 +27,10 @@ public class ItemController {
             Item item = new Item();
             item.setCode(rs.getString("itemCode"));
             item.setName(rs.getString("itemName"));
-            item.setCost(rs.getDouble("cost"));
-            item.setQuantity(rs.getDouble("qty"));
-            item.setSelling_price(rs.getDouble("sellingPrice"));
-            item.setSub_cat(rs.getString("subCat"));
+            item.setCost(rs.getDouble("BuyingPrice"));
+            item.setQuantity(rs.getDouble("Quantity"));
+            item.setSelling_price(rs.getDouble("SellingPrice"));
+            item.setSub_cat(rs.getString("SubCategory"));
             Stock.items.put(item.getCode(), item);
         }
         return Stock.items;

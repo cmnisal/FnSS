@@ -9,8 +9,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import pos.functions.ItemController;
@@ -46,6 +49,7 @@ public class ItemSearch extends javax.swing.JDialog {
     }
     String code;
     Item Selected;
+
     Item showDialog() {
         setVisible(true);
         return Selected;
@@ -187,6 +191,7 @@ public class ItemSearch extends javax.swing.JDialog {
         });
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setRowHeight(26);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,7 +398,7 @@ public class ItemSearch extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
-jTextField2.selectAll();
+        jTextField2.selectAll();
     }//GEN-LAST:event_jTextField2FocusGained
 
     /**
@@ -427,6 +432,7 @@ jTextField2.selectAll();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ItemSearch dialog = new ItemSearch(new javax.swing.JFrame(), true);
+
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

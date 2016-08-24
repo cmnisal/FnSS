@@ -5,6 +5,8 @@
  */
 package pos.model;
 
+import pos.interfaces.Stock;
+
 /**
  *
  * @author Nisal
@@ -27,7 +29,7 @@ public class BillItem {
     }
 
     public String getName() {
-        return name;
+        return Stock.items.get(this.code).getName();
     }
 
     public void setName(String name) {
@@ -59,11 +61,7 @@ public class BillItem {
     }
 
     public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+        return unit_price*quantity;
     }
 
 }

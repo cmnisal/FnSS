@@ -53,7 +53,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="topBar" pref="1548" max="32767" attributes="0"/>
+              <Component id="topBar" pref="1924" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="mainPanel" max="32767" attributes="0"/>
@@ -186,7 +186,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="billPanel" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="itemPanel" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -200,6 +200,10 @@
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="billPanel">
+              <Properties>
+                <Property name="doubleBuffered" type="boolean" value="false"/>
+                <Property name="opaque" type="boolean" value="false"/>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -239,7 +243,7 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" max="32767" attributes="0"/>
+                              <Component id="txtTotal" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -247,12 +251,12 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jTextField1" alignment="1" pref="70" max="32767" attributes="0"/>
+                          <Component id="txtTotal" alignment="1" pref="70" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="jTextField1">
+                    <Component class="javax.swing.JTextField" name="txtTotal">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -324,9 +328,9 @@
                                 <Column editable="false" title="Item Code" type="java.lang.String"/>
                                 <Column editable="false" title="Description" type="java.lang.String"/>
                                 <Column editable="false" title="Qty." type="java.lang.Integer"/>
-                                <Column editable="false" title="Unit Price" type="java.lang.Double"/>
-                                <Column editable="false" title="Total" type="java.lang.Double"/>
-                                <Column editable="false" title="X" type="java.lang.String"/>
+                                <Column editable="false" title="Unit Price" type="java.lang.Integer"/>
+                                <Column editable="false" title="Total" type="java.lang.Integer"/>
+                                <Column editable="false" title="  X" type="java.lang.String"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -336,7 +340,7 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -371,6 +375,9 @@
                               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -387,8 +394,8 @@
                               <Component id="btnItemSearch" min="-2" pref="89" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="txtQty" min="-2" pref="63" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="txtPrice" pref="107" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="txtPrice" pref="491" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="btnAdd" min="-2" pref="89" max="-2" attributes="0"/>
                           </Group>
@@ -471,6 +478,7 @@
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtQtyFocusGained"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtyActionPerformed"/>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQtyKeyReleased"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="btnAdd">
@@ -511,6 +519,7 @@
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPriceFocusGained"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPriceActionPerformed"/>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPriceKeyReleased"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPriceKeyTyped"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -533,6 +542,9 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="itemPanel">
+              <Properties>
+                <Property name="opaque" type="boolean" value="false"/>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -654,7 +666,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="922" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="920" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -729,7 +741,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="922" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="920" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">

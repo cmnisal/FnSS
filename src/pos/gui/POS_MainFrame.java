@@ -10,8 +10,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -22,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import pos.functions.ItemController;
 import pos.interfaces.Stock;
 import pos.model.BillItem;
@@ -35,11 +34,13 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
     private static String user = "Nisal";
     private static String POS_ID;
+    DefaultTableModel dtm;
 
     public POS_MainFrame() {
 
         try {
             initComponents();
+            dtm = (DefaultTableModel) jTable1.getModel();
             ItemController.getAllItemsFromDB();
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
@@ -58,9 +59,9 @@ public class POS_MainFrame extends javax.swing.JFrame {
                         greeting = "Good Evening, " + user;
                     }
                     lblUser1.setText(greeting);
-                    System.out.println("DB Connection Check - "+DB.getDbCon().query("SELECT 1").next());
+                    System.out.println("DB Connection Check - " + DB.getDbCon().query("SELECT 1").next());
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(this,ex.getMessage()+"\nOK to Check the Connection. Communication Failure Exits the System.");
+                    JOptionPane.showMessageDialog(this, ex.getMessage() + "\nOK to Check the Connection. Communication Failure Exits the System.");
                     DB.db = null;
                     //Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -94,7 +95,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         billPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -223,15 +224,18 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
         mainPanel.setOpaque(false);
 
+        billPanel.setDoubleBuffered(false);
+        billPanel.setOpaque(false);
+
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("LKR. 99,999.99");
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(null);
+        txtTotal.setEditable(false);
+        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotal.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTotal.setText("LKR. 99,999.99");
+        txtTotal.setToolTipText("");
+        txtTotal.setBorder(null);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -247,13 +251,13 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
+                .addComponent(txtTotal)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jTable1.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
@@ -262,11 +266,11 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Description", "Qty.", "Unit Price", "Total", "X"
+                "Item Code", "Description", "Qty.", "Unit Price", "Total", "  X"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -283,10 +287,15 @@ public class POS_MainFrame extends javax.swing.JFrame {
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setRowHeight(26);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
             jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
@@ -353,6 +362,11 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 txtQtyActionPerformed(evt);
             }
         });
+        txtQty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQtyKeyReleased(evt);
+            }
+        });
 
         btnAdd.setBackground(new java.awt.Color(52, 152, 219));
         btnAdd.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -386,6 +400,9 @@ public class POS_MainFrame extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPriceKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPriceKeyTyped(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -398,8 +415,8 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addComponent(btnItemSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -448,6 +465,8 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        itemPanel.setOpaque(false);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -503,7 +522,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         panelRecent.setLayout(panelRecentLayout);
         panelRecentLayout.setHorizontalGroup(
             panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         panelRecentLayout.setVerticalGroup(
             panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +567,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         panelItem.setLayout(panelItemLayout);
         panelItemLayout.setHorizontalGroup(
             panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         panelItemLayout.setVerticalGroup(
             panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,7 +732,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(billPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(itemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -726,7 +745,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(topBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1548, Short.MAX_VALUE)
+            .addComponent(topBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1924, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -804,7 +823,14 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtItemCode.setText(itemcode);
     }
     private void txtItemCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemCodeActionPerformed
-        // TODO add your handling code here:
+        if (Stock.items.containsKey(txtItemCode.getText()) && Stock.items.get(txtItemCode.getText()).getQuantity() > 0) {
+            currentItem = Stock.items.get(txtItemCode.getText());
+            loadCurrentItemtoField();
+        } else {
+            JOptionPane.showMessageDialog(this, "Item Not Found or Not Available on Stocks!");
+            resetFields();
+
+        }
     }//GEN-LAST:event_txtItemCodeActionPerformed
 
     private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
@@ -836,24 +862,58 @@ public class POS_MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPriceFocusGained
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-
+        BillItem newItem = new BillItem();
+        newItem.setCode(txtItemCode.getText());
+        newItem.setQuantity(Double.parseDouble(txtQty.getText()));
+        newItem.setName(Stock.items.get(newItem.getCode()).getName());
+        newItem.setUnit_price(Double.parseDouble(txtPrice.getText().replaceAll("LKR.", "").trim()));
+        newItem.setSub_cat(Stock.items.get(newItem.getCode()).getSub_cat());
+        System.out.println("New Item " + newItem.getCode());
+        addItemToBillTable(newItem);
+        resetFields();
+        refreshTable();
     }//GEN-LAST:event_btnAddMouseClicked
+    private void resetFields() {
+
+        txtItemCode.requestFocus();
+        txtItemCode.setText("Item Code");
+        txtItemCode.setForeground(Color.GRAY);
+        txtQty.setText("Qty");
+        txtQty.setForeground(Color.GRAY);
+        txtPrice.setText("Price");
+        txtPrice.setForeground(Color.GRAY);
+        txtItemCode.selectAll();
+    }
+
     private void addItemToBillTable(BillItem item) {
-        if (billTable.containsKey(item.getCode()) && billTable.get(item.getCode()).getUnit_price() == Stock.items.get(item.getCode()).getSelling_price()) {
-            billTable.get(item.getCode()).setQuantity(item.getQuantity());
-            billTable.get(item.getCode()).setTotal(item.getQuantity() * item.getUnit_price());
+        System.out.println(item.getCode());
+        System.out.println(item.getName());
+        System.out.println(item.getQuantity());
+        System.out.println(item.getTotal());
+        System.out.println(item.getUnit_price());
+        if (billTable.containsKey(item.getCode() + new DecimalFormat("##.00").format(item.getUnit_price()))) {
+            BillItem existingItem = billTable.get(item.getCode() + new DecimalFormat("##.00").format(item.getUnit_price()));
+            // JOptionPane.showMessageDialog(null, "Item Already Added");
+            existingItem.setQuantity(existingItem.getQuantity() + item.getQuantity());
+
+        } else {
+            billTable.put(item.getCode() + new DecimalFormat("##.00").format(item.getUnit_price()), item);
         }
-        
-        billTable.get(item.getCode()).setUnit_price(Double.parseDouble(txtPrice.getText()));
 
     }
-    Item currentItem = null;
-    Map<String, BillItem> billTable = new HashMap<>();
-    private void btnItemSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemSearchMouseClicked
 
-        ItemSearch itemSearch = new ItemSearch(this, true);
-        itemSearch.setLocationRelativeTo(this);
-        currentItem = itemSearch.showDialog();
+    private void refreshTable() {
+        dtm.setRowCount(0);
+        double BillTotal = 0;
+        for (Map.Entry<String, BillItem> entrySet : billTable.entrySet()) {
+            BillItem item = entrySet.getValue();
+            dtm.addRow(new Object[]{item.getCode(), item.getName(), item.getQuantity(), new DecimalFormat("##.00").format(item.getUnit_price()), new DecimalFormat("###,###.00").format(item.getTotal()), "  X"});
+            BillTotal += item.getTotal();
+        }
+        txtTotal.setText("LKR. " + new DecimalFormat("###,###.00").format(BillTotal));
+    }
+
+    private void loadCurrentItemtoField() {
         if (currentItem != null) {
             txtItemCode.setText(currentItem.getCode());
             txtItemCode.setForeground(Color.BLACK);
@@ -864,19 +924,22 @@ public class POS_MainFrame extends javax.swing.JFrame {
             txtQty.requestFocus();
             txtQty.selectAll();
         } else {
-            txtItemCode.requestFocus();
-            txtItemCode.setText("Item Code");
-            txtQty.setText("Qty");
-            txtPrice.setText("Price");
-            txtItemCode.selectAll();
+            resetFields();
         }
+    }
+    Item currentItem = null;
+    Map<String, BillItem> billTable = new HashMap<>();
+    private void btnItemSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemSearchMouseClicked
+
+        ItemSearch itemSearch = new ItemSearch(this, true);
+        itemSearch.setLocationRelativeTo(this);
+        currentItem = itemSearch.showDialog();
+        loadCurrentItemtoField();
 
     }//GEN-LAST:event_btnItemSearchMouseClicked
 
     private void txtPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyReleased
-        if (!(evt.getKeyCode() > KeyEvent.VK_0 && evt.getKeyCode() < KeyEvent.VK_9)) {
-            evt.consume();
-        }
+
     }//GEN-LAST:event_txtPriceKeyReleased
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -899,24 +962,34 @@ public class POS_MainFrame extends javax.swing.JFrame {
         openPanel("item");
     }//GEN-LAST:event_btnItemMouseClicked
 
-    private void openPanel(String Name) {
-//        recentPanel.setVisible(false);
-//        mainCatPanel.setVisible(false);
-//        subCatPanel.setVisible(false);
-//        if (null != PanelName.toLowerCase()) {
-//            switch (PanelName.toLowerCase()) {
-//                case "recent":
-//                    recentPanel.setVisible(true);
-//                    break;
-//                case "maincat":
-//                    mainCatPanel.setVisible(true);
-//                    break;
-//                case "subcat":
-//                    subCatPanel.setVisible(true);
-//                    break;
-//            }
-//        }
+    private void txtQtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyReleased
+        if (evt.getKeyChar() > 0 && evt.getKeyChar() < 9) {
+            System.out.println("num");
+        }
+    }//GEN-LAST:event_txtQtyKeyReleased
 
+    private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
+
+    }//GEN-LAST:event_txtPriceKeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (jTable1.getSelectedColumn() == 5 && evt.getClickCount()==2) {
+            String key = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
+            billTable.remove(key);
+            System.out.println(key);
+            System.out.println(billTable);
+            refreshTable();
+         }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void validateDouble(java.awt.event.KeyEvent evt) {
+        char ch = evt.getKeyChar();
+        if (!(Character.isDigit(ch) || (ch == '.'))) {
+            evt.consume();
+        }
+    }
+
+    private void openPanel(String Name) {
         CardLayout cardLayout = (CardLayout) (tabPanel.getLayout());
         cardLayout.show(tabPanel, Name);
     }
@@ -986,7 +1059,6 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDate;
@@ -1008,5 +1080,6 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPaid;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQty;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
