@@ -16,7 +16,7 @@ public final class DB {
     private Statement statement;
     public static DB db;
 
-    private DB() {
+    private DB() throws SQLException {
         String url = ReadConfig.db_url;
         String dbName = ReadConfig.db_name;
         String driver = ReadConfig.db_driver;
@@ -30,14 +30,17 @@ public final class DB {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException sqle) {
             sqle.printStackTrace();
             JOptionPane.showMessageDialog(null, "SQL Exception. Please Contact Support!\n" + sqle.getMessage());
+            System.exit(0);
+            getDbCon();
         }
     }
 
     /**
      *
      * @return MysqlConnect Database connection object
+     * @throws java.sql.SQLException
      */
-    public static synchronized DB getDbCon() {
+    public static synchronized DB getDbCon() throws SQLException {
         if (db == null) {
             db = new DB();
         }

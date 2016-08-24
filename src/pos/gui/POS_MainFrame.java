@@ -5,14 +5,27 @@
  */
 package pos.gui;
 
+import fnss.functions.DB;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import pos.functions.ItemController;
+import pos.interfaces.Stock;
+import pos.model.BillItem;
+import pos.model.Item;
 
 /**
  *
@@ -20,25 +33,46 @@ import javax.swing.Timer;
  */
 public class POS_MainFrame extends javax.swing.JFrame {
 
-    
+    private static String user = "Nisal";
+    private static String POS_ID;
+
     public POS_MainFrame() {
 
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setExtendedState(MAXIMIZED_BOTH);
-        lblDate.setText(new SimpleDateFormat("dd/MM/YYYY").format(System.currentTimeMillis()));
-        lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
-        new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
-            }
-        }).start();
+        try {
+            initComponents();
+            ItemController.getAllItemsFromDB();
+            this.setLocationRelativeTo(null);
+            this.setExtendedState(MAXIMIZED_BOTH);
+            lblDate.setText(new SimpleDateFormat("dd/MM/YYYY").format(System.currentTimeMillis()));
+            lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
+            new Timer(1000, (ActionEvent e) -> {
+                try {
+                    lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
+                    int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+                    String greeting;
+                    if (hour < 10) {
+                        greeting = "Good Morning, " + user;
+                    } else if (hour < 16) {
+                        greeting = "Good Day, " + user;
+                    } else {
+                        greeting = "Good Evening, " + user;
+                    }
+                    lblUser1.setText(greeting);
+                    System.out.println("DB Connection Check - "+DB.getDbCon().query("SELECT 1").next());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this,ex.getMessage()+"\nOK to Check the Connection. Communication Failure Exits the System.");
+                    DB.db = null;
+                    //Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }).start();
 
-        billPanel.setSize((mainPanel.getWidth() - 30) / 3, billPanel.getHeight());
-        itemPanel.setSize((mainPanel.getWidth() - 30) / 3, itemPanel.getHeight());
-        jTable1.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 18));
-        jTable1.getTableHeader().setSize(jTable1.getTableHeader().getWidth(), jTable1.getTableHeader().getHeight() + 50);
+            billPanel.setSize((mainPanel.getWidth() - 30) / 3, billPanel.getHeight());
+            itemPanel.setSize((mainPanel.getWidth() - 30) / 3, itemPanel.getHeight());
+            jTable1.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 18));
+            jTable1.getTableHeader().setSize(jTable1.getTableHeader().getWidth(), jTable1.getTableHeader().getHeight() + 50);
+        } catch (SQLException ex) {
+            Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -55,7 +89,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         topBar = new javax.swing.JPanel();
         lblTime = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        lblUser = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
         lblUser1 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         billPanel = new javax.swing.JPanel();
@@ -77,13 +111,15 @@ public class POS_MainFrame extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tabPanel = new javax.swing.JPanel();
-        recentPanel = new javax.swing.JPanel();
-        mainCatPanel = new javax.swing.JPanel();
-        subCatPanel = new javax.swing.JPanel();
+        panelRecent = new javax.swing.JPanel();
+        panelMainCat = new javax.swing.JPanel();
+        panelSubCat = new javax.swing.JPanel();
+        panelItem = new javax.swing.JPanel();
         headerpanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        btnRecent = new javax.swing.JLabel();
+        btnMainCat = new javax.swing.JLabel();
+        btnSUbCat = new javax.swing.JLabel();
+        btnItem = new javax.swing.JLabel();
         pricingPanel1 = new javax.swing.JPanel();
         pricingPanel2 = new javax.swing.JPanel();
         txtDiscount = new javax.swing.JTextField();
@@ -141,21 +177,21 @@ public class POS_MainFrame extends javax.swing.JFrame {
             }
         });
 
-        lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
-        lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblClose.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lblClose.setForeground(new java.awt.Color(255, 255, 255));
+        lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        lblClose.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblUserMouseClicked(evt);
+                lblCloseMouseClicked(evt);
             }
         });
 
         lblUser1.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         lblUser1.setForeground(new java.awt.Color(255, 255, 255));
         lblUser1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUser1.setText("Hello Nisal!");
+        lblUser1.setText(" ");
         lblUser1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout topBarLayout = new javax.swing.GroupLayout(topBar);
@@ -170,7 +206,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblUser1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUser)
+                .addComponent(lblClose)
                 .addGap(30, 30, 30))
         );
         topBarLayout.setVerticalGroup(
@@ -180,10 +216,12 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addGroup(topBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTime)
                     .addComponent(lblDate)
-                    .addComponent(lblUser)
+                    .addComponent(lblClose)
                     .addComponent(lblUser1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        mainPanel.setOpaque(false);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -209,7 +247,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jTextField1)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -242,7 +280,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setRowHeight(26);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
@@ -272,7 +310,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
         txtItemCode.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         txtItemCode.setForeground(new java.awt.Color(204, 204, 204));
-        txtItemCode.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtItemCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtItemCode.setText("Item Code");
         txtItemCode.setToolTipText("");
         txtItemCode.setBorder(null);
@@ -360,8 +398,8 @@ public class POS_MainFrame extends javax.swing.JFrame {
                 .addComponent(btnItemSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(txtPrice)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -459,113 +497,120 @@ public class POS_MainFrame extends javax.swing.JFrame {
         tabPanel.setBackground(new java.awt.Color(255, 255, 255));
         tabPanel.setLayout(new java.awt.CardLayout());
 
-        recentPanel.setBackground(new java.awt.Color(89, 171, 227));
+        panelRecent.setBackground(new java.awt.Color(89, 171, 227));
 
-        javax.swing.GroupLayout recentPanelLayout = new javax.swing.GroupLayout(recentPanel);
-        recentPanel.setLayout(recentPanelLayout);
-        recentPanelLayout.setHorizontalGroup(
-            recentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelRecentLayout = new javax.swing.GroupLayout(panelRecent);
+        panelRecent.setLayout(panelRecentLayout);
+        panelRecentLayout.setHorizontalGroup(
+            panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 922, Short.MAX_VALUE)
         );
-        recentPanelLayout.setVerticalGroup(
-            recentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+        panelRecentLayout.setVerticalGroup(
+            panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 728, Short.MAX_VALUE)
         );
 
-        tabPanel.add(recentPanel, "card2");
+        tabPanel.add(panelRecent, "recent");
 
-        mainCatPanel.setBackground(new java.awt.Color(65, 131, 215));
+        panelMainCat.setBackground(new java.awt.Color(65, 131, 215));
 
-        javax.swing.GroupLayout mainCatPanelLayout = new javax.swing.GroupLayout(mainCatPanel);
-        mainCatPanel.setLayout(mainCatPanelLayout);
-        mainCatPanelLayout.setHorizontalGroup(
-            mainCatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelMainCatLayout = new javax.swing.GroupLayout(panelMainCat);
+        panelMainCat.setLayout(panelMainCatLayout);
+        panelMainCatLayout.setHorizontalGroup(
+            panelMainCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        mainCatPanelLayout.setVerticalGroup(
-            mainCatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        tabPanel.add(mainCatPanel, "card3");
-
-        subCatPanel.setBackground(new java.awt.Color(68, 108, 179));
-
-        javax.swing.GroupLayout subCatPanelLayout = new javax.swing.GroupLayout(subCatPanel);
-        subCatPanel.setLayout(subCatPanelLayout);
-        subCatPanelLayout.setHorizontalGroup(
-            subCatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        subCatPanelLayout.setVerticalGroup(
-            subCatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelMainCatLayout.setVerticalGroup(
+            panelMainCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        tabPanel.add(subCatPanel, "card4");
+        tabPanel.add(panelMainCat, "mainCat");
+
+        panelSubCat.setBackground(new java.awt.Color(68, 108, 179));
+
+        javax.swing.GroupLayout panelSubCatLayout = new javax.swing.GroupLayout(panelSubCat);
+        panelSubCat.setLayout(panelSubCatLayout);
+        panelSubCatLayout.setHorizontalGroup(
+            panelSubCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelSubCatLayout.setVerticalGroup(
+            panelSubCatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        tabPanel.add(panelSubCat, "subCat");
+
+        panelItem.setBackground(new java.awt.Color(3, 0, 131));
+
+        javax.swing.GroupLayout panelItemLayout = new javax.swing.GroupLayout(panelItem);
+        panelItem.setLayout(panelItemLayout);
+        panelItemLayout.setHorizontalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 922, Short.MAX_VALUE)
+        );
+        panelItemLayout.setVerticalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 728, Short.MAX_VALUE)
+        );
+
+        tabPanel.add(panelItem, "item");
 
         headerpanel.setBackground(new java.awt.Color(255, 255, 255));
+        headerpanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel3.setBackground(new java.awt.Color(89, 171, 227));
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Recent");
-        jLabel3.setOpaque(true);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRecent.setBackground(new java.awt.Color(89, 171, 227));
+        btnRecent.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        btnRecent.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnRecent.setText("Recent");
+        btnRecent.setOpaque(true);
+        btnRecent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel3MouseReleased(evt);
+                btnRecentMouseClicked(evt);
             }
         });
+        headerpanel.add(btnRecent);
 
-        jLabel4.setBackground(new java.awt.Color(65, 131, 215));
-        jLabel4.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Main Category");
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMainCat.setBackground(new java.awt.Color(65, 131, 215));
+        btnMainCat.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        btnMainCat.setForeground(new java.awt.Color(255, 255, 255));
+        btnMainCat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnMainCat.setText("Main Category");
+        btnMainCat.setOpaque(true);
+        btnMainCat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                btnMainCatMouseClicked(evt);
             }
         });
+        headerpanel.add(btnMainCat);
 
-        jLabel5.setBackground(new java.awt.Color(68, 108, 179));
-        jLabel5.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Sub Category");
-        jLabel5.setOpaque(true);
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSUbCat.setBackground(new java.awt.Color(68, 108, 179));
+        btnSUbCat.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        btnSUbCat.setForeground(new java.awt.Color(255, 255, 255));
+        btnSUbCat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSUbCat.setText("Sub Category");
+        btnSUbCat.setOpaque(true);
+        btnSUbCat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                btnSUbCatMouseClicked(evt);
             }
         });
+        headerpanel.add(btnSUbCat);
 
-        javax.swing.GroupLayout headerpanelLayout = new javax.swing.GroupLayout(headerpanel);
-        headerpanel.setLayout(headerpanelLayout);
-        headerpanelLayout.setHorizontalGroup(
-            headerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerpanelLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        headerpanelLayout.setVerticalGroup(
-            headerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        btnItem.setBackground(new java.awt.Color(3, 0, 131));
+        btnItem.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        btnItem.setForeground(new java.awt.Color(255, 255, 255));
+        btnItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnItem.setText("Items");
+        btnItem.setOpaque(true);
+        btnItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnItemMouseClicked(evt);
+            }
+        });
+        headerpanel.add(btnItem);
 
         pricingPanel2.setLayout(new java.awt.GridLayout(1, 0, 20, 20));
 
@@ -654,7 +699,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
             .addGroup(itemPanelLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(headerpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(tabPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
@@ -681,7 +726,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(topBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1532, Short.MAX_VALUE)
+            .addComponent(topBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1548, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -723,33 +768,13 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formMousePressed
 
-    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
         close();
-    }//GEN-LAST:event_lblUserMouseClicked
+    }//GEN-LAST:event_lblCloseMouseClicked
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        openPanel("recent");
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        openPanel("maincat");        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        openPanel("subcat");        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseReleased
 
     private void txtDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscountActionPerformed
         // TODO add your handling code here:
@@ -775,12 +800,15 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_topBarMouseClicked
 
+    public void setItemCode(String itemcode) {
+        txtItemCode.setText(itemcode);
+    }
     private void txtItemCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemCodeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtItemCodeActionPerformed
 
     private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
-        // TODO add your handling code here:
+        btnAddMouseClicked(null);
     }//GEN-LAST:event_txtQtyActionPerformed
 
     private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
@@ -808,15 +836,41 @@ public class POS_MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPriceFocusGained
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAddMouseClicked
-    Search_Item itemSearch = new Search_Item();
+    private void addItemToBillTable(BillItem item) {
+        if (billTable.containsKey(item.getCode()) && billTable.get(item.getCode()).getUnit_price() == Stock.items.get(item.getCode()).getSelling_price()) {
+            billTable.get(item.getCode()).setQuantity(item.getQuantity());
+            billTable.get(item.getCode()).setTotal(item.getQuantity() * item.getUnit_price());
+        }
+        
+        billTable.get(item.getCode()).setUnit_price(Double.parseDouble(txtPrice.getText()));
+
+    }
+    Item currentItem = null;
+    Map<String, BillItem> billTable = new HashMap<>();
     private void btnItemSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemSearchMouseClicked
-        
+
+        ItemSearch itemSearch = new ItemSearch(this, true);
         itemSearch.setLocationRelativeTo(this);
-        itemSearch.setVisible(true);
-        txtItemCode.setText(itemSearch.Search_Item());
-        
+        currentItem = itemSearch.showDialog();
+        if (currentItem != null) {
+            txtItemCode.setText(currentItem.getCode());
+            txtItemCode.setForeground(Color.BLACK);
+            txtQty.setText("1");
+            txtQty.setForeground(Color.BLACK);
+            txtPrice.setText("LKR. " + new DecimalFormat("#.00").format(currentItem.getSelling_price()));
+            txtPrice.setForeground(Color.BLACK);
+            txtQty.requestFocus();
+            txtQty.selectAll();
+        } else {
+            txtItemCode.requestFocus();
+            txtItemCode.setText("Item Code");
+            txtQty.setText("Qty");
+            txtPrice.setText("Price");
+            txtItemCode.selectAll();
+        }
+
     }//GEN-LAST:event_btnItemSearchMouseClicked
 
     private void txtPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyReleased
@@ -829,23 +883,42 @@ public class POS_MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void openPanel(String PanelName) {
-        recentPanel.setVisible(false);
-        mainCatPanel.setVisible(false);
-        subCatPanel.setVisible(false);
-        if (null != PanelName.toLowerCase()) {
-            switch (PanelName.toLowerCase()) {
-                case "recent":
-                    recentPanel.setVisible(true);
-                    break;
-                case "maincat":
-                    mainCatPanel.setVisible(true);
-                    break;
-                case "subcat":
-                    subCatPanel.setVisible(true);
-                    break;
-            }
-        }
+    private void btnRecentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecentMouseClicked
+        openPanel("recent");
+    }//GEN-LAST:event_btnRecentMouseClicked
+
+    private void btnMainCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMainCatMouseClicked
+        openPanel("mainCat");
+    }//GEN-LAST:event_btnMainCatMouseClicked
+
+    private void btnSUbCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSUbCatMouseClicked
+        openPanel("subCat");
+    }//GEN-LAST:event_btnSUbCatMouseClicked
+
+    private void btnItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemMouseClicked
+        openPanel("item");
+    }//GEN-LAST:event_btnItemMouseClicked
+
+    private void openPanel(String Name) {
+//        recentPanel.setVisible(false);
+//        mainCatPanel.setVisible(false);
+//        subCatPanel.setVisible(false);
+//        if (null != PanelName.toLowerCase()) {
+//            switch (PanelName.toLowerCase()) {
+//                case "recent":
+//                    recentPanel.setVisible(true);
+//                    break;
+//                case "maincat":
+//                    mainCatPanel.setVisible(true);
+//                    break;
+//                case "subcat":
+//                    subCatPanel.setVisible(true);
+//                    break;
+//            }
+//        }
+
+        CardLayout cardLayout = (CardLayout) (tabPanel.getLayout());
+        cardLayout.show(tabPanel, Name);
     }
 
     private void close() {
@@ -895,15 +968,16 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel btnAdd;
     private javax.swing.JLabel btnCash;
     private javax.swing.JLabel btnCreditCard;
+    private javax.swing.JLabel btnItem;
     private javax.swing.JLabel btnItemSearch;
+    private javax.swing.JLabel btnMainCat;
     private javax.swing.JLabel btnPost;
+    private javax.swing.JLabel btnRecent;
+    private javax.swing.JLabel btnSUbCat;
     private javax.swing.JPanel headerpanel;
     private javax.swing.JPanel itemPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -914,17 +988,18 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblTime;
-    private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUser1;
-    private javax.swing.JPanel mainCatPanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel panelItem;
+    private javax.swing.JPanel panelMainCat;
+    private javax.swing.JPanel panelRecent;
+    private javax.swing.JPanel panelSubCat;
     private javax.swing.JPanel pricingPanel1;
     private javax.swing.JPanel pricingPanel2;
     private javax.swing.JPanel pricingPanel3;
-    private javax.swing.JPanel recentPanel;
-    private javax.swing.JPanel subCatPanel;
     private javax.swing.JPanel tabPanel;
     private javax.swing.JPanel topBar;
     private javax.swing.JTextField txtBalance;
