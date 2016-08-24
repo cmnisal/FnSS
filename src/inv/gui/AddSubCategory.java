@@ -22,6 +22,7 @@ public class AddSubCategory extends javax.swing.JFrame {
      */
     public AddSubCategory() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         try{
      String cat="SELECT CategoryName FROM category";
@@ -48,20 +49,21 @@ catch(Exception e)
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel2 = new javax.swing.JLabel();
-        txtSubCatID = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        Category = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        txtSubCatName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblUser = new javax.swing.JLabel();
         lblBack1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        txtSubCatName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Category = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        txtSubCatID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,31 +71,40 @@ catch(Exception e)
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(44, 62, 80));
-        jLabel2.setText("Sub-Category ID");
-        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 94, -1, -1));
-        jDesktopPane1.add(txtSubCatID, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 92, 161, -1));
+        jPanel1.setBackground(new java.awt.Color(26, 188, 156));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(44, 62, 80));
-        jLabel3.setText("Category");
-        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 142, -1, -1));
-
-        Category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-        Category.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        Category.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CategoryActionPerformed(evt);
+        lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUserMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(Category, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 142, 161, -1));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 13, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(44, 62, 80));
-        jLabel4.setText("Sub-Category Name");
-        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 190, -1, -1));
-        jDesktopPane1.add(txtSubCatName, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 188, 161, -1));
+        lblBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
+        lblBack1.setText("Back");
+        lblBack1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBack1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 50));
+
+        jLabel1.setBackground(new java.awt.Color(236, 240, 241));
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel1.setText("ADD SUB-CATEGORY");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 70));
+
+        jPanel2.setBackground(new java.awt.Color(236, 240, 241));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setBackground(new java.awt.Color(22, 160, 133));
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
@@ -107,76 +118,37 @@ catch(Exception e)
                 jLabel5MouseClicked(evt);
             }
         });
-        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 254, 71, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 100, 60));
+        jPanel2.add(txtSubCatName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 161, -1));
 
-        jPanel1.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(44, 62, 80));
+        jLabel4.setText("Sub-Category Name");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
-        lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
-        lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblUserMouseClicked(evt);
+        Category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        Category.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoryActionPerformed(evt);
             }
         });
+        jPanel2.add(Category, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 161, -1));
 
-        lblBack1.setText("Back");
-        lblBack1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBack1MouseClicked(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(44, 62, 80));
+        jLabel3.setText("Category");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+        jPanel2.add(txtSubCatID, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 161, -1));
 
-        jLabel1.setBackground(new java.awt.Color(236, 240, 241));
-        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
-        jLabel1.setText("ADD SUB-CATEGORY");
+        jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(44, 62, 80));
+        jLabel2.setText("Sub-Category ID");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(lblUser)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(lblBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblUser))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 630, 380));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 70));
-
-        jPanel2.setBackground(new java.awt.Color(236, 240, 241));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
-
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 230));
-
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
