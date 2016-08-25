@@ -16,7 +16,7 @@ public class DocNumGenerator {
     private int DocNumber;
     private String DocChr;
 
-    public void methodNumGen(String docType) throws SQLException {
+    public String generateID(String docType) throws SQLException {
 
         String query1 = "SELECT * FROM DocNumGenerator WHERE DocType='" + docType + "'";
         try (ResultSet rset = DB.getDbCon().query(query1)) {
@@ -28,17 +28,10 @@ public class DocNumGenerator {
             } else {
                 DocNumber = rset.getInt("AutoCode");
                 DocChr = rset.getString("DocType");
-                rset.updateInt("AutoCode", (DocNumber + 1));
-                rset.updateRow();
+                String query = "UPDATE DocNumGenerator SET AutoCode = "+(DocNumber+1)+" WHERE DocType = '"+DocChr+"'";
+                DB.getDbCon().insert(query);
             }
         }
-    }
-
-    public String getDocChar() {
-        return DocChr;
-    }
-
-    public int getDocNumber() {
-        return DocNumber;
+        return DocChr+DocNumber;
     }
 }
