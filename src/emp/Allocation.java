@@ -65,6 +65,7 @@ public class Allocation extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -79,11 +80,12 @@ public class Allocation extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(130, 70));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lato Heavy", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(44, 62, 80));
-        jLabel2.setText("Allocate Employee");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 20, -1, -1));
+        jLabel2.setText("Allocate Attendants");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lato Medium", 0, 12)); // NOI18N
         jLabel3.setText("Enter Employee ID");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 83, -1, -1));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 80, 125, -1));
@@ -91,13 +93,13 @@ public class Allocation extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 90, 80));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\pipe-p.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, 77));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\pipe-p.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\pipe-p.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         r1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +150,11 @@ public class Allocation extends javax.swing.JFrame {
         jLabel15.setText("S-02");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, -1));
 
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 480, 360));
+        jLabel17.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
+        jLabel17.setText("Allocate");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
+
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 500, 400));
 
         back.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\back.png")); // NOI18N
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +175,7 @@ public class Allocation extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(142, 68, 173));
+        jLabel1.setBackground(new java.awt.Color(105, 145, 152));
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 160));
 
@@ -257,6 +263,7 @@ public class Allocation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
