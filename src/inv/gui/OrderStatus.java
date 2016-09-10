@@ -55,7 +55,7 @@ public class OrderStatus extends javax.swing.JFrame {
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(940, 528));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(22, 160, 133));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 24)); // NOI18N
@@ -88,7 +88,7 @@ public class OrderStatus extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblStatus.setBackground(new java.awt.Color(153, 255, 153));
+        tblStatus.setBackground(new java.awt.Color(52, 73, 94));
         tblStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -126,7 +126,7 @@ public class OrderStatus extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblStatus);
 
-        jLabel1.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,7 +138,7 @@ public class OrderStatus extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
         jLabel2.setFont(new java.awt.Font("Lucida Bright", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

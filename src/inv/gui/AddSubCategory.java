@@ -71,7 +71,7 @@ catch(Exception e)
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(26, 188, 156));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -106,7 +106,7 @@ catch(Exception e)
         jPanel2.setBackground(new java.awt.Color(236, 240, 241));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel5.setBackground(new java.awt.Color(52, 73, 94));
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(236, 240, 241));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

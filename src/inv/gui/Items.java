@@ -128,7 +128,7 @@ public class Items extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 365, 1000, 10));
 
-        jPanel1.setBackground(new java.awt.Color(26, 188, 156));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -197,7 +197,7 @@ public class Items extends javax.swing.JFrame {
         jLabel5.setText("Sub-Category");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
-        jLabel7.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel7.setBackground(new java.awt.Color(52, 73, 94));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -210,7 +210,7 @@ public class Items extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 123, 40));
 
-        jLabel8.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel8.setBackground(new java.awt.Color(52, 73, 94));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -223,7 +223,7 @@ public class Items extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 118, 40));
 
-        jLabel9.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -265,7 +265,8 @@ public class Items extends javax.swing.JFrame {
         });
         jPanel2.add(txtSellingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 131, -1));
 
-        tblItems.setBackground(new java.awt.Color(153, 255, 255));
+        tblItems.setBackground(new java.awt.Color(52, 73, 94));
+        tblItems.setForeground(new java.awt.Color(255, 255, 255));
         tblItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -287,7 +288,7 @@ public class Items extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 736, 194));
 
-        jLabel10.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel10.setBackground(new java.awt.Color(52, 73, 94));
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

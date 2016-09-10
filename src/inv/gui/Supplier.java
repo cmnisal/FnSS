@@ -75,7 +75,7 @@ public class Supplier extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 263, 930, 10));
 
-        jPanel1.setBackground(new java.awt.Color(22, 160, 133));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
@@ -106,10 +106,10 @@ public class Supplier extends javax.swing.JFrame {
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 70));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -122,7 +122,9 @@ public class Supplier extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 83, 35));
 
-        tblSupplier.setBackground(new java.awt.Color(153, 255, 204));
+        tblSupplier.setBackground(new java.awt.Color(52, 73, 94));
+        tblSupplier.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        tblSupplier.setForeground(new java.awt.Color(255, 255, 255));
         tblSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,12 +140,22 @@ public class Supplier extends javax.swing.JFrame {
                 "Supplier ID", "Supplier Name", "Addess", "Date"
             }
         ));
+        tblSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSupplierMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSupplier);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 619, 160));
         jPanel2.add(txtSupSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 520, 35));
         jPanel2.add(txtSupAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 144, -1));
 
+        txtSupDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSupDateActionPerformed(evt);
+            }
+        });
         txtSupDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSupDateKeyTyped(evt);
@@ -152,12 +164,12 @@ public class Supplier extends javax.swing.JFrame {
         jPanel2.add(txtSupDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 144, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Address");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Date");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
         jPanel2.add(txtSupID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 137, -1));
@@ -170,16 +182,16 @@ public class Supplier extends javax.swing.JFrame {
         jPanel2.add(txtSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 137, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Supplier ID");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Supplier Name");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        jLabel8.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel8.setBackground(new java.awt.Color(52, 73, 94));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -192,7 +204,7 @@ public class Supplier extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 80, 42));
 
-        jLabel7.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel7.setBackground(new java.awt.Color(52, 73, 94));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -205,7 +217,7 @@ public class Supplier extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 86, 42));
 
-        jLabel6.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel6.setBackground(new java.awt.Color(52, 73, 94));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -278,6 +290,10 @@ public class Supplier extends javax.swing.JFrame {
              System.out.println(e);
          }
          txtSupID.setText("");
+         txtSupName.setText("");
+         txtSupAdd.setText("");
+         txtSupDate.setText("");
+         
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -333,7 +349,20 @@ public class Supplier extends javax.swing.JFrame {
         getToolkit().beep();
         evt.consume();
        }*/
+        
     }//GEN-LAST:event_txtSupDateKeyTyped
+
+    private void tblSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSupplierMouseClicked
+         txtSupID.setText(tblSupplier.getValueAt(tblSupplier.getSelectedRow(),0).toString());
+         txtSupName.setText(tblSupplier.getValueAt(tblSupplier.getSelectedRow(),1).toString());
+         txtSupAdd.setText(tblSupplier.getValueAt(tblSupplier.getSelectedRow(),2).toString());
+         txtSupDate.setText(tblSupplier.getValueAt(tblSupplier.getSelectedRow(),3).toString());
+         
+    }//GEN-LAST:event_tblSupplierMouseClicked
+
+    private void txtSupDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSupDateActionPerformed
+        
+    }//GEN-LAST:event_txtSupDateActionPerformed
 
     /**
      * @param args the command line arguments

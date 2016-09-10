@@ -54,7 +54,7 @@ public class OrderManagement extends javax.swing.JFrame {
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(890, 610));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(52, 152, 219));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
