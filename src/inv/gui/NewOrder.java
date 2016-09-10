@@ -73,7 +73,7 @@ public class NewOrder extends javax.swing.JFrame {
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(950, 660));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(22, 160, 133));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 24)); // NOI18N
@@ -115,7 +115,8 @@ public class NewOrder extends javax.swing.JFrame {
 
         jScrollPane2.setBackground(new java.awt.Color(153, 255, 153));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 204));
+        jTable1.setBackground(new java.awt.Color(52, 73, 94));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -180,7 +181,7 @@ public class NewOrder extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Units", "Gallons", "Liters", "Kilos" }));
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
-        jLabel9.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -188,7 +189,7 @@ public class NewOrder extends javax.swing.JFrame {
         jLabel9.setOpaque(true);
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
 
-        jLabel10.setBackground(new java.awt.Color(22, 160, 133));
+        jLabel10.setBackground(new java.awt.Color(52, 73, 94));
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

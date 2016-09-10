@@ -54,7 +54,7 @@ public class Home extends javax.swing.JFrame {
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(52, 152, 219));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
 
         lblUser.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));

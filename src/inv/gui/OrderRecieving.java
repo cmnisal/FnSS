@@ -66,7 +66,7 @@ public class OrderRecieving extends javax.swing.JFrame {
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(940, 528));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(52, 152, 219));
+        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 24)); // NOI18N
@@ -99,7 +99,8 @@ public class OrderRecieving extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(236, 240, 241));
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 255));
+        jTable1.setBackground(new java.awt.Color(52, 73, 94));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -149,14 +150,14 @@ public class OrderRecieving extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 0, 16)); // NOI18N
         jLabel5.setText("Total");
 
-        jLabel8.setBackground(new java.awt.Color(41, 128, 185));
+        jLabel8.setBackground(new java.awt.Color(52, 73, 94));
         jLabel8.setFont(new java.awt.Font("Lucida Bright", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Proceed");
         jLabel8.setOpaque(true);
 
-        jLabel9.setBackground(new java.awt.Color(52, 152, 219));
+        jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
