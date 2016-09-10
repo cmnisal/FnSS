@@ -160,6 +160,11 @@ public class Payroll extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 490, 430));
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
 
         power.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
@@ -170,9 +175,9 @@ public class Payroll extends javax.swing.JFrame {
         });
         jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
-        jLabel16.setBackground(new java.awt.Color(46, 204, 113));
+        jLabel16.setBackground(new java.awt.Color(105, 145, 152));
         jLabel16.setOpaque(true);
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 767, 158));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 158));
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -257,6 +262,11 @@ public class Payroll extends javax.swing.JFrame {
     private void powerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_powerMouseClicked
         close();
     }//GEN-LAST:event_powerMouseClicked
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+         new Emp().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backMouseClicked
 
     private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {

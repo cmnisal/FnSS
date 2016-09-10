@@ -59,11 +59,11 @@ public class Attendance extends javax.swing.JFrame {
                 eidActionPerformed(evt);
             }
         });
-        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, -1));
+        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel2.setText("Enter Employee ID");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(44, 62, 80));
@@ -81,7 +81,7 @@ public class Attendance extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 50, 40));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 60, 50));
 
         datetime.setBackground(new java.awt.Color(236, 240, 241));
         datetime.setFont(new java.awt.Font("Lato Thin", 0, 12)); // NOI18N
@@ -109,9 +109,9 @@ public class Attendance extends javax.swing.JFrame {
         });
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
-        jLabel6.setBackground(new java.awt.Color(46, 204, 113));
+        jLabel6.setBackground(new java.awt.Color(105, 145, 152));
         jLabel6.setOpaque(true);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 156));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 220));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 50));
