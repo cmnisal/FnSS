@@ -123,8 +123,9 @@ public class SearchUpdate extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 110, 28));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 110, 28));
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,11 +141,11 @@ public class SearchUpdate extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "EID", "Name", "Category", "Phone", "Address", "Gender", "NIC", "DOB", "Basic Salary"
+                "EID", "Category", "Name", "Address", "DOB", "NIC", "Gender", "Phone", "Basic Salary"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,15 +165,15 @@ public class SearchUpdate extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel8.setText("Name");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-        jPanel3.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 160, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel3.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 240, -1));
 
         jLabel9.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel9.setText("Category");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         category.setName("category"); // NOI18N
-        jPanel3.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 160, -1));
+        jPanel3.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 240, -1));
 
         jLabel10.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel10.setText("DOB");
@@ -181,22 +182,22 @@ public class SearchUpdate extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel11.setText("Address");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
-        jPanel3.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 160, -1));
+        jPanel3.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 240, -1));
 
         jLabel12.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel12.setText("NIC");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
-        jPanel3.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 150, -1));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, -1, -1));
+        jPanel3.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 240, -1));
 
         jLabel13.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel13.setText("Basic Salary");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-        jPanel3.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 150, -1));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
+        jPanel3.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 240, -1));
 
         jLabel14.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel14.setText("Phone");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
-        jPanel3.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 150, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
+        jPanel3.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 240, -1));
 
         dob.setName("dob"); // NOI18N
         dob.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +205,7 @@ public class SearchUpdate extends javax.swing.JFrame {
                 dobActionPerformed(evt);
             }
         });
-        jPanel3.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 160, -1));
+        jPanel3.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 240, -1));
 
         jDesktopPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 780, 500));
 
@@ -253,16 +254,18 @@ public class SearchUpdate extends javax.swing.JFrame {
             String Name = name.getText();
             String Address = address.getText();
             String NIC=nic.getText();
-            String Phone = phone.getText();
-            String Basic= basic.getText();
+            int Phone = Integer.parseInt(phone.getText());
+            double Basic= Double.parseDouble(basic.getText());
+            String Search = search.getText();
             
-            String q2="UPDATE employee SET Name='"+Name+"',Category='"+Category+"',Phone="+Phone+",Address='"+Address+"',NIC="+NIC+",BasicSalary="+Basic+" Where EID LIKE "+search.getText();
-            pst = DB.getDbCon().update(q2);
+            String q2="UPDATE employee SET Name='"+Name+"',Category='"+Category+"',Phone="+Phone+ ",Address='"+Address+"',NIC='"+NIC+"',BasicSalary="+Basic+" Where EID LIKE '"+Search+"'";
+            DB.getDbCon().insert(q2);
             
             
             JOptionPane.showMessageDialog(null, "Record Update Successful");
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Record Update Failed!");
+             Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -306,7 +309,7 @@ public class SearchUpdate extends javax.swing.JFrame {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "No record for this Employee ID");
+                JOptionPane.showMessageDialog(null, "Employee ID does not exist!");
             }
 
         } catch (SQLException ex) {
@@ -324,15 +327,24 @@ public class SearchUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_searchMouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-      int r= jTable1.getSelectedRow();
-              search.setText(((String)jTable1.getValueAt(r,0)));
-                name.setText(((String)jTable1.getValueAt(r,1)));  
-             /*   category.setText(((String)jTable1.getValueAt(r,3)));  
-               // phone.setText(jTable1.getValueAt(r,3).toString());
-                address.setText(((String)jTable1.getValueAt(r,4)));
-                nic.setText(((String)jTable1.getValueAt(r,6)));                
-                basic.setText(((String)jTable1.getValueAt(r,7)));
-      */
+            category.setText("");
+            name.setText("");
+            address.setText("");
+            nic.setText("");
+            phone.setText("");
+            basic.setText("");
+            dob.setText("");
+        
+        int r= jTable1.getSelectedRow();
+                search.setText(((String)jTable1.getValueAt(r,0))); 
+                category.setText(((String)jTable1.getValueAt(r,1)));  
+                name.setText(((String)jTable1.getValueAt(r,2))); 
+                address.setText(((String)jTable1.getValueAt(r,3)));
+                dob.setText(jTable1.getValueAt(r,4).toString());
+                nic.setText(jTable1.getValueAt(r,5).toString());
+                phone.setText(jTable1.getValueAt(r,7).toString());               
+                basic.setText(jTable1.getValueAt(r,8).toString());
+    
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobActionPerformed

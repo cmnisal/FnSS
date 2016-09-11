@@ -87,7 +87,7 @@ public class AddEmp extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel1.setText("Name");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 60, -1));
 
         jLabel2.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel2.setText("Employee ID");
@@ -95,51 +95,51 @@ public class AddEmp extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel3.setText("Category");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 70, -1));
 
         jLabel4.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel4.setText("Address");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel5.setText("Phone");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 60, -1));
 
         jLabel6.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel6.setText("Gender");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 70, -1));
 
         jLabel7.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel7.setText("Basic Salary");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel8.setText("DOB");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 60, -1));
 
         eid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eidActionPerformed(evt);
             }
         });
-        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 168, -1));
-        jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 168, -1));
-        jPanel2.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 168, -1));
+        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 230, -1));
+        jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 230, -1));
+        jPanel2.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 230, -1));
 
         basic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 basicActionPerformed(evt);
             }
         });
-        jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 168, -1));
+        jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 230, -1));
 
         address.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressActionPerformed(evt);
             }
         });
-        jPanel2.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 168, -1));
-        jPanel2.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 168, -1));
+        jPanel2.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 230, -1));
+        jPanel2.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 230, -1));
 
         jLabel9.setFont(new java.awt.Font("Lato Heavy", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(44, 62, 80));
@@ -158,12 +158,18 @@ public class AddEmp extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 93, 29));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 93, 29));
 
         jLabel11.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel11.setText("NIC");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
-        jPanel2.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 168, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 60, -1));
+
+        nic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nicActionPerformed(evt);
+            }
+        });
+        jPanel2.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 230, -1));
 
         fRButton.setFont(new java.awt.Font("Lato Thin", 0, 12)); // NOI18N
         fRButton.setText("Female");
@@ -172,25 +178,25 @@ public class AddEmp extends javax.swing.JFrame {
                 fRButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(fRButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
+        jPanel2.add(fRButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, -1, -1));
 
         mRButton.setFont(new java.awt.Font("Lato Thin", 0, 12)); // NOI18N
         mRButton.setText("Male");
-        jPanel2.add(mRButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, -1, -1));
+        jPanel2.add(mRButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, -1, -1));
 
         mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
-        jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+        jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 60, -1));
 
         yyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1960", "1961", "1962", "1962", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "2985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" }));
-        jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
+        jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 70, -1));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jPanel2.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
+        jPanel2.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 50, -1));
 
         face.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/face.png"))); // NOI18N
         jPanel2.add(face, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 110, 110));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 590, 430));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 790, 450));
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,11 +207,11 @@ public class AddEmp extends javax.swing.JFrame {
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
         power.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
-        jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
+        jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, -1));
 
         jLabel14.setBackground(new java.awt.Color(105, 145, 152));
         jLabel14.setOpaque(true);
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 160));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 160));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,17 +221,19 @@ public class AddEmp extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 11, 36, 32));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 540));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -355,6 +363,10 @@ public class AddEmp extends javax.swing.JFrame {
         evt.consume();
         }*/
     }//GEN-LAST:event_basicActionPerformed
+
+    private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nicActionPerformed
 
       private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
