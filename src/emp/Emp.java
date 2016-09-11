@@ -56,7 +56,7 @@ public class Emp extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel1.setBackground(new java.awt.Color(102, 153, 255));
         jLabel1.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -69,7 +69,7 @@ public class Emp extends javax.swing.JFrame {
         });
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 150, 40));
 
-        jLabel2.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel2.setBackground(new java.awt.Color(102, 153, 255));
         jLabel2.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,7 +82,7 @@ public class Emp extends javax.swing.JFrame {
         });
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 150, 30));
 
-        jLabel3.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel3.setBackground(new java.awt.Color(102, 153, 255));
         jLabel3.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,7 +100,7 @@ public class Emp extends javax.swing.JFrame {
         jLabel4.setText("Employee Management");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
 
-        jLabel6.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel6.setBackground(new java.awt.Color(102, 153, 255));
         jLabel6.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -116,7 +116,7 @@ public class Emp extends javax.swing.JFrame {
         face.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\face.png")); // NOI18N
         jPanel3.add(face, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -10, 120, 130));
 
-        jLabel7.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel7.setBackground(new java.awt.Color(102, 153, 255));
         jLabel7.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,7 +182,8 @@ public class Emp extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
-        
+       new fnss.gui.Home().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_backLabelMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

@@ -2,11 +2,12 @@
 package emp;
 
 import fnss.functions.DB;
+import javax.swing.ButtonGroup;
+import com.sun.glass.events.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.ButtonGroup;
 
 public class AddEmp extends javax.swing.JFrame {
    
@@ -124,6 +125,12 @@ public class AddEmp extends javax.swing.JFrame {
         jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 168, -1));
         jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 168, -1));
         jPanel2.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 168, -1));
+
+        basic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                basicActionPerformed(evt);
+            }
+        });
         jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 168, -1));
 
         address.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +178,7 @@ public class AddEmp extends javax.swing.JFrame {
         mRButton.setText("Male");
         jPanel2.add(mRButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, -1, -1));
 
-        mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC", " " }));
+        mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
         jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
 
         yyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1960", "1961", "1962", "1962", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "2985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" }));
@@ -233,34 +240,42 @@ public class AddEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_fRButtonActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        
-        String EID = eid.getText();
-        String Name = name.getText();
-        String  Address= address.getText();
-        String  Phone= phone.getText();
-        String Category = category.getText();
-        String  NIC= nic.getText();
-        String  Basic= basic.getText();
-        String YY = yyCombo.getSelectedItem().toString();
-        String DD = ddCombo.getSelectedItem().toString();
-        String MM =  mmCombo.getSelectedItem().toString();
-        if(mRButton.isSelected())
-        {this.Gender="male" ;}
-        if(fRButton.isSelected())
-        {this.Gender="female" ;}
-        String q ="INSERT INTO employee (EID,Category,Name,Address,DOB,NIC,Gender,Phone,BasicSalary)  "
-                + "VALUES('"+EID+"','"+Category+"','"+Name+"','"+Address+"','"+YY+"-"+MM+"-"+DD+"','"+NIC+"','"+Gender+"','"+Phone+"','"+Basic+"')";
-        int dOption = JOptionPane.showConfirmDialog(null, "Confirm insert?");
-        if (dOption == JOptionPane.YES_OPTION) {
-            
-            try {
-                DB.getDbCon().insert(q);
-                JOptionPane.showMessageDialog(null, "Insertion Successful");
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       try {
+           Function f = new Function();
+           
+           String EID = eid.getText();
+           String Name = name.getText();
+           String  Address= address.getText();
+           String  Phone= phone.getText();
+           String Category = category.getText();
+           String  NIC= nic.getText();
+           String  Basic= basic.getText();
+           String YY = yyCombo.getSelectedItem().toString();
+           String DD = ddCombo.getSelectedItem().toString();
+           String MM = f.month(mmCombo.getSelectedItem().toString());
+          
+           if(mRButton.isSelected())
+           {this.Gender="male" ;}
+           if(fRButton.isSelected())
+           {this.Gender="female" ;}
+          
+           String q ="INSERT INTO employee (EID,Category,Name,Address,DOB,NIC,Gender,Phone,BasicSalary)  "
+                   + "VALUES('"+EID+"','"+Category+"','"+Name+"','"+Address+"','"+YY+"-"+MM+"-"+DD+"','"+NIC+"','"+Gender+"','"+Phone+"','"+Basic+"')";
+          
+           int dOption = JOptionPane.showConfirmDialog(null, "Confirm insert?");
+           if (dOption == JOptionPane.YES_OPTION) {
+               
+               try {
+                   DB.getDbCon().insert(q);
+                   JOptionPane.showMessageDialog(null, "Insertion Successful");
+                   
+               } catch (SQLException ex) {
+                   Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
+       }
              
       
         
@@ -268,27 +283,55 @@ public class AddEmp extends javax.swing.JFrame {
     public class Function{   
         String mon;
     public String month(String m) throws SQLException{
-           
-        switch(m)
-            {
-                case "JAN":                  mon="01";    
-                case "FEB":                  mon="02";    
-                case "MAR":                  mon="03";    
-                case "APR":                  mon="04";    
-                case "MAY":                  mon="05";    
-                case "JUN":                  mon="06";    
-                case "JUL":                  mon="07";    
-                case "AUG":                  mon="08";    
-                case "SEP":                  mon="09";    
-                case "OCT":                  mon="10";    
-                case "NOV":                  mon="11";    
-                case "DEC":                  mon="12";                                
+      
+        if (null != m)
+            switch (m) {
+                case "JAN":
+                    mon="01";
+                    break;
+                case "FEB":
+                    mon="02";
+                    break;
+                case "MAR":
+                    mon="03";
+                    break;
+                case "APR":
+                    mon="04";
+                    break;
+        
+                case "MAY":
+                    mon="05";
+                    break;
+                case "JUN":                  
+                    mon="06"; 
+                      break;
+                case "JUL": 
+                    mon="07";    
+                      break;
+                case "AUG": 
+                    mon="08";    
+                      break;
+                case "SEP": 
+                    mon="09";    
+                      break;
+                case "OCT": 
+                    mon="10";    
+                      break;
+                case "NOV": 
+                    mon="11";
+                      break;
+                case "DEC": 
+                    mon="12"; 
+                      break;
+               
+                default:
+                    break;
             }
-        
-        
+     
         return mon;
     }
 }
+    
     
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
       
@@ -303,6 +346,15 @@ public class AddEmp extends javax.swing.JFrame {
     private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addressActionPerformed
+
+    private void basicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicActionPerformed
+   /*      char c = evt.getKeyChar();
+        if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
+               || (c==KeyEvent.VK_DELETE))){
+        getToolkit().beep();
+        evt.consume();
+        }*/
+    }//GEN-LAST:event_basicActionPerformed
 
       private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
