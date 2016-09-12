@@ -15,7 +15,7 @@ public class TMS_hireHistory extends javax.swing.JFrame {
     /**
      * Creates new form tmsNewHire
      */
-    public TMS_hireHistory() {
+    /*public TMS_hireHistory() {
         try {
             initComponents();
             this.setLocationRelativeTo(null);
@@ -33,7 +33,7 @@ public class TMS_hireHistory extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(TMS_hireHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     
     //close button function
     private void close() {
@@ -70,6 +70,7 @@ public class TMS_hireHistory extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
@@ -164,8 +165,8 @@ public class TMS_hireHistory extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         panelSideButtons.setOpaque(false);
@@ -213,7 +214,7 @@ public class TMS_hireHistory extends javax.swing.JFrame {
             .addGroup(ContentAreaLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(panelWhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ContentAreaLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -317,8 +318,8 @@ public class TMS_hireHistory extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addComponent(jLayeredPane1)
+                .addGap(0, 0, 0))
         );
 
         pack();
