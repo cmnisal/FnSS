@@ -9,6 +9,8 @@ package inv.gui;
 import com.sun.glass.events.KeyEvent;
 import fnss.functions.DB;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -24,6 +26,25 @@ public class NewOrder extends javax.swing.JFrame {
     public NewOrder() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+          Date now = new Date();
+        //Set date format as you want
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
+        txtdate.setText(sf.format(now));
+        
+        
+           try{
+     String cat="SELECT SupplierName FROM Supplier";
+       ResultSet rs=DB.getDbCon().query(cat);
+       while(rs.next())
+       {
+           cmbSup.addItem(rs.getString("SupplierName"));
+       }
+}
+catch(Exception e)
+{
+
+}
     }
 
     /**
@@ -43,24 +64,24 @@ public class NewOrder extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        tblneworder = new javax.swing.JTable();
+        txtoID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtdate = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtDesc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtIcode = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        txtQtyI = new javax.swing.JTextField();
+        cmbunits = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        newOrdersearch = new javax.swing.JLabel();
         txtNewOrderSearch = new javax.swing.JTextField();
+        cmbSup = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(950, 660));
@@ -115,71 +136,72 @@ public class NewOrder extends javax.swing.JFrame {
 
         jScrollPane2.setBackground(new java.awt.Color(153, 255, 153));
 
-        jTable1.setBackground(new java.awt.Color(52, 73, 94));
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblneworder.setBackground(new java.awt.Color(52, 73, 94));
+        tblneworder.setForeground(new java.awt.Color(255, 255, 255));
+        tblneworder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Item Code", "Item Name", "Quantity"
+                "Item Code", "Item Name"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tblneworder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblneworderMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblneworderMouseEntered(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblneworder);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 840, 180));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
+        jPanel2.add(txtoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel3.setText("Supplier");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
-
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel4.setText("Date");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 80, 20));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 280, -1));
+        jPanel2.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 280, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel5.setText("User");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 280, -1));
+        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel6.setText("Description");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 640, 50));
+        jPanel2.add(txtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 640, 50));
 
         jLabel7.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel7.setText("Item Code");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, -1));
+        jPanel2.add(txtIcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, -1));
 
         jLabel8.setFont(new java.awt.Font("Lucida Bright", 1, 16)); // NOI18N
         jLabel8.setText("Qty");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
 
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtQtyI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                txtQtyIKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 190, -1));
+        jPanel2.add(txtQtyI, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 190, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Units", "Gallons", "Liters", "Kilos" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
+        cmbunits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Units", "Gallons", "Liters", "Kilos" }));
+        jPanel2.add(cmbunits, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
@@ -187,21 +209,29 @@ public class NewOrder extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Proceed");
         jLabel9.setOpaque(true);
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
-
-        jLabel10.setBackground(new java.awt.Color(52, 73, 94));
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Search");
-        jLabel10.setOpaque(true);
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 80, 30));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
+
+        newOrdersearch.setBackground(new java.awt.Color(52, 73, 94));
+        newOrdersearch.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        newOrdersearch.setForeground(new java.awt.Color(255, 255, 255));
+        newOrdersearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newOrdersearch.setText("Search");
+        newOrdersearch.setOpaque(true);
+        newOrdersearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newOrdersearchMouseClicked(evt);
+            }
+        });
+        jPanel2.add(newOrdersearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 80, 30));
         jPanel2.add(txtNewOrderSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 230, 30));
+
+        cmbSup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
+        jPanel2.add(cmbSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 950, 540));
 
@@ -219,36 +249,66 @@ public class NewOrder extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblBackMouseClicked
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    private void txtQtyIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyIKeyTyped
         char c = evt.getKeyChar();
          if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
                || (c==KeyEvent.VK_DELETE))){
         getToolkit().beep();
         evt.consume();
         }
-    }//GEN-LAST:event_jTextField8KeyTyped
+    }//GEN-LAST:event_txtQtyIKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        char c = evt.getKeyChar();
-         if(Character.isDigit(c)){
-        getToolkit().beep();
-        evt.consume();
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void newOrdersearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newOrdersearchMouseClicked
         String srch=new String(txtNewOrderSearch.getText());
-        String sql="SELECT ItemCode, ItemName,Quantity FROM `stock` where ItemName LIKE '%"+srch+"%'";
+        String sql="SELECT ItemCode, ItemName  FROM `stock` where ItemName LIKE '%"+srch+"%'";
         try
         {
         ResultSet rs=DB.getDbCon().query(sql);
-        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        tblneworder.setModel(DbUtils.resultSetToTableModel(rs));
         }
         catch(Exception e)
         {
             System.out.println(e);
         }
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_newOrdersearchMouseClicked
+
+    private void tblneworderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblneworderMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblneworderMouseEntered
+
+    private void tblneworderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblneworderMouseClicked
+        txtIcode.setText(tblneworder.getValueAt(tblneworder.getSelectedRow(),0).toString());
+    }//GEN-LAST:event_tblneworderMouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        String icode=new String(txtIcode.getText());
+        String orderID=new String(txtoID.getText());
+        String date=new String(txtdate.getText());
+        String user=new String(txtUser.getText());
+        String desc=new String(txtDesc.getText());
+        String qty=new String(txtQtyI.getText());
+        String sup=String.valueOf(cmbSup.getSelectedItem());
+        String unit=String.valueOf(cmbunits.getSelectedItem());
+        
+        
+        String sql="INSERT INTO `order` values('"+orderID+"','"+qty+"','"+sup+"','"+desc+"','"+icode+"','"+unit+"','"+date+"','"+user+"','0')";
+         try{
+       DB.getDbCon().insert(sql);
+       }
+       catch(Exception e)
+       {
+           System.out.println(e);
+       }
+         
+         txtDesc.setText("");
+         txtIcode.setText("");
+         txtQtyI.setText("");
+         txtUser.setText("");
+         txtdate.setText("");
+         txtoID.setText("");
+         
+        
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -286,10 +346,10 @@ public class NewOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox cmbSup;
+    private javax.swing.JComboBox cmbunits;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -301,17 +361,17 @@ public class NewOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JLabel newOrdersearch;
+    private javax.swing.JTable tblneworder;
+    private javax.swing.JTextField txtDesc;
+    private javax.swing.JTextField txtIcode;
     private javax.swing.JTextField txtNewOrderSearch;
+    private javax.swing.JTextField txtQtyI;
+    private javax.swing.JTextField txtUser;
+    private javax.swing.JTextField txtdate;
+    private javax.swing.JTextField txtoID;
     // End of variables declaration//GEN-END:variables
 private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
