@@ -28,6 +28,10 @@ public class Supplier extends javax.swing.JFrame {
     public Supplier() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Date now = new Date();
+        //Set date format as you want
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
+        txtSupDate.setText(sf.format(now));
     }
 
     /**
@@ -255,7 +259,7 @@ public class Supplier extends javax.swing.JFrame {
        txtSupID.setText("");
        txtSupName.setText("");
        txtSupAdd.setText("");
-       txtSupDate.setText("");
+      
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked

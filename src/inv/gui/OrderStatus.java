@@ -7,8 +7,12 @@
 package inv.gui;
 
 import fnss.functions.DB;
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -23,6 +27,20 @@ public class OrderStatus extends javax.swing.JFrame {
     public OrderStatus() {
         initComponents();
          this.setLocationRelativeTo(null);
+         
+         
+         String sql="SELECT * FROM fnss.`order`  where Status=0";
+        try{
+        ResultSet rs=DB.getDbCon().query(sql);
+        tblStatus.setModel(DbUtils.resultSetToTableModel(rs));
+      
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+         
     }
 
     /**
@@ -46,7 +64,6 @@ public class OrderStatus extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(940, 528));
         setUndecorated(true);
         setResizable(false);
 
@@ -124,6 +141,11 @@ public class OrderStatus extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblStatusMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblStatus);
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
@@ -199,10 +221,11 @@ public class OrderStatus extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        String sql="SELECT * FROM fnss.`order`";
+        String sql="SELECT * FROM fnss.`order` where Status=1";
         try{
         ResultSet rs=DB.getDbCon().query(sql);
         tblStatus.setModel(DbUtils.resultSetToTableModel(rs));
+        
         }
         catch(Exception e)
         {
@@ -219,6 +242,52 @@ public class OrderStatus extends javax.swing.JFrame {
         new OrderManagement().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblBackMouseClicked
+
+    private void tblStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStatusMouseClicked
+       OrderRecieving or= new OrderRecieving();
+       int index=tblStatus.getSelectedRow();
+       TableModel model=tblStatus.getModel();
+       String oId=model.getValueAt(index, 0).toString();
+          String qty=model.getValueAt(index, 1).toString();
+       String sup=model.getValueAt(index, 2).toString();
+       String itm=model.getValueAt(index, 4).toString();
+          String unit=model.getValueAt(index, 5).toString();
+       
+       
+       
+        or.setVisible(true);
+        or.pack();
+        or.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE);
+        or.txtOrderRID.setText(oId);
+        or.txtOrderRSupplier.setText(sup);
+        or.txtOrdItm.setText(itm);
+        or.txtqty.setText(qty);
+        or.txtunit.setText(unit);
+        
+          String sql="select BuyingPrice from `stock` where ItemCode='"+itm+"'";
+        try
+        {
+        ResultSet rs=DB.getDbCon().query(sql);
+        while(rs.next())
+        {
+        String price=rs.getString("BuyingPrice");
+        or.unitprice.setText(price);
+         double tot;
+         int q;
+        double pr=Double.parseDouble(or.unitprice.getText());
+        q=Integer.parseInt(or.txtqty.getText());
+        tot=pr*q;
+        or.txtTot.setText(Double.toString(tot));
+        }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+       
+    
+       
+    }//GEN-LAST:event_tblStatusMouseClicked
 
     /**
      * @param args the command line arguments
@@ -272,7 +341,10 @@ public class OrderStatus extends javax.swing.JFrame {
             this.dispose();
         }
  }
-
-
-
+ 
+ 
 }
+
+
+
+
