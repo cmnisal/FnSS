@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fnss.gui;
 
 import emp.Emp;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pos.gui.POS_MainFrame;
 import sst.gui.sstHome;
 import tms.gui.TMS_home;
+import tms.gui.TMS_manageHires;
 
 /**
  *
  * @author afkii
  */
 public class Home extends javax.swing.JFrame {
-    
+
     private pos.gui.POS_MainFrame pos;
     private tms.gui.TMS_home tms;
     private emp.Emp emp;
@@ -23,7 +23,21 @@ public class Home extends javax.swing.JFrame {
     private sst.gui.sstHome sst;
     
     public Home() {
-        initComponents();
+        try {
+            initComponents();
+            this.setLocationRelativeTo(null);
+            this.setExtendedState(MAXIMIZED_BOTH);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(TMS_manageHires.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    //close button function
+    private void close() {
+        if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
+            this.dispose();
+        }
     }
 
     /**
@@ -35,14 +49,67 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        HomePageContents = new javax.swing.JPanel();
+        desktopPane = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        controlPanel = new javax.swing.JPanel();
         btnTMS = new javax.swing.JLabel();
         btnPOS = new javax.swing.JLabel();
         btnINV = new javax.swing.JLabel();
         btnEMP = new javax.swing.JLabel();
         btnSST = new javax.swing.JLabel();
+        btnSST2 = new javax.swing.JLabel();
+        btnSST3 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JPanel();
+        exitButtonLable = new javax.swing.JLabel();
+        btnAdmin = new javax.swing.JLabel();
+        blueStrip = new javax.swing.JPanel();
+        lblBlueStrip = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+
+        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
+
+        HomePageContents.setOpaque(false);
+
+        desktopPane.setOpaque(false);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1762, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 737, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1762, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(desktopPaneLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jDesktopPane1)
+                    .addGap(0, 0, 0)))
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 737, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(desktopPaneLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jDesktopPane1)
+                    .addGap(0, 0, 0)))
+        );
+
+        controlPanel.setOpaque(false);
 
         btnTMS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnTMS.setText("TMS");
@@ -89,49 +156,181 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnTMS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+        btnSST2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSST2.setText("test");
+        btnSST2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSST2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSST2MouseClicked(evt);
+            }
+        });
+
+        btnSST3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSST3.setText("SST");
+        btnSST3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnSST3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSST3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
+        controlPanel.setLayout(controlPanelLayout);
+        controlPanelLayout.setHorizontalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPOS, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(btnTMS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnINV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnSST, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addComponent(btnSST2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSST3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTMS, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(217, Short.MAX_VALUE))
+        controlPanelLayout.setVerticalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTMS, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSST2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSST3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout HomePageContentsLayout = new javax.swing.GroupLayout(HomePageContents);
+        HomePageContents.setLayout(HomePageContentsLayout);
+        HomePageContentsLayout.setHorizontalGroup(
+            HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HomePageContentsLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1776, Short.MAX_VALUE))
+            .addGroup(HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePageContentsLayout.createSequentialGroup()
+                    .addGap(260, 260, 260)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        HomePageContentsLayout.setVerticalGroup(
+            HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(controlPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePageContentsLayout.createSequentialGroup()
+                    .addGap(136, 136, 136)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jLayeredPane1.add(HomePageContents);
+
+        exitButton.setOpaque(false);
+
+        exitButtonLable.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        exitButtonLable.setForeground(new java.awt.Color(255, 255, 255));
+        exitButtonLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitButtonLable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        exitButtonLable.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        exitButtonLable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonLableMouseClicked(evt);
+            }
+        });
+
+        btnAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAdmin.setText("Admin");
+        btnAdmin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdminMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout exitButtonLayout = new javax.swing.GroupLayout(exitButton);
+        exitButton.setLayout(exitButtonLayout);
+        exitButtonLayout.setHorizontalGroup(
+            exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exitButtonLayout.createSequentialGroup()
+                .addContainerGap(1812, Short.MAX_VALUE)
+                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(exitButtonLable)
+                .addGap(10, 10, 10))
+        );
+        exitButtonLayout.setVerticalGroup(
+            exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exitButtonLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitButtonLable)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(830, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(exitButton);
+
+        blueStrip.setOpaque(false);
+
+        lblBlueStrip.setBackground(new java.awt.Color(52, 73, 94));
+        lblBlueStrip.setOpaque(true);
+
+        javax.swing.GroupLayout blueStripLayout = new javax.swing.GroupLayout(blueStrip);
+        blueStrip.setLayout(blueStripLayout);
+        blueStripLayout.setHorizontalGroup(
+            blueStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blueStripLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(lblBlueStrip, javax.swing.GroupLayout.DEFAULT_SIZE, 2022, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        blueStripLayout.setVerticalGroup(
+            blueStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblBlueStrip, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+        );
+
+        jLayeredPane1.add(blueStrip);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLayeredPane1)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLayeredPane1)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitButtonLableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonLableMouseClicked
+        close();
+    }//GEN-LAST:event_exitButtonLableMouseClicked
+
+    private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminMouseClicked
 
     private void btnTMSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTMSMouseClicked
         if (tms == null) {
@@ -168,6 +367,14 @@ public class Home extends javax.swing.JFrame {
         sst.setVisible(true);
     }//GEN-LAST:event_btnSSTMouseClicked
 
+    private void btnSST2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSST2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSST2MouseClicked
+
+    private void btnSST3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSST3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSST3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -194,6 +401,21 @@ public class Home extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -204,11 +426,22 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel HomePageContents;
+    private javax.swing.JPanel blueStrip;
+    private javax.swing.JLabel btnAdmin;
     private javax.swing.JLabel btnEMP;
     private javax.swing.JLabel btnINV;
     private javax.swing.JLabel btnPOS;
     private javax.swing.JLabel btnSST;
+    private javax.swing.JLabel btnSST2;
+    private javax.swing.JLabel btnSST3;
     private javax.swing.JLabel btnTMS;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel controlPanel;
+    private javax.swing.JPanel desktopPane;
+    private javax.swing.JPanel exitButton;
+    private javax.swing.JLabel exitButtonLable;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel lblBlueStrip;
     // End of variables declaration//GEN-END:variables
 }

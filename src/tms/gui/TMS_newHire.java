@@ -99,16 +99,16 @@ public class TMS_newHire extends javax.swing.JFrame {
         functionImageLayout.setHorizontalGroup(
             functionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(functionImageLayout.createSequentialGroup()
-                .addContainerGap(422, Short.MAX_VALUE)
+                .addContainerGap(385, Short.MAX_VALUE)
                 .addComponent(lblImage)
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         functionImageLayout.setVerticalGroup(
             functionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(functionImageLayout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(functionImage);
@@ -401,9 +401,9 @@ public class TMS_newHire extends javax.swing.JFrame {
         contentAreaLayout.setHorizontalGroup(
             contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentAreaLayout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         contentAreaLayout.setVerticalGroup(
             contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,7 +433,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         exitButtonLayout.setHorizontalGroup(
             exitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitButtonLayout.createSequentialGroup()
-                .addContainerGap(898, Short.MAX_VALUE)
+                .addContainerGap(825, Short.MAX_VALUE)
                 .addComponent(exitButtonLable)
                 .addGap(10, 10, 10))
         );
@@ -442,7 +442,7 @@ public class TMS_newHire extends javax.swing.JFrame {
             .addGroup(exitButtonLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(exitButtonLable)
-                .addContainerGap(586, Short.MAX_VALUE))
+                .addContainerGap(591, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(exitButton);
@@ -463,14 +463,14 @@ public class TMS_newHire extends javax.swing.JFrame {
             .addGroup(backButtonLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(lblBack)
-                .addContainerGap(788, Short.MAX_VALUE))
+                .addContainerGap(715, Short.MAX_VALUE))
         );
         backButtonLayout.setVerticalGroup(
             backButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backButtonLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(lblBack)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addContainerGap(481, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(backButton);
@@ -486,7 +486,7 @@ public class TMS_newHire extends javax.swing.JFrame {
             blueStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blueStripLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(lblBlueStrip, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                .addComponent(lblBlueStrip, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         blueStripLayout.setVerticalGroup(
@@ -494,7 +494,7 @@ public class TMS_newHire extends javax.swing.JFrame {
             .addGroup(blueStripLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(lblBlueStrip, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(blueStrip);
@@ -505,14 +505,14 @@ public class TMS_newHire extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 938, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLayeredPane1)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
