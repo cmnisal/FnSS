@@ -20,7 +20,7 @@ public class TMS_hireHistory extends javax.swing.JFrame {
             initComponents();
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
-            /*
+            
             hireHistoryTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hiretransaction`.`hireID`,\n" +
                                                                 "    `tms_hiretransaction`.`cusID`,\n" +
                                                                 "    `tms_hiretransaction`.`vehicleReg`,\n" +
@@ -29,8 +29,8 @@ public class TMS_hireHistory extends javax.swing.JFrame {
                                                                 "    `tms_hiretransaction`.`actualRental`,\n" +
                                                                 "    `tms_hiretransaction`.`calcMethod`\n" +
                                                                 "FROM `fnss`.`tms_hiretransaction`;")));
-            //this.setExtendedState(MAXIMIZED_BOTH);*/
-        } catch (/*SQL*/Exception ex) {
+            //this.setExtendedState(MAXIMIZED_BOTH);
+        } catch (SQLException ex) {
             Logger.getLogger(TMS_hireHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

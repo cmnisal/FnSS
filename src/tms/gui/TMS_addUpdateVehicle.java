@@ -7,18 +7,18 @@ import javax.swing.JOptionPane;
  *
  * @author afkii
  */
-public class TMS_newHire extends javax.swing.JFrame {
+public class TMS_addUpdateVehicle extends javax.swing.JFrame {
 
     /**
      * Creates new form tmsNewHire
      */
-    public TMS_newHire() {
+    public TMS_addUpdateVehicle() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
-    public TMS_newHire(JFrame ui) {
+    public TMS_addUpdateVehicle(JFrame ui) {
         parentUI = ui;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -52,7 +52,6 @@ public class TMS_newHire extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         typeTxt = new javax.swing.JTextField();
         capacityTxt = new javax.swing.JTextField();
@@ -77,6 +76,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         cusNicTxt = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        vehicleNumberTxt = new javax.swing.JTextField();
         exitButton = new javax.swing.JPanel();
         exitButtonLable = new javax.swing.JLabel();
         backButton = new javax.swing.JPanel();
@@ -120,7 +120,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Clarendon Blk BT", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(71, 71, 71));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("New Hire");
+        jLabel6.setText("Vehicle");
 
         jLabel7.setBackground(new java.awt.Color(231, 76, 60));
         jLabel7.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
@@ -149,29 +149,13 @@ public class TMS_newHire extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(71, 71, 71));
         jLabel4.setText("Type");
 
-        jComboBox1.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox1.setOpaque(false);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(71, 71, 71));
         jLabel5.setText("Capacity");
 
-        typeTxt.setEditable(false);
-
-        capacityTxt.setEditable(false);
-
         jLabel9.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel9.setText("End Milage");
+        jLabel9.setText("Current Milage");
 
         jLabel10.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(71, 71, 71));
@@ -307,10 +291,10 @@ public class TMS_newHire extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(42, 42, 42)
                         .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                             .addComponent(capacityTxt, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(currentMilateTxt)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vehicleNumberTxt))
                         .addGap(53, 53, 53)
                         .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,9 +328,9 @@ public class TMS_newHire extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(whiteAreaLayout.createSequentialGroup()
@@ -527,10 +511,6 @@ public class TMS_newHire extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_exitButtonLableMouseClicked
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -579,14 +559,18 @@ public class TMS_newHire extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TMS_newHire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TMS_newHire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TMS_newHire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TMS_newHire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -595,7 +579,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TMS_newHire().setVisible(true);
+                new TMS_addUpdateVehicle().setVisible(true);
             }
         });
     }
@@ -613,7 +597,6 @@ public class TMS_newHire extends javax.swing.JFrame {
     private javax.swing.JPanel exitButton;
     private javax.swing.JLabel exitButtonLable;
     private javax.swing.JPanel functionImage;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -641,6 +624,7 @@ public class TMS_newHire extends javax.swing.JFrame {
     private javax.swing.JLabel lblBlueStrip;
     private javax.swing.JLabel lblImage;
     private javax.swing.JTextField typeTxt;
+    private javax.swing.JTextField vehicleNumberTxt;
     private javax.swing.JPanel whiteArea;
     // End of variables declaration//GEN-END:variables
 }
