@@ -34,7 +34,7 @@ public class NewOrder extends javax.swing.JFrame {
         
         
            try{
-     String cat="SELECT SupplierName FROM Supplier";
+     String cat="SELECT SupplierName FROM Supplier where Active=1";
        ResultSet rs=DB.getDbCon().query(cat);
        while(rs.next())
        {
@@ -306,7 +306,10 @@ catch(Exception e)
          txtUser.setText("");
          txtdate.setText("");
          txtoID.setText("");
-         
+         cmbSup.setSelectedIndex(0);
+         cmbunits.setSelectedIndex(0);
+          String s="Added successfully";
+        JOptionPane.showMessageDialog(null,s);
         
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -366,7 +369,7 @@ catch(Exception e)
     private javax.swing.JLabel newOrdersearch;
     private javax.swing.JTable tblneworder;
     private javax.swing.JTextField txtDesc;
-    private javax.swing.JTextField txtIcode;
+    public javax.swing.JTextField txtIcode;
     private javax.swing.JTextField txtNewOrderSearch;
     private javax.swing.JTextField txtQtyI;
     private javax.swing.JTextField txtUser;
