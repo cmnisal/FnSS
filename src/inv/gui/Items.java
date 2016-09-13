@@ -79,63 +79,7 @@ public class Items extends javax.swing.JFrame {
         {
             System.out.println(e);
         }
-          /* int q=0;
-        int p=0;
-        String sql2="select Quantity from `stock`";
-          String sql3="select ReorderLevel from `stock`";
-        try
-        {
-            ResultSet rs1=DB.getDbCon().query(sql3);
-        ResultSet rs=DB.getDbCon().query(sql2);
-        while(rs.next()&& rs1.next())
-        {
-            
-        q=Integer.parseInt(rs.getString("Quantity"));
-        p=Integer.parseInt(rs1.getString("ReorderLevel"));
-        if(q<p)
-        {
-           
-                
-        }
-        }
-        }
-        catch(Exception e)
-        {
         
-        }*/
-        /*tblItems.setDefaultRenderer(Object.class, new TableCellRenderer(){
-    private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
-
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if(isSelected)
-                    try
-                    {
-                        //int index=tblItems.getRowCount();
-                        //for(int i=0;i<index;i++)
-                        //{
-                            String value1 = (String) tblItems.getModel().getValueAt(row, 3);
-                            String value2 = (String)tblItems .getModel().getValueAt(row, 8);
-                              int quant=Integer.parseInt(value1);
-                              int reorder=Integer.parseInt(value2);
-                            if(quant<reorder)
-                            {
-                                c.setBackground(Color.red);
-                            }
-                         //}
-                    }
-                  catch(Exception e)
-                    {
-                
-                     }
-                
-
-       //Add below code here
-                return c;
-            }
-
-        });*/
        
       
     }
