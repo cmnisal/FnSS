@@ -23,14 +23,13 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
             
-            manageHiresTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hiretransaction`.`hireID`,\n" +
-                                                                "    `tms_hiretransaction`.`cusID`,\n" +
-                                                                "    `tms_hiretransaction`.`vehicleReg`,\n" +
-                                                                "    `tms_hiretransaction`.`duration`,\n" +
-                                                                "    `tms_hiretransaction`.`travelledMilage`,\n" +
-                                                                "    `tms_hiretransaction`.`actualRental`,\n" +
-                                                                "    `tms_hiretransaction`.`calcMethod`\n" +
-                                                                "FROM `fnss`.`tms_hiretransaction`;")));
+            manageVehiclesTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hirevehicle`.`vehicleRegNo`,\n" +
+                                                                "    `tms_hirevehicle`.`type`,\n" +
+                                                                "    `tms_hirevehicle`.`capacity`,\n" +
+                                                                "    `tms_hirevehicle`.`milage`,\n" +
+                                                                "    `tms_hirevehicle`.`hourlyRate`,\n" +
+                                                                "    `tms_hirevehicle`.`dailyRate`\n" +
+                                                                " FROM `fnss`.`tms_hirevehicle`;")));
             
             
             //this.setExtendedState(MAXIMIZED_BOTH);
@@ -62,7 +61,7 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         WhiteArea = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        manageHiresTable = new javax.swing.JTable();
+        manageVehiclesTable = new javax.swing.JTable();
         SideButtons = new javax.swing.JPanel();
         addButton = new javax.swing.JLabel();
         searchButton = new javax.swing.JLabel();
@@ -109,19 +108,19 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Clarendon Blk BT", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(71, 71, 71));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Manage Hires");
+        jLabel6.setText("Manage Vehicles");
 
-        manageHiresTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        manageHiresTable.setModel(new javax.swing.table.DefaultTableModel(
+        manageVehiclesTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        manageVehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method"
+                "Reg. Number", "Type", "Capacity", "Current Milage", "Hourly Rate", "Daily Rate"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -135,18 +134,18 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        manageHiresTable.setGridColor(new java.awt.Color(255, 255, 255));
-        manageHiresTable.setRowHeight(26);
-        manageHiresTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        manageHiresTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(manageHiresTable);
-        if (manageHiresTable.getColumnModel().getColumnCount() > 0) {
-            manageHiresTable.getColumnModel().getColumn(0).setResizable(false);
-            manageHiresTable.getColumnModel().getColumn(1).setResizable(false);
-            manageHiresTable.getColumnModel().getColumn(2).setResizable(false);
-            manageHiresTable.getColumnModel().getColumn(3).setResizable(false);
-            manageHiresTable.getColumnModel().getColumn(4).setResizable(false);
-            manageHiresTable.getColumnModel().getColumn(5).setResizable(false);
+        manageVehiclesTable.setGridColor(new java.awt.Color(255, 255, 255));
+        manageVehiclesTable.setRowHeight(26);
+        manageVehiclesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        manageVehiclesTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(manageVehiclesTable);
+        if (manageVehiclesTable.getColumnModel().getColumnCount() > 0) {
+            manageVehiclesTable.getColumnModel().getColumn(0).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(1).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(2).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(3).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(4).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout WhiteAreaLayout = new javax.swing.GroupLayout(WhiteArea);
@@ -343,7 +342,7 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBackMouseReleased
 
     private void addButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseReleased
-        new TMS_newHire(this).setVisible(true);
+        new TMS_addUpdateVehicle(this).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addButtonMouseReleased
 
@@ -413,7 +412,7 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblBlueStrip;
-    private javax.swing.JTable manageHiresTable;
+    private javax.swing.JTable manageVehiclesTable;
     private javax.swing.JLabel searchButton;
     // End of variables declaration//GEN-END:variables
 }

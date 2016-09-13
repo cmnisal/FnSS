@@ -1,5 +1,9 @@
 package tms.gui;
 
+import fnss.functions.DB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -48,8 +52,7 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         contentArea = new javax.swing.JPanel();
         whiteArea = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblUpdateButton = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -57,25 +60,13 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         capacityTxt = new javax.swing.JTextField();
         currentMilateTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        depAmntTxt = new javax.swing.JTextField();
+        vehicleAvailabilityTxt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        cusNameTxt = new javax.swing.JTextField();
+        hourlyRateTxt = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        cusMobileTxt = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        cusNicTxt = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        dailyRateTxt = new javax.swing.JTextField();
+        lblDeleteButton = new javax.swing.JLabel();
         vehicleNumberTxt = new javax.swing.JTextField();
         exitButton = new javax.swing.JPanel();
         exitButtonLable = new javax.swing.JLabel();
@@ -122,28 +113,21 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Vehicle");
 
-        jLabel7.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel7.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Search Customer");
-        jLabel7.setOpaque(true);
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblUpdateButton.setBackground(new java.awt.Color(231, 76, 60));
+        lblUpdateButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        lblUpdateButton.setForeground(new java.awt.Color(255, 255, 255));
+        lblUpdateButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUpdateButton.setText("Update");
+        lblUpdateButton.setOpaque(true);
+        lblUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel7MouseReleased(evt);
+                lblUpdateButtonMouseReleased(evt);
             }
         });
 
-        jLabel8.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel8.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Start Hire");
-        jLabel8.setOpaque(true);
-
         jLabel3.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel3.setText("Vehicle Number");
+        jLabel3.setText("Vehicle Reg. Number");
 
         jLabel4.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(71, 71, 71));
@@ -157,231 +141,109 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(71, 71, 71));
         jLabel9.setText("Current Milage");
 
-        jLabel10.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel10.setText("Start");
-
-        jComboBox2.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(null);
-        jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox2.setOpaque(false);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jComboBox3.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setBorder(null);
-        jComboBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox3.setOpaque(false);
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel11.setText("End");
-
-        jComboBox4.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox4.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.setBorder(null);
-        jComboBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox4.setOpaque(false);
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
-            }
-        });
-
-        jComboBox5.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox5.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox5.setBorder(null);
-        jComboBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox5.setOpaque(false);
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel12.setText("Calculation Method");
-
-        jComboBox6.setFont(new java.awt.Font("Lato Medium", 0, 11)); // NOI18N
-        jComboBox6.setForeground(new java.awt.Color(71, 71, 71));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox6.setBorder(null);
-        jComboBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox6.setOpaque(false);
-        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox6ActionPerformed(evt);
-            }
-        });
-
         jLabel13.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel13.setText("Deposit Amount");
+        jLabel13.setText("Availability");
+
+        vehicleAvailabilityTxt.setEditable(false);
 
         jLabel14.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel14.setText("Costomer Name");
+        jLabel14.setText("Hourly Rate");
 
         jLabel15.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel15.setText("Customer Number");
+        jLabel15.setText("Daily Rate");
 
-        jLabel16.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel16.setText("Customer NIC");
-
-        jLabel18.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel18.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("End Hire");
-        jLabel18.setOpaque(true);
+        lblDeleteButton.setBackground(new java.awt.Color(231, 76, 60));
+        lblDeleteButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        lblDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        lblDeleteButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDeleteButton.setText("Delete");
+        lblDeleteButton.setOpaque(true);
 
         javax.swing.GroupLayout whiteAreaLayout = new javax.swing.GroupLayout(whiteArea);
         whiteArea.setLayout(whiteAreaLayout);
         whiteAreaLayout.setHorizontalGroup(
             whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(whiteAreaLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addGap(42, 42, 42)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
+                        .addGap(100, 100, 100)
                         .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(42, 42, 42)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                            .addComponent(capacityTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currentMilateTxt)
-                            .addComponent(vehicleNumberTxt))
-                        .addGap(53, 53, 53)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(whiteAreaLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(42, 42, 42)
+                                .addComponent(vehicleAvailabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(whiteAreaLayout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(cusNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(cusNicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cusMobileTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel14)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(57, 57, 57)
+                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(hourlyRateTxt)
+                                        .addComponent(dailyRateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(whiteAreaLayout.createSequentialGroup()
+                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4))
+                                    .addGap(42, 42, 42)
+                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(capacityTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(currentMilateTxt)
+                                        .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60))
+                        .addGap(115, 115, 115)
+                        .addComponent(lblUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(100, 100, 100))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, whiteAreaLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141))
         );
         whiteAreaLayout.setVerticalGroup(
             whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(whiteAreaLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(capacityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(currentMilateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(cusNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(cusMobileTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(cusNicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2)
-                    .addComponent(jComboBox3))
+                    .addComponent(jLabel4)
+                    .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4)
-                    .addComponent(jComboBox5))
+                    .addComponent(jLabel5)
+                    .addComponent(capacityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jComboBox6))
+                    .addComponent(currentMilateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(28, 28, 28)
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(hourlyRateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(dailyRateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vehicleAvailabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addGap(7, 7, 7)
+                .addGap(32, 32, 32)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                    .addComponent(lblDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout contentAreaLayout = new javax.swing.GroupLayout(contentArea);
@@ -389,9 +251,9 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         contentAreaLayout.setHorizontalGroup(
             contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentAreaLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE)
+                .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         contentAreaLayout.setVerticalGroup(
             contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,26 +373,6 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_exitButtonLableMouseClicked
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
-
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
-
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ActionPerformed
-
     private void lblBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseReleased
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
             parentUI.setVisible(true);
@@ -538,9 +380,24 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblBackMouseReleased
 
-    private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel7MouseReleased
+    private void lblUpdateButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUpdateButtonMouseReleased
+        String query = "INSERT INTO `fnss`.`tms_hirevehicle`\n"
+                + "(`vehicleRegNo`, `type`, `capacity`, `milage`, `hourlyRate`, `dailyRate`)\n"
+                + "VALUES\n"
+                + "("+ vehicleNumberTxt.getText() +", "
+                + "" + typeTxt.getText() + ", "
+                + "" + capacityTxt.getText() + ", "
+                + "" + currentMilateTxt.getText() + ", "
+                + "" + hourlyRateTxt.getText() + ","
+                + "" + dailyRateTxt.getText() + ");";
+
+        try {
+            DB.getDbCon().insert(query);
+            JOptionPane.showMessageDialog(this, "New Vehicle Saved!");
+        } catch (SQLException ex) {
+            Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblUpdateButtonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -590,40 +447,27 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
     private javax.swing.JTextField capacityTxt;
     private javax.swing.JPanel contentArea;
     private javax.swing.JTextField currentMilateTxt;
-    private javax.swing.JTextField cusMobileTxt;
-    private javax.swing.JTextField cusNameTxt;
-    private javax.swing.JTextField cusNicTxt;
-    private javax.swing.JTextField depAmntTxt;
+    private javax.swing.JTextField dailyRateTxt;
     private javax.swing.JPanel exitButton;
     private javax.swing.JLabel exitButtonLable;
     private javax.swing.JPanel functionImage;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JTextField hourlyRateTxt;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblBlueStrip;
+    private javax.swing.JLabel lblDeleteButton;
     private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblUpdateButton;
     private javax.swing.JTextField typeTxt;
+    private javax.swing.JTextField vehicleAvailabilityTxt;
     private javax.swing.JTextField vehicleNumberTxt;
     private javax.swing.JPanel whiteArea;
     // End of variables declaration//GEN-END:variables
