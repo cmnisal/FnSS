@@ -20,7 +20,7 @@ public class SearchUpdate extends javax.swing.JFrame {
     
     public SearchUpdate() {
         initComponents();
-         search.setText("--Enter Employee ID--");
+         search.setText("Enter Employee ID..");
             try {
             String q1="SELECT *  FROM employee  ";
             
@@ -92,6 +92,8 @@ public class SearchUpdate extends javax.swing.JFrame {
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 220, 41));
 
         search.setBackground(new java.awt.Color(204, 218, 220));
+        search.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        search.setForeground(new java.awt.Color(102, 102, 102));
         search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchMouseClicked(evt);
@@ -313,7 +315,7 @@ public class SearchUpdate extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
 
     }//GEN-LAST:event_jLabel7MouseClicked

@@ -19,13 +19,14 @@ public class Payroll extends javax.swing.JFrame {
     Double Basic;
     String EID;
     String Accountant;
-    Double Wage;
+    Double Allowance;
+    Double TotAllowance;
     Double EPF;
     String q1, q2;
 
     public Payroll() {
         initComponents();
-        wage.setText("00.00");
+        
 
     }
 
@@ -40,7 +41,6 @@ public class Payroll extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         accountant = new javax.swing.JTextField();
-        wage = new javax.swing.JTextField();
         yyCombo = new javax.swing.JComboBox<>();
         mmCombo = new javax.swing.JComboBox<>();
         eid = new javax.swing.JTextField();
@@ -59,6 +59,7 @@ public class Payroll extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         power = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -81,15 +82,14 @@ public class Payroll extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(accountant, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 150, -1));
-        jPanel2.add(wage, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 150, -1));
+        jPanel2.add(accountant, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 180, -1));
 
         yyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036" }));
-        jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
         mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
-        jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
-        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 270, -1));
+        jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 270, -1));
 
         jLabel2.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel2.setText("EID");
@@ -101,19 +101,19 @@ public class Payroll extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel6.setText("Special Allowances");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel8.setText("Accountant");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
-        jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 150, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, -1, -1));
+        jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 270, -1));
 
         total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalActionPerformed(evt);
             }
         });
-        jPanel2.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 150, -1));
+        jPanel2.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 270, -1));
 
         jLabel10.setBackground(new java.awt.Color(102, 153, 255));
         jLabel10.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
@@ -126,7 +126,7 @@ public class Payroll extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 470, 109, 26));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 540, 109, 26));
 
         jLabel9.setBackground(new java.awt.Color(102, 153, 255));
         jLabel9.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
@@ -139,29 +139,44 @@ public class Payroll extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 110, 26));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 110, 30));
 
         jLabel11.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel11.setText("Basic Salary");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel12.setText("Total Salary");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel15.setText("EPF");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 41, -1));
-        jPanel2.add(epf, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 150, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 41, -1));
+        jPanel2.add(epf, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(44, 62, 80));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Payroll Calculation");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 280, -1));
+        jLabel1.setText("Payroll Generation");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 280, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -172,7 +187,7 @@ public class Payroll extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -181,9 +196,17 @@ public class Payroll extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 330, 90));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 330, 110));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 780, 550));
+        jLabel5.setBackground(new java.awt.Color(102, 153, 255));
+        jLabel5.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Submit");
+        jLabel5.setOpaque(true);
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 110, 30));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 800, 580));
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
         back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -199,11 +222,11 @@ public class Payroll extends javax.swing.JFrame {
                 powerMouseClicked(evt);
             }
         });
-        jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, -1));
+        jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, -1, -1));
 
         jLabel16.setBackground(new java.awt.Color(105, 145, 152));
         jLabel16.setOpaque(true);
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 230));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 230));
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -211,67 +234,60 @@ public class Payroll extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-         Function f = new Function();
-         
-        try {
+        try {                                     
+            Function f = new Function();
+            int r;
+            this.TotAllowance=0.0;
+            
             EID = eid.getText();
             String YY = yyCombo.getSelectedItem().toString();
-            String MM = f.month(mmCombo.getSelectedItem().toString());
-            this.Wage = Double.parseDouble(wage.getText());
+            String MM = f.month(mmCombo.getSelectedItem().toString());            
             this.Accountant = accountant.getText();
-
-            q1 = "SELECT BasicSalary FROM employee WHERE EID='" + EID + "'";
-
-            ResultSet = DB.getDbCon().query(q1);
-            if (ResultSet.next()) {
-                Basic = ResultSet.getDouble("BasicSalary");
+            
+            this.Allowance=(Double) jTable1.getValueAt(0,0);
+            while(this.Allowance!=0)
+            {r=0;
+       //     this.Allowance=Double.parseDouble(jTable1.getValueAt(r,0));
+            this.TotAllowance=this.TotAllowance+this.Allowance;
+            JOptionPane.showMessageDialog(null, Allowance+" "+TotAllowance);
             }
-
-            basic.setText(Basic + "");
-
-            //     Basic = 50000.0 ;
-            this.EPF = (this.Basic * 0.04);
-            tot = Basic + Wage - EPF;
-
-            total.setText(tot.toString());
-            epf.setText(EPF.toString());
-            basic.setText(Basic.toString());
-            q2 = "INSERT INTO payroll(PID,EID,Basic,EPF,Wages,Total,AccountantID,Month,Year)"
-                    + "VALUES(" + 1 + ",'" + EID + "'," + Basic + "," + EPF + ",'" + Wage + "','" + tot + "','" + Accountant + "','" + MM + "','" + YY + "')";
-            System.out.println(q2);
+            
+            try {
+                
+                DB.getDbCon().insert(q2);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "error in inserting!");
+            }
+            
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-
-            DB.getDbCon().insert(q2);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "error in inserting!");
         }
 
 
@@ -410,6 +426,7 @@ public class Payroll extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -421,7 +438,6 @@ public class Payroll extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mmCombo;
     private javax.swing.JLabel power;
     private javax.swing.JTextField total;
-    private javax.swing.JTextField wage;
     private javax.swing.JComboBox<String> yyCombo;
     // End of variables declaration//GEN-END:variables
 }

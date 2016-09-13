@@ -139,25 +139,25 @@ public class Attendance extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
        
         String EID = eid.getText();
-        
-        if(EID != null)
-        {
+        int status=0;
+        if(EID.length()==0)
+        {JOptionPane.showMessageDialog(null, "Enter the Employee ID!"); status=-1; }
+       
+        if(status!= -1){
             try {
                 String q="INSERT INTO attendance (EID)"
                         + "VALUES('"+EID+"')";
                
                  DB.getDbCon().insert(q);
+                 JOptionPane.showMessageDialog(null, "Attendance Marked");
                  
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error!!");
                }
             
+       
         }
-        
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Please Enter yout Employee ID");
-        }
+     
         
     }//GEN-LAST:event_jLabel4MouseClicked
 

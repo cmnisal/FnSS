@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 public class AddEmp extends javax.swing.JFrame {
    
    String Gender;
+
    
     public AddEmp() {
         initComponents();
@@ -207,6 +208,11 @@ public class AddEmp extends javax.swing.JFrame {
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
         power.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        power.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                powerMouseClicked(evt);
+            }
+        });
         jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, -1));
 
         jLabel14.setBackground(new java.awt.Color(105, 145, 152));
@@ -248,7 +254,8 @@ public class AddEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_fRButtonActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-       try {
+      int status=0;
+        try {
            Function f = new Function();
            
            String EID = eid.getText();
@@ -256,17 +263,31 @@ public class AddEmp extends javax.swing.JFrame {
            String  Address= address.getText();
            String  Phone= phone.getText();
            String Category = category.getText();
-           String  NIC= nic.getText();
+           String  NIC= nic.getText(); 
            String  Basic= basic.getText();
            String YY = yyCombo.getSelectedItem().toString();
            String DD = ddCombo.getSelectedItem().toString();
            String MM = f.month(mmCombo.getSelectedItem().toString());
-          
+           
+           //Validation
            if(mRButton.isSelected())
            {this.Gender="male" ;}
-           if(fRButton.isSelected())
+           else if(fRButton.isSelected())
            {this.Gender="female" ;}
-          
+
+           if(EID.length()==0 || Category.length()==0 || Basic.length()==0 || Name.length()==0 || Address.length()==0 )
+           {JOptionPane.showMessageDialog(null, "Please fill all the details!"); status=2;}
+           if(Phone.length()!=10 && status !=2)
+           {  JOptionPane.showMessageDialog(null, "Enter a valid phone number!"); status=-1;   }
+           
+           if(NIC.length()!=9 && status !=2)
+           { JOptionPane.showMessageDialog(null, "Enter a valid NIC Number!");  status=-1;      }
+           else if(NIC.indexOf('V') < 0 && status !=2)
+           {JOptionPane.showMessageDialog(null, "Enter a valid NIC Number!");  status=-1;      }
+           
+           
+           //Insertion to the DB
+           if(status== 0){
            String q ="INSERT INTO employee (EID,Category,Name,Address,DOB,NIC,Gender,Phone,BasicSalary)  "
                    + "VALUES('"+EID+"','"+Category+"','"+Name+"','"+Address+"','"+YY+"-"+MM+"-"+DD+"','"+NIC+"','"+Gender+"','"+Phone+"','"+Basic+"')";
           
@@ -278,66 +299,67 @@ public class AddEmp extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(null, "Insertion Successful");
                    
                } catch (SQLException ex) {
-                   Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
+                  JOptionPane.showMessageDialog(null, "This Employee ID is already taken. Please enter another!");
                }
            }
-       } catch (SQLException ex) {
-           Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
-       }
-             
+           }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
       
         
     }//GEN-LAST:event_jLabel10MouseClicked
-    public class Function{   
-        String mon;
-    public String month(String m) throws SQLException{
-      
-        if (null != m)
-            switch (m) {
-                case "JAN":
-                    mon="01";
-                    break;
-                case "FEB":
-                    mon="02";
-                    break;
-                case "MAR":
-                    mon="03";
-                    break;
-                case "APR":
-                    mon="04";
-                    break;
-        
-                case "MAY":
-                    mon="05";
-                    break;
-                case "JUN":                  
-                    mon="06"; 
-                      break;
-                case "JUL": 
-                    mon="07";    
-                      break;
-                case "AUG": 
-                    mon="08";    
-                      break;
-                case "SEP": 
-                    mon="09";    
-                      break;
-                case "OCT": 
-                    mon="10";    
-                      break;
-                case "NOV": 
-                    mon="11";
-                      break;
-                case "DEC": 
-                    mon="12"; 
-                      break;
-               
-                default:
-                    break;
-            }
-     
-        return mon;
-    }
+        public class Function{   
+            String mon;
+        public String month(String m) throws SQLException{
+
+            if (null != m)
+                switch (m) {
+                    case "JAN":
+                        mon="01";
+                        break;
+                    case "FEB":
+                        mon="02";
+                        break;
+                    case "MAR":
+                        mon="03";
+                        break;
+                    case "APR":
+                        mon="04";
+                        break;
+
+                    case "MAY":
+                        mon="05";
+                        break;
+                    case "JUN":                  
+                        mon="06"; 
+                          break;
+                    case "JUL": 
+                        mon="07";    
+                          break;
+                    case "AUG": 
+                        mon="08";    
+                          break;
+                    case "SEP": 
+                        mon="09";    
+                          break;
+                    case "OCT": 
+                        mon="10";    
+                          break;
+                    case "NOV": 
+                        mon="11";
+                          break;
+                    case "DEC": 
+                        mon="12"; 
+                          break;
+
+                    default:
+                        break;
+                }
+
+            return mon;
+        }
 }
     
     
@@ -367,6 +389,10 @@ public class AddEmp extends javax.swing.JFrame {
     private void nicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nicActionPerformed
+
+    private void powerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_powerMouseClicked
+          close();
+    }//GEN-LAST:event_powerMouseClicked
 
       private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
