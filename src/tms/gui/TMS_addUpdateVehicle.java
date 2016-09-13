@@ -384,9 +384,9 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         String query = "INSERT INTO `fnss`.`tms_hirevehicle`\n"
                 + "(`vehicleRegNo`, `type`, `capacity`, `milage`, `hourlyRate`, `dailyRate`)\n"
                 + "VALUES\n"
-                + "("+ vehicleNumberTxt.getText() +", "
-                + "" + typeTxt.getText() + ", "
-                + "" + capacityTxt.getText() + ", "
+                + "('"+ vehicleNumberTxt.getText() +"', "
+                + "'" + typeTxt.getText() + "', "
+                + "" + capacityTxt.getText() + ","
                 + "" + currentMilateTxt.getText() + ", "
                 + "" + hourlyRateTxt.getText() + ","
                 + "" + dailyRateTxt.getText() + ");";
