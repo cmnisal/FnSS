@@ -14,7 +14,8 @@ public class TestDB {
 
     public static void main(String[] args) {
         try {
-            System.out.println(new DocNumGenerator().generateID("HIRE"));
+            System.out.println("HIRE curVal : "+new DocNumGenerator().curVal("HIRE"));
+            System.out.println("HIRE nextVal : "+new DocNumGenerator().nextVal("HIRE"));
         } catch (SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
