@@ -12,12 +12,12 @@ import net.proteanit.sql.DbUtils;
  *
  * @author afkii
  */
-public class TMS_manageHires extends javax.swing.JFrame {
+public class TMS_manageVehicles extends javax.swing.JFrame {
 
     /**
      * Creates new form tmsNewHire
      */
-    public TMS_manageHires() {
+    public TMS_manageVehicles() {
         try {
             initComponents();
             this.setLocationRelativeTo(null);
@@ -35,7 +35,7 @@ public class TMS_manageHires extends javax.swing.JFrame {
             
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (SQLException ex) {
-            Logger.getLogger(TMS_manageHires.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TMS_manageVehicles.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -364,14 +364,22 @@ public class TMS_manageHires extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TMS_manageHires.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_manageVehicles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TMS_manageHires.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_manageVehicles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TMS_manageHires.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_manageVehicles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TMS_manageHires.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TMS_manageVehicles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -384,7 +392,7 @@ public class TMS_manageHires extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TMS_manageHires().setVisible(true);
+                new TMS_manageVehicles().setVisible(true);
             }
         });
     }
