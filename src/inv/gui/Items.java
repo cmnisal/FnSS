@@ -8,8 +8,17 @@ package inv.gui;
 
 import com.sun.glass.events.KeyEvent;
 import fnss.functions.DB;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -24,6 +33,13 @@ public class Items extends javax.swing.JFrame {
     public Items() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+         Date now = new Date();
+        //Set date format as you want
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
+        txtDate.setText(sf.format(now));
+        
+        
         try
         {
         String sql="SELECT CategoryName FROM category";
@@ -31,7 +47,7 @@ public class Items extends javax.swing.JFrame {
         while(rs.next())
         {
         iCategory.addItem(rs.getString("CategoryName"));
-        iSearchCat.addItem(rs.getString("CategoryName"));
+       
         }
         }
         catch(Exception e)
@@ -44,13 +60,84 @@ public class Items extends javax.swing.JFrame {
         while(rs.next())
         {
         iSubCategory.addItem(rs.getString("SubCatName"));
-        iSearchSubCat.addItem(rs.getString("SubCatName"));
+     
         }
         
         }
         catch(Exception e)
         {}
+     
+      
+        String sql1="select  ItemCode,ItemName,Date,Quantity,BuyingPrice,SellingPrice,Category,SubCategory,ReorderLevel FROM `stock` where Status=1 and Quantity>ReorderLevel";
+        try
+        {
+        ResultSet rs=DB.getDbCon().query(sql1);
+          tblItems.setModel(DbUtils.resultSetToTableModel(rs));
+          
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+          /* int q=0;
+        int p=0;
+        String sql2="select Quantity from `stock`";
+          String sql3="select ReorderLevel from `stock`";
+        try
+        {
+            ResultSet rs1=DB.getDbCon().query(sql3);
+        ResultSet rs=DB.getDbCon().query(sql2);
+        while(rs.next()&& rs1.next())
+        {
+            
+        q=Integer.parseInt(rs.getString("Quantity"));
+        p=Integer.parseInt(rs1.getString("ReorderLevel"));
+        if(q<p)
+        {
+           
+                
+        }
+        }
+        }
+        catch(Exception e)
+        {
         
+        }*/
+        /*tblItems.setDefaultRenderer(Object.class, new TableCellRenderer(){
+    private DefaultTableCellRenderer DEFAULT_RENDERER =  new DefaultTableCellRenderer();
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = DEFAULT_RENDERER.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if(isSelected)
+                    try
+                    {
+                        //int index=tblItems.getRowCount();
+                        //for(int i=0;i<index;i++)
+                        //{
+                            String value1 = (String) tblItems.getModel().getValueAt(row, 3);
+                            String value2 = (String)tblItems .getModel().getValueAt(row, 8);
+                              int quant=Integer.parseInt(value1);
+                              int reorder=Integer.parseInt(value2);
+                            if(quant<reorder)
+                            {
+                                c.setBackground(Color.red);
+                            }
+                         //}
+                    }
+                  catch(Exception e)
+                    {
+                
+                     }
+                
+
+       //Add below code here
+                return c;
+            }
+
+        });*/
+       
+      
     }
 
     /**
@@ -92,14 +179,9 @@ public class Items extends javax.swing.JFrame {
         tblItems = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         txtSearchItems = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        iSearchCat = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
-        iSearchSubCat = new javax.swing.JComboBox();
-        txtItemQty = new javax.swing.JLabel();
-        txtIQty = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtReOrder = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -179,7 +261,7 @@ public class Items extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(127, 140, 141));
         jLabel6.setText("Date");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(127, 140, 141));
@@ -269,24 +351,29 @@ public class Items extends javax.swing.JFrame {
         tblItems.setForeground(new java.awt.Color(255, 255, 255));
         tblItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Name", "Description"
+                "Item Code", "Item Name", "Date", "Quantity", "Buying Price", "Selling Price", "Category", "Sub Category", "Reorder Level"
             }
         ));
+        tblItems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblItemsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblItems);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 736, 194));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 440, 870, 194));
 
         jLabel10.setBackground(new java.awt.Color(52, 73, 94));
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -299,54 +386,33 @@ public class Items extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 84, 40));
-        jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 269, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(127, 140, 141));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Category");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
-
-        iSearchCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-        jPanel2.add(iSearchCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 94, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(127, 140, 141));
-        jLabel12.setText("Sub-Category");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
-
-        iSearchSubCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-        iSearchSubCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iSearchSubCatActionPerformed(evt);
-            }
-        });
-        jPanel2.add(iSearchSubCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 330, 94, -1));
-
-        txtItemQty.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtItemQty.setForeground(new java.awt.Color(127, 140, 141));
-        txtItemQty.setText("Quantity");
-        jPanel2.add(txtItemQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
-
-        txtIQty.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIQtyKeyTyped(evt);
-            }
-        });
-        jPanel2.add(txtIQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 99, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 84, 40));
+        jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 450, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(127, 140, 141));
         jLabel13.setText("ReorderLevel");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
 
         txtReOrder.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReOrderKeyTyped(evt);
             }
         });
-        jPanel2.add(txtReOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 120, -1));
+        jPanel2.add(txtReOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 80, -1));
+
+        jLabel11.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("OUT OF STOCK");
+        jLabel11.setOpaque(true);
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, 190, 40));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 660));
 
@@ -357,11 +423,12 @@ public class Items extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
        String srch=new String(txtSearchItems.getText());
-       String sql= "SELECT ItemCode,ItemName,SellingPrice FROM `stock` where ItemName LIKE '%"+srch+"%'";
+       String sql= "SELECT ItemCode,ItemName,Date,Quantity,BuyingPrice,SellingPrice,Category,SubCategory,ReorderLevel FROM `stock` where ItemName LIKE '%"+srch+"%' and Quantity>ReorderLevel";
        try
        {
            ResultSet rs=DB.getDbCon().query(sql);
            tblItems.setModel(DbUtils.resultSetToTableModel(rs));
+           
        
        }
        catch(Exception e)
@@ -376,23 +443,24 @@ public class Items extends javax.swing.JFrame {
        String cat=String.valueOf(iCategory.getSelectedItem());
        String subcat=String.valueOf(iSubCategory.getSelectedItem());
       String date=new String(txtDate.getText());
-      String qty=new String(txtIQty.getText());
+      
       String buy=new String(txtBuyingPrice.getText());
       String sell=new String(txtBuyingPrice.getText());
       String ro=new String(txtReOrder.getText());
-      String sql="INSERT INTO stock values('"+icode+"','"+iname+"','"+date+"','"+qty+"','"+buy+"','"+sell+"','"+cat+"','"+subcat+"','"+ro+"','1')";
+      String sql="INSERT INTO stock values('"+icode+"','"+iname+"','"+date+"','0','"+buy+"','"+sell+"','"+cat+"','"+subcat+"','"+ro+"','1')";
       try
       {
       DB.getDbCon().insert(sql);
       }
       catch(Exception e)
       {
-      
+          System.out.println(e);
       }
       txtItemCode.setText("");
       txtItemName.setText("");
-      txtDate.setText("");
-      txtIQty.setText("");
+     
+      iCategory.setSelectedIndex(0);
+      iSubCategory.setSelectedIndex(0);
       txtBuyingPrice.setText("");
       txtSellingPrice.setText("");
       txtReOrder.setText("");
@@ -411,20 +479,30 @@ public class Items extends javax.swing.JFrame {
       { 
           System.out.println(e);
       }
-      txtItemCode.setText("");
+      
+       txtItemCode.setText("");
+      txtItemName.setText("");
+      iCategory.setSelectedIndex(0);
+      iSubCategory.setSelectedIndex(0);
+     
+      txtBuyingPrice.setText("");
+      txtSellingPrice.setText("");
+      txtReOrder.setText("");
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+       
+        
         String icode=new String(txtItemCode.getText());
        String iname=new String(txtItemName.getText());
        String cat=String.valueOf(iCategory.getSelectedItem());
        String subcat=String.valueOf(iSubCategory.getSelectedItem());
       String date=new String(txtDate.getText());
-      String qty=new String(txtIQty.getText());
+      
       String buy=new String(txtBuyingPrice.getText());
       String sell=new String(txtBuyingPrice.getText());
        String ro=new String(txtReOrder.getText());
-      String sql="UPDATE stock SET ItemName='"+iname+"',Date='"+date+"',Quantity='"+qty+"',BuyingPrice='"+buy+"',SellingPrice='"+sell+"',Category='"+cat+"',SubCategory='"+subcat+"',Date='"+date+"',ReorderLevel='"+ro+"' where ItemCode='"+icode+"'";
+      String sql="UPDATE stock SET ItemName='"+iname+"',BuyingPrice='"+buy+"',SellingPrice='"+sell+"',Category='"+cat+"',SubCategory='"+subcat+"',Date='"+date+"',ReorderLevel='"+ro+"' where ItemCode='"+icode+"'";
       
       try
       {
@@ -438,8 +516,9 @@ public class Items extends javax.swing.JFrame {
       
        txtItemCode.setText("");
       txtItemName.setText("");
-      txtDate.setText("");
-      txtIQty.setText("");
+       iCategory.setSelectedIndex(0);
+      iSubCategory.setSelectedIndex(0);
+     
       txtBuyingPrice.setText("");
       txtSellingPrice.setText("");
       txtReOrder.setText("");
@@ -453,24 +532,10 @@ public class Items extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_lblUserMouseClicked
 
-    private void iSearchSubCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iSearchSubCatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iSearchSubCatActionPerformed
-
     private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
         new StockManagement().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblBackMouseClicked
-
-    private void txtIQtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIQtyKeyTyped
-         char c = evt.getKeyChar();
-         if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
-               || (c==KeyEvent.VK_DELETE))){
-        getToolkit().beep();
-        evt.consume();
-        }
-
-    }//GEN-LAST:event_txtIQtyKeyTyped
 
     private void txtBuyingPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuyingPriceKeyTyped
          char c = evt.getKeyChar();
@@ -498,6 +563,34 @@ public class Items extends javax.swing.JFrame {
         evt.consume();
         }
     }//GEN-LAST:event_txtReOrderKeyTyped
+
+    private void tblItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblItemsMouseClicked
+         int index=tblItems.getSelectedRow();
+       TableModel model=tblItems.getModel();
+       String id=model.getValueAt(index, 0).toString();
+       String iname=model.getValueAt(index, 1).toString();
+       String cat=model.getValueAt(index, 6).toString();
+       String sub=model.getValueAt(index, 7).toString();
+       String Dt=model.getValueAt(index, 2).toString();
+       String re=model.getValueAt(index, 8).toString();
+       String b=model.getValueAt(index, 4).toString();
+       String sell=model.getValueAt(index, 5).toString();
+       
+       txtItemCode.setText(id);
+       txtItemName.setText(iname);
+       txtDate.setText(Dt);
+       txtReOrder.setText(re);
+       txtSellingPrice.setText(sell);
+       txtBuyingPrice.setText(b);
+       iCategory.setSelectedItem(cat);
+       iSubCategory.setSelectedItem(sub);
+    }//GEN-LAST:event_tblItemsMouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+
+     new OutOfStock().setVisible(true);
+     this.dispose();
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -536,14 +629,11 @@ public class Items extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox iCategory;
-    private javax.swing.JComboBox iSearchCat;
-    private javax.swing.JComboBox iSearchSubCat;
     private javax.swing.JComboBox iSubCategory;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -566,10 +656,8 @@ public class Items extends javax.swing.JFrame {
     private javax.swing.JTable tblItems;
     private javax.swing.JTextField txtBuyingPrice;
     private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtIQty;
     private javax.swing.JTextField txtItemCode;
     private javax.swing.JTextField txtItemName;
-    private javax.swing.JLabel txtItemQty;
     private javax.swing.JTextField txtReOrder;
     private javax.swing.JTextField txtSearchItems;
     private javax.swing.JTextField txtSellingPrice;

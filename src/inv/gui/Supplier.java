@@ -285,7 +285,7 @@ public class Supplier extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
          String supid=new String(txtSupID.getText());
-         String sql="UPDATE supplier SET Active=0 where SupplierID='"+supid+"'";
+         String sql="UPDATE `supplier` SET Active=0 where SupplierID='"+supid+"'";
          try{
          DB.getDbCon().insert(sql);
          }
