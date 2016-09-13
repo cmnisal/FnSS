@@ -168,7 +168,7 @@ catch(Exception e)
        
        txtSubCatID.setText("");
        txtSubCatName.setText("");
-       //Category.setSelectedItem(0);
+       Category.setSelectedIndex(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
