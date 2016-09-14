@@ -95,13 +95,13 @@ catch(Exception e)
         cmbSup = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(950, 660));
+        setMaximumSize(new java.awt.Dimension(1010, 710));
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
-        jDesktopPane1.setMaximumSize(new java.awt.Dimension(950, 660));
+        jDesktopPane1.setMaximumSize(new java.awt.Dimension(1010, 710));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(950, 660));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -124,7 +124,7 @@ catch(Exception e)
                 lblUserMouseClicked(evt);
             }
         });
-        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, -1, -1));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, -1, -1));
 
         lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,7 +134,7 @@ catch(Exception e)
         });
         jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 110));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 110));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -173,7 +173,7 @@ catch(Exception e)
         });
         jScrollPane2.setViewportView(tblneworder);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 840, 180));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 840, 180));
         jPanel2.add(txtoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
@@ -184,20 +184,20 @@ catch(Exception e)
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Date");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 80, 20));
-        jPanel2.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 280, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 80, 20));
+        jPanel2.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 280, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("User");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
-        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 280, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
+        jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Description");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
-        jPanel2.add(txtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 640, 50));
+        jPanel2.add(txtDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 740, 50));
 
         jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -208,17 +208,17 @@ catch(Exception e)
         jLabel8.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Qty");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, -1, -1));
 
         txtQtyI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQtyIKeyTyped(evt);
             }
         });
-        jPanel2.add(txtQtyI, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 190, -1));
+        jPanel2.add(txtQtyI, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 190, -1));
 
         cmbunits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Units", "Gallons", "Liters", "Kilos" }));
-        jPanel2.add(cmbunits, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
+        jPanel2.add(cmbunits, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
@@ -231,7 +231,7 @@ catch(Exception e)
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 120, 30));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 540, 120, 30));
 
         newOrdersearch.setBackground(new java.awt.Color(52, 73, 94));
         newOrdersearch.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -244,15 +244,15 @@ catch(Exception e)
                 newOrdersearchMouseClicked(evt);
             }
         });
-        jPanel2.add(newOrdersearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 80, 30));
-        jPanel2.add(txtNewOrderSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 230, 30));
+        jPanel2.add(newOrdersearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 80, 30));
+        jPanel2.add(txtNewOrderSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 320, 30));
 
         cmbSup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         jPanel2.add(cmbSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 950, 540));
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1010, 600));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 660));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
