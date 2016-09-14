@@ -19,9 +19,11 @@ public class SearchUpdate extends javax.swing.JFrame {
     
     public SearchUpdate() {
         initComponents();
-         search.setText("--Enter Employee ID--");
+        this.setLocationRelativeTo(null);
+        
+         search.setText("Enter Employee ID..");
             try {
-            String q1="SELECT EID,Name,Phone,Category,Address,NIC,DOB,Gender FROM employee  ";
+            String q1="SELECT *  FROM employee  ";
             
             rset = DB.getDbCon().query(q1);
             jTable1.setModel(DbUtils.resultSetToTableModel(rset));
@@ -62,9 +64,7 @@ public class SearchUpdate extends javax.swing.JFrame {
         basic = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        dob = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -90,9 +90,16 @@ public class SearchUpdate extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(52, 73, 94));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Update Employee ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 220, 41));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 220, 41));
 
         search.setBackground(new java.awt.Color(204, 218, 220));
+        search.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        search.setForeground(new java.awt.Color(102, 102, 102));
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
@@ -119,49 +126,57 @@ public class SearchUpdate extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 110, 28));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 110, 28));
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "EID", "Name", "Category", "Phone", "Address", "Gender", "NIC", "DOB"
+                "EID", "Category", "Name", "Address", "DOB", "NIC", "Gender", "Phone", "Basic Salary"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(0, 153, 153));
+        jTable1.setGridColor(new java.awt.Color(52, 73, 94));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 650, 170));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 730, 170));
 
         jLabel8.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel8.setText("Name");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-        jPanel3.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 160, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel3.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 240, -1));
 
         jLabel9.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel9.setText("Category");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
-        jPanel3.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 160, -1));
+
+        category.setName("category"); // NOI18N
+        jPanel3.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 240, -1));
 
         jLabel10.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel10.setText("DOB");
@@ -170,35 +185,34 @@ public class SearchUpdate extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel11.setText("Address");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
-        jPanel3.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 160, -1));
+        jPanel3.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 240, -1));
 
         jLabel12.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel12.setText("NIC");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
-        jPanel3.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 150, -1));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, -1, -1));
+        jPanel3.add(nic, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 240, -1));
 
         jLabel13.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel13.setText("Basic Salary");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-        jPanel3.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 150, -1));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
+        jPanel3.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 240, -1));
 
         jLabel14.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel14.setText("Phone");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
-        jPanel3.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 150, -1));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
+        jPanel3.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 240, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, -1, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1960", "1961", "1962", "1962", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "2985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" }));
-        jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, -1));
+        dob.setName("dob"); // NOI18N
+        dob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dobActionPerformed(evt);
+            }
+        });
+        jPanel3.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 240, -1));
 
         jDesktopPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 780, 500));
 
-        jPanel2.setBackground(new java.awt.Color(105, 145, 152));
+        jPanel2.setBackground(new java.awt.Color(52, 73, 94));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
@@ -207,7 +221,7 @@ public class SearchUpdate extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 610));
 
@@ -230,15 +244,32 @@ public class SearchUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        category.setText("");
-                name.setText("");
-                address.setText("");
-                nic.setText("");
-                phone.setText("");
-                basic.setText("");
-         //       dob.setText("");
-                
-                 JOptionPane.showMessageDialog(null, "Record Update Successful");
+        try {                  
+            String Category = category.getText();
+            String Name = name.getText();
+            String Address = address.getText();
+            String NIC=nic.getText();
+            int Phone = Integer.parseInt(phone.getText());
+            double Basic= Double.parseDouble(basic.getText());
+            String Search = search.getText();
+            
+            String q2="UPDATE employee SET Name='"+Name+"',Category='"+Category+"',Phone="+Phone+ ",Address='"+Address+"',NIC='"+NIC+"',BasicSalary="+Basic+" Where EID LIKE '"+Search+"'";
+            DB.getDbCon().insert(q2);
+            
+            category.setText("");
+            name.setText("");
+            address.setText("");
+            nic.setText("");
+            phone.setText("");
+            basic.setText("");
+            dob.setText("");
+            search.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Record Update Successful");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Record Update Failed!");
+             Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -252,7 +283,7 @@ public class SearchUpdate extends javax.swing.JFrame {
         String Search = search.getText();
 
         try {
-            String q1="SELECT EID,Name,Phone,Category,Address,NIC,DOB,Gender FROM employee WHERE EID LIKE '%"+Search+"%' ";
+            String q1="SELECT EID,Name,Category,Phone,Address,Gender,NIC,DOB,BasicSalary FROM employee WHERE EID LIKE '%"+Search+"%' ";
 
             rset = DB.getDbCon().query(q1);
             jTable1.setModel(DbUtils.resultSetToTableModel(rset));
@@ -276,16 +307,16 @@ public class SearchUpdate extends javax.swing.JFrame {
                 nic.setText(rset.getString("NIC"));
                 phone.setText(rset.getString("Phone"));
                 basic.setText(rset.getString("BasicSalary"));
-           //     dob.setText(rset.getString("DOB"));
+                dob.setText(rset.getString("DOB"));
 
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "No record for this Employee ID");
+                JOptionPane.showMessageDialog(null, "Employee ID does not exist!");
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(update.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
 
     }//GEN-LAST:event_jLabel7MouseClicked
@@ -293,6 +324,35 @@ public class SearchUpdate extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
        close();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+      search.setText("");
+    }//GEN-LAST:event_searchMouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+            category.setText("");
+            name.setText("");
+            address.setText("");
+            nic.setText("");
+            phone.setText("");
+            basic.setText("");
+            dob.setText("");
+        
+        int r= jTable1.getSelectedRow();
+                search.setText(((String)jTable1.getValueAt(r,0))); 
+                category.setText(((String)jTable1.getValueAt(r,1)));  
+                name.setText(((String)jTable1.getValueAt(r,2))); 
+                address.setText(((String)jTable1.getValueAt(r,3)));
+                dob.setText(jTable1.getValueAt(r,4).toString());
+                nic.setText(jTable1.getValueAt(r,5).toString());
+                phone.setText(jTable1.getValueAt(r,7).toString());               
+                basic.setText(jTable1.getValueAt(r,8).toString());
+    
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobActionPerformed
 
      private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
@@ -328,132 +388,7 @@ public class SearchUpdate extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -467,9 +402,7 @@ public class SearchUpdate extends javax.swing.JFrame {
     private javax.swing.JTextField address;
     private javax.swing.JTextField basic;
     private javax.swing.JTextField category;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JTextField dob;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
