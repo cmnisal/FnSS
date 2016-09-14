@@ -6,10 +6,12 @@
 package pos.gui;
 
 import fnss.functions.DB;
+import fnss.functions.DocNumGenerator;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import pos.functions.ItemController;
 import pos.interfaces.Stock;
@@ -40,15 +43,17 @@ public class POS_MainFrame extends javax.swing.JFrame {
 
         try {
             initComponents();
+            txtItemCode.requestFocus();
             dtm = (DefaultTableModel) jTable1.getModel();
+            //lblTime.setText(new DocNumGenerator().curVal("POS"));
             ItemController.getAllItemsFromDB();
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
             lblDate.setText(new SimpleDateFormat("dd/MM/YYYY").format(System.currentTimeMillis()));
-            lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
+            lblDate1.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
             new Timer(1000, (ActionEvent e) -> {
                 try {
-                    lblTime.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
+                    lblDate1.setText(new SimpleDateFormat("hh:mm:ss a").format(System.currentTimeMillis()));
                     int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
                     String greeting;
                     if (hour < 10) {
@@ -59,7 +64,8 @@ public class POS_MainFrame extends javax.swing.JFrame {
                         greeting = "Good Evening, " + user;
                     }
                     lblUser1.setText(greeting);
-                    System.out.println("DB Connection Check - " + DB.getDbCon().query("SELECT 1").next());
+                    // System.out.println("DB Connection Check - " + 
+                    DB.getDbCon().query("SELECT 1").next();//);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage() + "\nOK to Check the Connection. Communication Failure Exits the System.");
                     DB.db = null;
@@ -92,6 +98,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         lblDate = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         lblUser1 = new javax.swing.JLabel();
+        lblDate1 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         billPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -195,6 +202,15 @@ public class POS_MainFrame extends javax.swing.JFrame {
         lblUser1.setText(" ");
         lblUser1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+        lblDate1.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lblDate1.setForeground(new java.awt.Color(255, 255, 255));
+        lblDate1.setText(" ");
+        lblDate1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDate1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout topBarLayout = new javax.swing.GroupLayout(topBar);
         topBar.setLayout(topBarLayout);
         topBarLayout.setHorizontalGroup(
@@ -202,9 +218,11 @@ public class POS_MainFrame extends javax.swing.JFrame {
             .addGroup(topBarLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblDate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDate1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1466, Short.MAX_VALUE)
                 .addComponent(lblUser1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblClose)
@@ -218,8 +236,9 @@ public class POS_MainFrame extends javax.swing.JFrame {
                     .addComponent(lblTime)
                     .addComponent(lblDate)
                     .addComponent(lblClose)
-                    .addComponent(lblUser1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblUser1)
+                    .addComponent(lblDate1))
+                .addContainerGap())
         );
 
         mainPanel.setOpaque(false);
@@ -233,7 +252,6 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtTotal.setBackground(new java.awt.Color(255, 255, 255));
         txtTotal.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTotal.setText("LKR. 99,999.99");
         txtTotal.setToolTipText("");
         txtTotal.setBorder(null);
 
@@ -263,7 +281,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Item Code", "Description", "Qty.", "Unit Price", "Total", "  X"
@@ -323,6 +341,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtItemCode.setText("Item Code");
         txtItemCode.setToolTipText("");
         txtItemCode.setBorder(null);
+        txtItemCode.setNextFocusableComponent(txtPaid);
         txtItemCode.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtItemCodeFocusGained(evt);
@@ -636,11 +655,21 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtDiscount.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         txtDiscount.setForeground(new java.awt.Color(204, 204, 204));
         txtDiscount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDiscount.setText("Discount %");
+        txtDiscount.setText("%");
         txtDiscount.setBorder(null);
+        txtDiscount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDiscountFocusGained(evt);
+            }
+        });
         txtDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiscountActionPerformed(evt);
+            }
+        });
+        txtDiscount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiscountKeyTyped(evt);
             }
         });
         pricingPanel2.add(txtDiscount);
@@ -659,6 +688,24 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtPaid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPaid.setText("Paid");
         txtPaid.setBorder(null);
+        txtPaid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPaidFocusGained(evt);
+            }
+        });
+        txtPaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPaidActionPerformed(evt);
+            }
+        });
+        txtPaid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPaidKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPaidKeyTyped(evt);
+            }
+        });
         pricingPanel2.add(txtPaid);
 
         pricingPanel3.setLayout(new java.awt.GridLayout(1, 0, 20, 20));
@@ -685,6 +732,11 @@ public class POS_MainFrame extends javax.swing.JFrame {
         btnCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCash.setText("Cash Proceed");
         btnCash.setOpaque(true);
+        btnCash.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCashMouseClicked(evt);
+            }
+        });
         pricingPanel3.add(btnCash);
 
         javax.swing.GroupLayout pricingPanel1Layout = new javax.swing.GroupLayout(pricingPanel1);
@@ -828,8 +880,8 @@ public class POS_MainFrame extends javax.swing.JFrame {
             loadCurrentItemtoField();
         } else {
             JOptionPane.showMessageDialog(this, "Item Not Found or Not Available on Stocks!");
-            resetFields();
-
+            resetTextFields();
+            btnItemSearchMouseClicked(null);
         }
     }//GEN-LAST:event_txtItemCodeActionPerformed
 
@@ -864,16 +916,16 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         BillItem newItem = new BillItem();
         newItem.setCode(txtItemCode.getText());
-        newItem.setQuantity(Double.parseDouble(txtQty.getText()));
+        newItem.setQuantity(Double.parseDouble("0" + txtQty.getText()));
         newItem.setName(Stock.items.get(newItem.getCode()).getName());
         newItem.setUnit_price(Double.parseDouble(txtPrice.getText().replaceAll("LKR.", "").trim()));
         newItem.setSub_cat(Stock.items.get(newItem.getCode()).getSub_cat());
         System.out.println("New Item " + newItem.getCode());
         addItemToBillTable(newItem);
-        resetFields();
+        resetTextFields();
         refreshTable();
     }//GEN-LAST:event_btnAddMouseClicked
-    private void resetFields() {
+    private void resetTextFields() {
 
         txtItemCode.requestFocus();
         txtItemCode.setText("Item Code");
@@ -883,6 +935,14 @@ public class POS_MainFrame extends javax.swing.JFrame {
         txtPrice.setText("Price");
         txtPrice.setForeground(Color.GRAY);
         txtItemCode.selectAll();
+    }
+
+    private void resetAllFields() {
+        dtm.setRowCount(0);
+        txtPaid.setText("Paid");
+        txtTotal.setText("");
+        txtBalance.setText("Balance");
+        resetTextFields();
     }
 
     private void addItemToBillTable(BillItem item) {
@@ -901,16 +961,19 @@ public class POS_MainFrame extends javax.swing.JFrame {
         }
 
     }
+    double BillTotal = 0.00;
 
     private void refreshTable() {
         dtm.setRowCount(0);
-        double BillTotal = 0;
+        BillTotal = 0.00;
         for (Map.Entry<String, BillItem> entrySet : billTable.entrySet()) {
             BillItem item = entrySet.getValue();
             dtm.addRow(new Object[]{item.getCode(), item.getName(), item.getQuantity(), new DecimalFormat("##.00").format(item.getUnit_price()), new DecimalFormat("###,###.00").format(item.getTotal()), "  X"});
             BillTotal += item.getTotal();
         }
         txtTotal.setText("LKR. " + new DecimalFormat("###,###.00").format(BillTotal));
+        txtPaid.setText(new DecimalFormat("###,###.00").format(BillTotal));
+        txtBalance.setText("0.00");
     }
 
     private void loadCurrentItemtoField() {
@@ -924,7 +987,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
             txtQty.requestFocus();
             txtQty.selectAll();
         } else {
-            resetFields();
+            resetTextFields();
         }
     }
     Item currentItem = null;
@@ -973,14 +1036,101 @@ public class POS_MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPriceKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (jTable1.getSelectedColumn() == 5 && evt.getClickCount()==2) {
+        if (jTable1.getSelectedColumn() == 5 && evt.getClickCount() == 2) {
             String key = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
+            System.out.println(key);
             billTable.remove(key);
             System.out.println(key);
             System.out.println(billTable);
             refreshTable();
-         }
+        }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseClicked
+        if (jTable1.getRowCount() != 0) {
+            lblTime.setText("");
+            proceedPayment("CASH");
+        } else {
+            errorMsg("No Items in Bill");
+        }
+    }//GEN-LAST:event_btnCashMouseClicked
+
+    private void lblDate1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDate1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDate1MouseClicked
+
+    private void txtPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaidActionPerformed
+        btnCashMouseClicked(null);
+    }//GEN-LAST:event_txtPaidActionPerformed
+
+    private void txtPaidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaidKeyTyped
+        if (evt.getKeyChar() == 'd') {
+            txtDiscount.requestFocus();
+            txtDiscount.selectAll();
+        }
+        validateDouble(evt);
+    }//GEN-LAST:event_txtPaidKeyTyped
+
+    private void txtPaidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaidKeyReleased
+
+        txtBalance.setText("" + (Double.parseDouble("0" + txtPaid.getText().replaceAll(",", "")) - BillTotal));
+    }//GEN-LAST:event_txtPaidKeyReleased
+
+    private void txtPaidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaidFocusGained
+        txtPaid.selectAll();    }//GEN-LAST:event_txtPaidFocusGained
+
+    private void txtDiscountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscountKeyTyped
+        validateDouble(evt);    }//GEN-LAST:event_txtDiscountKeyTyped
+
+    private void txtDiscountFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiscountFocusGained
+        txtDiscount.selectAll();
+    }//GEN-LAST:event_txtDiscountFocusGained
+
+    private void errorMsg(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void infoMsg(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public String customer_id = "";
+
+    private void proceedPayment(String PaymentMethod) {
+        try {
+            POS_ID = new DocNumGenerator().nextVal("POS");
+            BillTotal = 0.00;
+            Double billItemQty = 0.00;
+            Double paid = Double.parseDouble("0" + txtPaid.getText().replaceAll(",", ""));
+            Double balance = Double.parseDouble("0" + txtBalance.getText().replaceAll(",", ""));
+            Double discount = Double.parseDouble("0" + txtDiscount.getText().replaceAll("%", "").replaceAll(",", ""));
+            for (Map.Entry<String, BillItem> entrySet : billTable.entrySet()) {
+
+                String key = entrySet.getKey();
+                BillItem value = entrySet.getValue();
+
+                BillTotal += value.getTotal();
+                billItemQty++;
+                String sql = "INSERT INTO `pos_trans` "
+                        + "(`pos_id`, `code`, `quantity`, `unit_price`, `total`, `user`) VALUES "
+                        + "('" + POS_ID + "','" + value.getCode() + "'," + value.getQuantity() + "," + value.getUnit_price() + "," + value.getTotal() + ",'" + user + "')";
+                System.out.println(DB.getDbCon().insert(sql));
+            }
+            if (PaymentMethod.equals("CARD")) {
+                balance = 0.00;
+            }
+            String sql = "INSERT INTO `pos_master` "
+                    + "(`pos_id`, `customer_id`, `itemcount`, `total`, `paid`, `balance`, `discount`,`payMethod`) VALUES "
+                    + "('" + POS_ID + "','" + customer_id + "'," + billTable.size() + "," + BillTotal + "," + paid + "," + balance + "," + discount + ",'" + PaymentMethod + "')";
+            System.out.println(DB.getDbCon().insert(sql));
+            infoMsg(POS_ID + " is Successfully Settled!");
+            POS_ID = "";
+            billTable =  new HashMap<>();
+            BillTotal = 0.00;
+            resetAllFields();
+        } catch (SQLException ex) {
+            Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void validateDouble(java.awt.event.KeyEvent evt) {
         char ch = evt.getKeyChar();
@@ -1011,21 +1161,12 @@ public class POS_MainFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(POS_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(POS_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(POS_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(POS_MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -1062,6 +1203,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDate1;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblUser1;
     private javax.swing.JPanel mainPanel;
