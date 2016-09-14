@@ -37,12 +37,7 @@ public class Supplier extends javax.swing.JFrame {
         //Set date format as you want
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
         txtSupDate.setText(sf.format(now));
-          try {
-            txtSupID.setText((new DocNumGenerator().curVal("SUP")));
-            txtSupID.setText((new DocNumGenerator().nextVal("SUP")));
-        } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -76,6 +71,7 @@ public class Supplier extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(750, 570));
@@ -166,6 +162,7 @@ public class Supplier extends javax.swing.JFrame {
         jPanel2.add(txtSupSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 520, 35));
         jPanel2.add(txtSupAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 144, -1));
 
+        txtSupDate.setEditable(false);
         txtSupDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSupDateActionPerformed(evt);
@@ -176,7 +173,7 @@ public class Supplier extends javax.swing.JFrame {
                 txtSupDateKeyTyped(evt);
             }
         });
-        jPanel2.add(txtSupDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 144, -1));
+        jPanel2.add(txtSupDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 144, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
@@ -186,25 +183,27 @@ public class Supplier extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Date");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
-        jPanel2.add(txtSupID, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 137, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
+
+        txtSupID.setEditable(false);
+        jPanel2.add(txtSupID, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 137, -1));
 
         txtSupName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSupNameKeyTyped(evt);
             }
         });
-        jPanel2.add(txtSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 137, -1));
+        jPanel2.add(txtSupName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 137, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Supplier ID");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Supplier Name");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(52, 73, 94));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -244,6 +243,19 @@ public class Supplier extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 92, 42));
+
+        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Generate ID");
+        jLabel12.setOpaque(true);
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 120, 30));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 930, 500));
 
@@ -379,6 +391,15 @@ public class Supplier extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtSupDateActionPerformed
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+         try {
+            txtSupID.setText((new DocNumGenerator().curVal("SUP")));
+            txtSupID.setText((new DocNumGenerator().nextVal("SUP")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel12MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +438,7 @@ public class Supplier extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -36,12 +36,7 @@ public class NewOrder extends javax.swing.JFrame {
         //Set date format as you want
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
         txtdate.setText(sf.format(now));
-          try {
-            txtoID.setText((new DocNumGenerator().curVal("ORD")));
-            txtoID.setText((new DocNumGenerator().nextVal("ORD")));
-        } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
         
            try{
@@ -93,6 +88,7 @@ catch(Exception e)
         newOrdersearch = new javax.swing.JLabel();
         txtNewOrderSearch = new javax.swing.JTextField();
         cmbSup = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1010, 710));
@@ -174,6 +170,8 @@ catch(Exception e)
         jScrollPane2.setViewportView(tblneworder);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 840, 180));
+
+        txtoID.setEditable(false);
         jPanel2.add(txtoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
@@ -185,6 +183,8 @@ catch(Exception e)
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Date");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 80, 20));
+
+        txtdate.setEditable(false);
         jPanel2.add(txtdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 280, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
@@ -203,6 +203,8 @@ catch(Exception e)
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Item Code");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
+        txtIcode.setEditable(false);
         jPanel2.add(txtIcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 170, -1));
 
         jLabel8.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
@@ -249,6 +251,19 @@ catch(Exception e)
 
         cmbSup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         jPanel2.add(cmbSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
+
+        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Generate ID");
+        jLabel12.setOpaque(true);
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 120, 30));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1010, 600));
 
@@ -330,6 +345,15 @@ catch(Exception e)
         
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+         try {
+            txtoID.setText((new DocNumGenerator().curVal("ORD")));
+            txtoID.setText((new DocNumGenerator().nextVal("ORD")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel12MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +394,7 @@ catch(Exception e)
     private javax.swing.JComboBox cmbunits;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

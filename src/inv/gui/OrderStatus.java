@@ -108,6 +108,7 @@ public class OrderStatus extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblStatus.setBackground(new java.awt.Color(52, 73, 94));
+        tblStatus.setForeground(new java.awt.Color(255, 255, 255));
         tblStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},

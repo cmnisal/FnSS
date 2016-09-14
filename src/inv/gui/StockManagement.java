@@ -6,6 +6,9 @@
 
 package inv.gui;
 
+import fnss.functions.ReportGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
