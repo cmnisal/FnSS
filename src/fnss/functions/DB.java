@@ -24,7 +24,7 @@ public final class DB {
         String password = ReadConfig.db_password;
         try {
             Class.forName(driver).newInstance();
-            System.out.println("Connecting to DB");
+            //System.out.println("Connecting to DB");
             this.conn = (Connection) DriverManager.getConnection(url, userName, password);
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException sqle) {
