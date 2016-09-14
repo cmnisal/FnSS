@@ -8,12 +8,17 @@ package inv.gui;
 
 import com.sun.glass.events.KeyEvent;
 import fnss.functions.DB;
+import fnss.functions.DocNumGenerator;
+import fnss.test.TestDB;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -80,7 +85,12 @@ public class Items extends javax.swing.JFrame {
             System.out.println(e);
         }
         
-       
+    try {
+            txtItemCode.setText((new DocNumGenerator().curVal("ITM")));
+            txtItemCode.setText((new DocNumGenerator().nextVal("ITM")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
     }
 
@@ -186,29 +196,28 @@ public class Items extends javax.swing.JFrame {
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 90));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Item Name");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 87, -1, -1));
         jPanel2.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 86, 124, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Item Code");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 35, -1, 25));
         jPanel2.add(txtItemCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 37, 124, -1));
         jPanel2.add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 133, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Date");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Category");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 91, -1));
 
@@ -219,7 +228,7 @@ public class Items extends javax.swing.JFrame {
         jPanel2.add(iSubCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 99, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Sub-Category");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
@@ -263,7 +272,7 @@ public class Items extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 122, 40));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Buying Price");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
 
@@ -280,7 +289,7 @@ public class Items extends javax.swing.JFrame {
         jPanel2.add(txtBuyingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 131, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
         jLabel15.setText("Selling Price");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, -1, -1));
 
@@ -334,7 +343,7 @@ public class Items extends javax.swing.JFrame {
         jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 450, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("ReorderLevel");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
 
@@ -408,6 +417,7 @@ public class Items extends javax.swing.JFrame {
       txtBuyingPrice.setText("");
       txtSellingPrice.setText("");
       txtReOrder.setText("");
+     
       
       
     }//GEN-LAST:event_jLabel7MouseClicked
