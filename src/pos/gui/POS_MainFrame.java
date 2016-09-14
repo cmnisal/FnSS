@@ -10,7 +10,9 @@ import fnss.functions.DocNumGenerator;
 import fnss.functions.ReportGenerator;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
@@ -21,7 +23,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -78,6 +83,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
             itemPanel.setSize((mainPanel.getWidth() - 30) / 3, itemPanel.getHeight());
             jTable1.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 18));
             jTable1.getTableHeader().setSize(jTable1.getTableHeader().getWidth(), jTable1.getTableHeader().getHeight() + 50);
+            loadItemButtons();
         } catch (SQLException ex) {
             Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -537,18 +543,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         tabPanel.setLayout(new java.awt.CardLayout());
 
         panelRecent.setBackground(new java.awt.Color(89, 171, 227));
-
-        javax.swing.GroupLayout panelRecentLayout = new javax.swing.GroupLayout(panelRecent);
-        panelRecent.setLayout(panelRecentLayout);
-        panelRecentLayout.setHorizontalGroup(
-            panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
-        );
-        panelRecentLayout.setVerticalGroup(
-            panelRecentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
-        );
-
+        panelRecent.setLayout(new java.awt.GridLayout());
         tabPanel.add(panelRecent, "recent");
 
         panelMainCat.setBackground(new java.awt.Color(65, 131, 215));
@@ -591,7 +586,7 @@ public class POS_MainFrame extends javax.swing.JFrame {
         );
         panelItemLayout.setVerticalGroup(
             panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
+            .addGap(0, 529, Short.MAX_VALUE)
         );
 
         tabPanel.add(panelItem, "item");
@@ -833,6 +828,22 @@ public class POS_MainFrame extends javax.swing.JFrame {
             this.setLocation(evt.getXOnScreen() - x, evt.getYOnScreen() - y);
         }
     }//GEN-LAST:event_formMouseDragged
+
+    private void loadItemButtons() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 2));
+        JButton[] buttons = new JButton[Stock.items.size()];
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        int i = 0;
+        for (Map.Entry<String, Item> entrySet : Stock.items.entrySet()) {
+            String key = entrySet.getKey();
+            Item value = entrySet.getValue();
+            buttons[i] = new JButton();
+            buttons[i].setName(key);
+            buttons[i].setText(value.getName());
+            panel.add(buttons[i]);
+        }
+    }
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         x = evt.getX();
@@ -1125,12 +1136,12 @@ public class POS_MainFrame extends javax.swing.JFrame {
             System.out.println(DB.getDbCon().insert(sql));
             infoMsg(POS_ID + " is Successfully Settled!\n Bill Printing...");
             Map map = new HashMap();
-            map.put("pos_id",POS_ID);
-            new ReportGenerator().printReport("MainBill",map);
+            map.put("pos_id", POS_ID);
+            new ReportGenerator().printReport("MainBill", map);
             POS_ID = "";
-            billTable =  new HashMap<>();
+            billTable = new HashMap<>();
             BillTotal = 0.00;
-            
+
             resetAllFields();
         } catch (SQLException ex) {
             Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);
