@@ -19,6 +19,8 @@ public class SearchUpdate extends javax.swing.JFrame {
     
     public SearchUpdate() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        
          search.setText("Enter Employee ID..");
             try {
             String q1="SELECT *  FROM employee  ";
@@ -153,7 +155,7 @@ public class SearchUpdate extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(0, 153, 153));
+        jTable1.setGridColor(new java.awt.Color(52, 73, 94));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -210,7 +212,7 @@ public class SearchUpdate extends javax.swing.JFrame {
 
         jDesktopPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 780, 500));
 
-        jPanel2.setBackground(new java.awt.Color(105, 145, 152));
+        jPanel2.setBackground(new java.awt.Color(52, 73, 94));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
@@ -219,7 +221,7 @@ public class SearchUpdate extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 610));
 

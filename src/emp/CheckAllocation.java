@@ -20,6 +20,7 @@ public class CheckAllocation extends javax.swing.JFrame {
    
     public CheckAllocation() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         search.setText("Enter the EID..");
         
@@ -49,12 +50,12 @@ public class CheckAllocation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
         ddCombo = new javax.swing.JComboBox<>();
         mmCombo = new javax.swing.JComboBox<>();
         yyCombo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        power = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -65,7 +66,6 @@ public class CheckAllocation extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -104,11 +104,17 @@ public class CheckAllocation extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 470, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 470, 290));
 
         jLabel3.setFont(new java.awt.Font("Lato Medium", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Pick The Date");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Attendants Allocation Details");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 250, -1));
 
         search.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         search.setForeground(new java.awt.Color(102, 102, 102));
@@ -117,16 +123,16 @@ public class CheckAllocation extends javax.swing.JFrame {
                 searchMouseClicked(evt);
             }
         });
-        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 190, -1));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 190, -1));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jPanel1.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 50, -1));
+        jPanel1.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 50, -1));
 
         mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
-        jPanel1.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 60, -1));
+        jPanel1.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 60, -1));
 
         yyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2014", "2015", "2016", " ", " " }));
-        jPanel1.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        jPanel1.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,50 +142,37 @@ public class CheckAllocation extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 30));
 
-        power.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
-        power.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                powerMouseClicked(evt);
-            }
-        });
-        jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 30, 30));
-
-        jLabel2.setBackground(new java.awt.Color(231, 76, 60));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Search");
-        jLabel2.setOpaque(true);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/search icon - Copy.jpg"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 50, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 40, 20));
 
-        jLabel1.setBackground(new java.awt.Color(105, 145, 152));
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 210));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 200));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 490));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void powerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_powerMouseClicked
-        close();
-    }//GEN-LAST:event_powerMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
        new Allocation().setVisible(true);
@@ -315,11 +308,11 @@ public class CheckAllocation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> mmCombo;
-    private javax.swing.JLabel power;
     private javax.swing.JTextField search;
     private javax.swing.JComboBox<String> yyCombo;
     // End of variables declaration//GEN-END:variables

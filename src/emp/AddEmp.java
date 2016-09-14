@@ -17,6 +17,7 @@ public class AddEmp extends javax.swing.JFrame {
     public AddEmp() {
         initComponents();
         groupButton();
+        this.setLocationRelativeTo(null);
       
        
     }

@@ -19,6 +19,7 @@ public class Emp extends javax.swing.JFrame {
    
     public Emp() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

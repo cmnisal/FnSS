@@ -23,6 +23,7 @@ String slot = null;
     public Allocation() {
         initComponents();
         groupButton();
+        this.setLocationRelativeTo(null);
     }
     
         private void groupButton()
@@ -200,7 +201,7 @@ String slot = null;
                 jLabel17MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 70, 30));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 90, 30));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel2.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 50, -1));
@@ -212,15 +213,17 @@ String slot = null;
         jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 70, -1));
 
         jLabel18.setBackground(new java.awt.Color(102, 153, 255));
+        jLabel18.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Check Allocations");
-        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
+        jLabel18.setOpaque(true);
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel18MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 100, 20));
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 120, 30));
 
         jLabel19.setFont(new java.awt.Font("Lato Medium", 0, 12)); // NOI18N
         jLabel19.setText("Pick the date");
@@ -245,7 +248,7 @@ String slot = null;
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(105, 145, 152));
+        jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 160));
 

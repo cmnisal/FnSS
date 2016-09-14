@@ -22,6 +22,7 @@ public class Attendance extends javax.swing.JFrame {
         Date date = new Date();
         String d = date.toString();
         datetime.setText(d);
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -153,7 +154,7 @@ public class Attendance extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Attendance Marked");
                  
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error!!");
+            JOptionPane.showMessageDialog(null, "Enter a Valid Employee ID!");
                }
             
        
