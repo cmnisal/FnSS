@@ -5,15 +5,17 @@
  */
 package pos.gui;
 
+import fnss.functions.DB;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.sql.SQLException;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import pos.functions.ItemController;
@@ -27,7 +29,7 @@ public class ItemSearch extends javax.swing.JDialog {
     public ItemSearch(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        createKeybindings(jTable1);
         dtm = (DefaultTableModel) jTable1.getModel();
         Stock.items.keySet().stream().forEach((key) -> {
             dtm.addRow(new Object[]{Stock.items.get(key).getCode(), Stock.items.get(key).getName(), Stock.items.get(key).getSelling_price(), Stock.items.get(key).getQuantity()});
@@ -175,7 +177,7 @@ public class ItemSearch extends javax.swing.JDialog {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -201,6 +203,14 @@ public class ItemSearch extends javax.swing.JDialog {
                 jTable1MouseEntered(evt);
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -223,7 +233,6 @@ public class ItemSearch extends javax.swing.JDialog {
         jTextField2.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(204, 204, 204));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField2.setText("Item Name");
         jTextField2.setToolTipText("");
         jTextField2.setBorder(null);
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -350,16 +359,16 @@ public class ItemSearch extends javax.swing.JDialog {
     }//GEN-LAST:event_topBarMouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        doubleclicked(evt);
         if (evt.getClickCount() == 2) {
-
-            this.dispose();
+            doubleclicked();
         }
+
     }//GEN-LAST:event_jTable1MouseClicked
 
-    Item doubleclicked(MouseEvent evt) {
+    Item doubleclicked() {
         code = "" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
         Selected = Stock.items.get(code);
+        this.dispose();
         return Selected;
 
     }
@@ -390,6 +399,7 @@ public class ItemSearch extends javax.swing.JDialog {
     }//GEN-LAST:event_formMousePressed
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+if(evt.getKeyCode()==KeyEvent.VK_DOWN)jTable1.requestFocus();
         dtm.setRowCount(0);
         ArrayList<Item> items = ItemController.searchItem(jTextField2.getText());
         items.stream().forEach((item) -> {
@@ -400,6 +410,24 @@ public class ItemSearch extends javax.swing.JDialog {
     private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
         jTextField2.selectAll();
     }//GEN-LAST:event_jTextField2FocusGained
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+
+    }//GEN-LAST:event_jTable1KeyReleased
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+
+    }//GEN-LAST:event_jTable1KeyPressed
+    private void createKeybindings(JTable table) {
+        table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Enter");
+        table.getActionMap().put("Enter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                doubleclicked();
+            }
+        });
+    }
+    
 
     /**
      * @param args the command line arguments
