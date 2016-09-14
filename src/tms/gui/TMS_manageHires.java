@@ -25,16 +25,13 @@ public class TMS_manageHires extends javax.swing.JFrame {
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
 
-            manageHiresTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hire`.`hireID` AS 'Hire ID',\n"
-                    + "    `tms_hire`.`vehicleRegNo` AS 'Hire ID',\n"
+            manageHiresTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT "
+                    + "    `tms_hire`.`hireID` AS 'Hire ID',\n"
+                    + "    `tms_hire`.`vehicleRegNo` AS 'Vehicle No.',\n"
                     + "    cus.`CustomerName` AS 'Customer Name',\n"
-                    + "    `tms_hire`.`startMilage` AS 'Start',\n"
-                    + "    `tms_hire`.`endMilage` AS 'End',\n"
                     + "    `tms_hire`.`startDate` AS 'Start',\n"
-                    + "    `tms_hire`.`endDate` AS 'End',\n"
-                    + "    `tms_hire`.`estimatedEnd` AS 'Estd',\n"
-                    + "    `tms_hire`.`calcMethod` AS 'Cal',\n"
-                    + "    `tms_hire`.`depositAmt` AS 'Deposit',\n"
+                    + "    `tms_hire`.`estimatedEnd` AS 'Estd. End',\n"
+                    + "    `tms_hire`.`calcMethod` AS 'Calc. Mthd',\n"
                     + "    `tms_hire`.`estimatedRental` AS 'Estimte'\n"
                     + " FROM `fnss`.`tms_hire`  LEFT JOIN `fnss`.`customer` cus\n ON `tms_hire`.cusID = cus.CustomerID"
                     + " WHERE `tms_hire`.`active` = 1 ;")));
@@ -126,14 +123,14 @@ public class TMS_manageHires extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method"
+                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method", "Estimated Rental"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -161,6 +158,7 @@ public class TMS_manageHires extends javax.swing.JFrame {
             manageHiresTable.getColumnModel().getColumn(3).setResizable(false);
             manageHiresTable.getColumnModel().getColumn(4).setResizable(false);
             manageHiresTable.getColumnModel().getColumn(5).setResizable(false);
+            manageHiresTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout WhiteAreaLayout = new javax.swing.GroupLayout(WhiteArea);
@@ -168,12 +166,12 @@ public class TMS_manageHires extends javax.swing.JFrame {
         WhiteAreaLayout.setHorizontalGroup(
             WhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WhiteAreaLayout.createSequentialGroup()
-                .addGap(275, 275, 275)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(WhiteAreaLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
         WhiteAreaLayout.setVerticalGroup(
@@ -191,9 +189,9 @@ public class TMS_manageHires extends javax.swing.JFrame {
         ContentAreaLayout.setHorizontalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentAreaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(WhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(WhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         ContentAreaLayout.setVerticalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

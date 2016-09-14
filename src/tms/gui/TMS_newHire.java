@@ -151,7 +151,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         if (calcMethod == "Daily") {
             try {
                 String query = "SELECT dailyRate FROM tms_hirevehicle "
-                        + "WHERE vehicleRegNo = '" + vehicleNumComboBox.getSelectedItem().toString() + "';";
+                        + "WHERE vehicleRegNo = '" + regNo + "';";
                 System.out.println(query);
                 ResultSet rs = DB.getDbCon().query(query);
                 while (rs.next()) {
@@ -205,7 +205,7 @@ public class TMS_newHire extends javax.swing.JFrame {
         contentArea = new javax.swing.JPanel();
         whiteArea = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblCusSearch = new javax.swing.JLabel();
         lblStartHire = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -228,11 +228,12 @@ public class TMS_newHire extends javax.swing.JFrame {
         cusMobileTxt = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         cusNicTxt = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        lblEndHire = new javax.swing.JLabel();
         lblHireID = new javax.swing.JLabel();
         vehicleNumComboBox = new javax.swing.JComboBox<>();
         jSpinnerStart = new javax.swing.JSpinner(new SpinnerDateModel());
         jSpinnerEnd = new javax.swing.JSpinner(new SpinnerDateModel());
+        lblRental = new javax.swing.JLabel();
         exitButton = new javax.swing.JPanel();
         exitButtonLable = new javax.swing.JLabel();
         backButton = new javax.swing.JPanel();
@@ -278,15 +279,15 @@ public class TMS_newHire extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Hire");
 
-        jLabel7.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel7.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Search Customer");
-        jLabel7.setOpaque(true);
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCusSearch.setBackground(new java.awt.Color(231, 76, 60));
+        lblCusSearch.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
+        lblCusSearch.setForeground(new java.awt.Color(255, 255, 255));
+        lblCusSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCusSearch.setText("Search Customer");
+        lblCusSearch.setOpaque(true);
+        lblCusSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel7MouseReleased(evt);
+                lblCusSearchMouseReleased(evt);
             }
         });
 
@@ -379,18 +380,18 @@ public class TMS_newHire extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(71, 71, 71));
-        jLabel15.setText("Customer Number");
+        jLabel15.setText("Customer Mobile");
 
         jLabel16.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(71, 71, 71));
         jLabel16.setText("Customer NIC");
 
-        jLabel18.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel18.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("End Hire");
-        jLabel18.setOpaque(true);
+        lblEndHire.setBackground(new java.awt.Color(231, 76, 60));
+        lblEndHire.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        lblEndHire.setForeground(new java.awt.Color(255, 255, 255));
+        lblEndHire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEndHire.setText("End Hire");
+        lblEndHire.setOpaque(true);
 
         lblHireID.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
         lblHireID.setForeground(new java.awt.Color(71, 71, 71));
@@ -426,6 +427,10 @@ public class TMS_newHire extends javax.swing.JFrame {
         jSpinnerEnd.setValue(new Date());
         jSpinnerEnd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        lblRental.setFont(new java.awt.Font("Lato", 1, 24)); // NOI18N
+        lblRental.setForeground(new java.awt.Color(71, 71, 71));
+        lblRental.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout whiteAreaLayout = new javax.swing.GroupLayout(whiteArea);
         whiteArea.setLayout(whiteAreaLayout);
         whiteAreaLayout.setHorizontalGroup(
@@ -447,14 +452,6 @@ public class TMS_newHire extends javax.swing.JFrame {
                                 .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSpinnerStart, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(calcMethodComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(whiteAreaLayout.createSequentialGroup()
                         .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -482,18 +479,27 @@ public class TMS_newHire extends javax.swing.JFrame {
                                         .addComponent(cusNicTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(whiteAreaLayout.createSequentialGroup()
                                         .addComponent(jLabel15)
-                                        .addGap(18, 18, 18)
+                                        .addGap(26, 26, 26)
                                         .addComponent(cusMobileTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(whiteAreaLayout.createSequentialGroup()
                                         .addComponent(lblStartHire, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lblEndHire, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblRental, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblCusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(whiteAreaLayout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHireID, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(whiteAreaLayout.createSequentialGroup()
+                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(calcMethodComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(60, 60, 60))
         );
         whiteAreaLayout.setVerticalGroup(
@@ -506,7 +512,7 @@ public class TMS_newHire extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCusSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,24 +544,27 @@ public class TMS_newHire extends javax.swing.JFrame {
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerStart, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jSpinnerStart))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerEnd, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                    .addComponent(jSpinnerEnd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(calcMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(7, 7, 7)
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStartHire, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(whiteAreaLayout.createSequentialGroup()
+                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(calcMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(depAmntTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(7, 7, 7)
+                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEndHire, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStartHire, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblRental, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -573,7 +582,7 @@ public class TMS_newHire extends javax.swing.JFrame {
             .addGroup(contentAreaLayout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(contentArea);
@@ -701,9 +710,9 @@ public class TMS_newHire extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblBackMouseReleased
 
-    private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
+    private void lblCusSearchMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCusSearchMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel7MouseReleased
+    }//GEN-LAST:event_lblCusSearchMouseReleased
 
     private void vehicleNumComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicleNumComboBoxActionPerformed
         // TODO add your handling code here:
@@ -838,12 +847,10 @@ public class TMS_newHire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSpinner jSpinnerEnd;
@@ -852,8 +859,11 @@ public class TMS_newHire extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblBlueStrip;
+    private javax.swing.JLabel lblCusSearch;
+    private javax.swing.JLabel lblEndHire;
     private javax.swing.JLabel lblHireID;
     private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblRental;
     private javax.swing.JLabel lblStartHire;
     public javax.swing.JComboBox<String> typeComboBox;
     private javax.swing.JComboBox<String> vehicleNumComboBox;
