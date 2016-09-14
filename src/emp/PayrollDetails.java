@@ -104,14 +104,16 @@ public class PayrollDetails extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         mmCombo = new javax.swing.JComboBox<>();
-        search = new javax.swing.JLabel();
         yyCombo = new javax.swing.JComboBox<>();
+        search = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,7 +139,7 @@ public class PayrollDetails extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "EID", "Basic", "EPF", "Extra Allowance", "Net salary", "Month", "Year", "Accountant ID"
+                "EID", "Basic", "EPF", "Allowance", "Net salary", "Month", "Year", "Accountant ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -150,7 +152,7 @@ public class PayrollDetails extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 600, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 670, 250));
 
         jLabel4.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,13 +162,17 @@ public class PayrollDetails extends javax.swing.JFrame {
         mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
         jPanel1.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
-        search.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        search.setForeground(new java.awt.Color(102, 102, 102));
-        search.setOpaque(true);
-        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 160, 20));
-
         yyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2014", "2015", "2016" }));
         jPanel1.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+
+        search.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 153, 153));
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 180, -1));
 
         jLabel3.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -191,11 +197,11 @@ public class PayrollDetails extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 197));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 197));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 450));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 470));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 709, -1));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,7 +220,7 @@ public class PayrollDetails extends javax.swing.JFrame {
             
             if(status!=-1)
             {
-                String q2="SELECT  EID,Basic,EPF,TotAllowance,TotalSalary,Month,Year,AccountantID FROM payroll WHERE EID='"+Search+"'";
+                String q2="SELECT  EID,Basic,EPF,TotAllowance,TotalSalary,Month,Year,AccountantID FROM payroll WHERE EID='"+Search+"' AND Year='"+YY+"'";
                rset2 = DB.getDbCon().query(q2);
                  jTable1.setModel(DbUtils.resultSetToTableModel(rset2));
             }
@@ -229,6 +235,10 @@ public class PayrollDetails extends javax.swing.JFrame {
       this.dispose();
         
     }//GEN-LAST:event_backMouseClicked
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+      search.setText("");
+    }//GEN-LAST:event_searchMouseClicked
 
     /**
      * @param args the command line arguments
@@ -276,7 +286,7 @@ public class PayrollDetails extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> mmCombo;
-    private javax.swing.JLabel search;
+    private javax.swing.JTextField search;
     private javax.swing.JComboBox<String> yyCombo;
     // End of variables declaration//GEN-END:variables
 }

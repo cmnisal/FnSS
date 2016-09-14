@@ -45,6 +45,7 @@ public class Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,6 +57,7 @@ public class Attendance extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         eid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        eid.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         eid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eidActionPerformed(evt);
@@ -111,7 +113,7 @@ public class Attendance extends javax.swing.JFrame {
         });
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
-        jLabel6.setBackground(new java.awt.Color(105, 145, 152));
+        jLabel6.setBackground(new java.awt.Color(52, 73, 94));
         jLabel6.setOpaque(true);
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 220));
 
