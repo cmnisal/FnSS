@@ -22,6 +22,7 @@ public class Attendance extends javax.swing.JFrame {
         Date date = new Date();
         String d = date.toString();
         datetime.setText(d);
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -44,6 +45,7 @@ public class Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -139,25 +141,25 @@ public class Attendance extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
        
         String EID = eid.getText();
-        
-        if(EID != null)
-        {
+        int status=0;
+        if(EID.length()==0)
+        {JOptionPane.showMessageDialog(null, "Enter the Employee ID!"); status=-1; }
+       
+        if(status!= -1){
             try {
                 String q="INSERT INTO attendance (EID)"
                         + "VALUES('"+EID+"')";
                
                  DB.getDbCon().insert(q);
+                 JOptionPane.showMessageDialog(null, "Attendance Marked");
                  
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error!!");
+            JOptionPane.showMessageDialog(null, "Enter a Valid Employee ID!");
                }
             
+       
         }
-        
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Please Enter yout Employee ID");
-        }
+     
         
     }//GEN-LAST:event_jLabel4MouseClicked
 
