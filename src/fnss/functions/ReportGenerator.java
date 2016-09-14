@@ -1,7 +1,7 @@
-
 package fnss.functions;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -31,7 +31,7 @@ public class ReportGenerator {
     public void printReport(String report, Map map) {
         try {
             projectPath = System.getProperty("user.dir") + "\\Reports\\";
-            jasperdesign = JRXmlLoader.load(projectPath+report+".jrxml");
+            jasperdesign = JRXmlLoader.load(projectPath + report + ".jrxml");
             jasperreport = JasperCompileManager.compileReport(jasperdesign);
             try {
                 jasperprint = JasperFillManager.fillReport(jasperreport, map, DB.getDbCon().conn);
@@ -41,8 +41,9 @@ public class ReportGenerator {
 
             List pages = jasperprint.getPages();
             if (!pages.isEmpty()) {
-                JasperViewer.viewReport(jasperprint, false);
+                JasperViewer.viewReport(jasperprint, false); //new JasperViewer(jasperprint).setVisible(true);
             } else {
+                System.out.println(Arrays.toString(map.keySet().toArray()));
                 JOptionPane.showMessageDialog(null, "Document has no pages", "No Pages", JOptionPane.INFORMATION_MESSAGE);
             }
 

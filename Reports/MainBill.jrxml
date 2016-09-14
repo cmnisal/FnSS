@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MainBill" language="groovy" pageWidth="280" pageHeight="432" columnWidth="260" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" isFloatColumnFooter="true" uuid="83ce01f2-b91a-4c82-94ac-0d0f2aa70d68">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="183"/>
+	<subDataset name="New Dataset 1" uuid="6c5d7df6-850d-4f45-aa31-77c91126a536">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     pos_master.`pos_id` AS pos_master_pos_id,
+     pos_master.`customer_id` AS pos_master_customer_id,
+     pos_master.`datetime` AS pos_master_datetime,
+     pos_master.`itemcount` AS pos_master_itemcount,
+     pos_master.`total` AS pos_master_total,
+     pos_master.`paid` AS pos_master_paid,
+     pos_master.`balance` AS pos_master_balance,
+     pos_master.`discount` AS pos_master_discount,
+     pos_master.`payMethod` AS pos_master_payMethod,
+     pos_trans.`pos_id` AS pos_trans_pos_id,
+     pos_trans.`code` AS pos_trans_code,
+     pos_trans.`quantity` AS pos_trans_quantity,
+     pos_trans.`unit_price` AS pos_trans_unit_price,
+     pos_trans.`total` AS pos_trans_total,
+     pos_trans.`user` AS pos_trans_user,
+     pos_trans.`datetime` AS pos_trans_datetime,
+     stock.`ItemCode` AS stock_ItemCode,
+     stock.`ItemName` AS stock_ItemName,
+     stock.`Date` AS stock_Date,
+     stock.`Quantity` AS stock_Quantity,
+     stock.`BuyingPrice` AS stock_BuyingPrice,
+     stock.`SellingPrice` AS stock_SellingPrice,
+     stock.`Category` AS stock_Category,
+     stock.`SubCategory` AS stock_SubCategory,
+     stock.`ReorderLevel` AS stock_ReorderLevel,
+     stock.`Status` AS stock_Status
+FROM
+     `pos_trans` pos_trans INNER JOIN `pos_master` pos_master ON pos_trans.`pos_id` = pos_master.`pos_id`
+     INNER JOIN `stock` stock ON pos_trans.`code` = stock.`ItemCode`]]>
+		</queryString>
+		<field name="pos_master_pos_id" class="java.lang.String"/>
+		<field name="pos_master_customer_id" class="java.lang.String"/>
+		<field name="pos_master_datetime" class="java.sql.Timestamp"/>
+		<field name="pos_master_total" class="java.lang.Double"/>
+		<field name="pos_master_paid" class="java.lang.Double"/>
+		<field name="pos_master_balance" class="java.lang.Double"/>
+		<field name="pos_master_discount" class="java.lang.Double"/>
+		<field name="pos_master_payMethod" class="java.lang.String"/>
+		<field name="pos_trans_code" class="java.lang.String"/>
+		<field name="pos_trans_quantity" class="java.lang.Double"/>
+		<field name="pos_trans_unit_price" class="java.lang.Double"/>
+		<field name="pos_trans_total" class="java.lang.Double"/>
+		<field name="stock_ItemName" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="pos_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[POS1002]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+     pos_master.`pos_id` AS pos_master_pos_id,
+     pos_trans.`pos_id` AS pos_trans_pos_id,
+     pos_trans.`quantity` AS pos_trans_quantity,
+     pos_trans.`unit_price` AS pos_trans_unit_price,
+     pos_trans.`total` AS pos_trans_total,
+     stock.`ItemName` AS stock_ItemName,
+     customer.`CustomerName` AS customer_CustomerName,
+     customer.`Phone` AS customer_Phone,
+     pos_master.`payMethod` AS pos_master_payMethod,
+     pos_master.`discount` AS pos_master_discount,
+     pos_master.`balance` AS pos_master_balance,
+     pos_master.`paid` AS pos_master_paid,
+     pos_master.`total` AS pos_master_total,
+     pos_master.`datetime` AS pos_master_datetime,
+     stock.`ItemCode` AS stock_ItemCode
+FROM
+     `pos_master` pos_master INNER JOIN `pos_trans` pos_trans ON pos_master.`pos_id` = pos_trans.`pos_id`
+     INNER JOIN `stock` stock ON pos_trans.`code` = stock.`ItemCode`
+     LEFT OUTER JOIN `customer` customer ON pos_master.`customer_id` = customer.`CustomerID`
+WHERE
+     pos_master.`pos_id` = $P{pos_id}]]>
+	</queryString>
+	<field name="pos_master_pos_id" class="java.lang.String"/>
+	<field name="pos_trans_pos_id" class="java.lang.String"/>
+	<field name="pos_trans_quantity" class="java.lang.Double"/>
+	<field name="pos_trans_unit_price" class="java.lang.Double"/>
+	<field name="pos_trans_total" class="java.lang.Double"/>
+	<field name="stock_ItemName" class="java.lang.String"/>
+	<field name="customer_CustomerName" class="java.lang.String"/>
+	<field name="customer_Phone" class="java.lang.String"/>
+	<field name="pos_master_payMethod" class="java.lang.String"/>
+	<field name="pos_master_discount" class="java.lang.Double"/>
+	<field name="pos_master_balance" class="java.lang.Double"/>
+	<field name="pos_master_paid" class="java.lang.Double"/>
+	<field name="pos_master_total" class="java.lang.Double"/>
+	<field name="pos_master_datetime" class="java.sql.Timestamp"/>
+	<field name="stock_ItemCode" class="java.lang.String"/>
+	<group name="Items">
+		<groupExpression><![CDATA[$F{stock_ItemName}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<image>
+				<reportElement x="88" y="-10" width="84" height="50" uuid="f586bce6-b04c-4860-8caf-1c106824ec9d"/>
+				<imageExpression><![CDATA["C:\\Users\\Nisal\\Desktop\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="40" width="259" height="66" uuid="71e8673b-14ed-416b-901a-7bbb258f4ff5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="9"/>
+				</textElement>
+				<text><![CDATA[Seetha Service & Filling Station
+No: 278, Colombo Road, Pilimathahalawa.
+Tel : 0812 575 753 / 0817 599 233  |   Fax : 0812 575 753
+pilimathalawa@seethaholdings.com
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="109" splitType="Stretch">
+			<textField>
+				<reportElement x="88" y="0" width="132" height="20" uuid="74aa4f68-5833-4f3c-b356-398ea64b83b3"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_pos_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="87" height="20" uuid="79180d86-aece-41c4-ba1e-33812a1aabc7"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Bill No		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="20" width="87" height="20" isRemoveLineWhenBlank="true" uuid="e4ae9210-4fea-4a3c-80e7-53c7121ceb43">
+					<printWhenExpression><![CDATA[$F{customer_CustomerName}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Customer	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="88" y="20" width="162" height="20" isRemoveLineWhenBlank="true" uuid="26815f63-30a1-472b-88c5-6f6ac2259257">
+					<printWhenExpression><![CDATA[$F{customer_CustomerName}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="88" y="40" width="162" height="20" isRemoveLineWhenBlank="true" uuid="59c5b06e-b1e4-424c-8e18-ba4862a9440e">
+					<printWhenExpression><![CDATA[$F{customer_CustomerName}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_Phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="60" width="87" height="20" uuid="ac9b3626-6d16-4621-97e9-242c766c3d0d"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Pay Type		:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="88" y="60" width="162" height="20" uuid="061c761e-1421-47ef-8552-995236b68a47"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_payMethod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="80" width="162" height="20" uuid="90905510-e228-48cb-b521-9c2ea2d3517e"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_datetime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="80" width="87" height="20" uuid="50bed849-69a9-463e-bdf7-47a81da1eaff"/>
+				<textElement>
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Date		:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23">
+			<line>
+				<reportElement x="0" y="20" width="260" height="1" uuid="3cd2fc38-d5c6-46ba-8e28-e9e1f29b379a"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="260" height="1" uuid="07cfb7a6-1709-43ec-b652-7307f8f7acef"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="1" width="87" height="20" uuid="a88efd09-3a2f-4ac4-9e51-50ac897959ad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="1" width="22" height="20" uuid="7a42ac79-c591-4b19-8024-472f361922da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="1" width="61" height="20" uuid="ed6c6cd7-d6d4-420b-83ae-318e41fdf8a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="1" width="73" height="20" uuid="666b963f-ff77-4b24-98be-46a798d307d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="104" y="0" width="22" height="20" uuid="211105bf-aa80-4a3c-af0a-b7671b4921a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_trans_quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="126" y="0" width="61" height="20" uuid="8f58ff35-0970-4be9-bdbd-a94c0c51dd22"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_trans_unit_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="514ddba6-4b62-4e11-91f5-53efdc346093"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stock_ItemName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="187" y="0" width="73" height="20" uuid="ac9fa415-f8b2-444a-9d92-3e909da1971a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_trans_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="45" height="20" uuid="a3ff1164-17f1-486a-849b-35a2ad119332"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stock_ItemCode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="94">
+			<staticText>
+				<reportElement x="1" y="0" width="186" height="20" uuid="c6d85e09-59b9-407e-908f-fd47144e997c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="12"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="160" y="0" width="100" height="20" uuid="0717ef65-8e0c-4ee4-8e14-7ef19bf95c0e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="20" width="186" height="20" uuid="e0ba8d11-6602-4448-b3f2-6fa2d0e2a1a1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Paid]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="161" y="21" width="100" height="20" uuid="d2e39941-e2a8-493a-9566-8396f019abb4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_paid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="40" width="186" height="20" uuid="d5eda86e-4be1-453a-9e39-e20928103368"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<line>
+				<reportElement x="172" y="43" width="88" height="1" uuid="472ce4f6-7419-4809-9d63-8715e88b81a3"/>
+			</line>
+			<textField pattern="###0.00">
+				<reportElement x="144" y="41" width="116" height="20" uuid="8df67b53-abed-4935-ad0e-96fa62145cdc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pos_master_balance}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="172" y="21" width="88" height="1" uuid="345fee70-3bfa-436f-8471-f800da953405"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="260" height="1" uuid="12570873-a38d-4228-a83f-5f91cab0adf7"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="62" width="259" height="29" uuid="1887fb61-5ab8-496a-81d2-57fb7e019b19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Have a nice day!
+© All Rights Reserved | 2016 Fnss Solutions]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

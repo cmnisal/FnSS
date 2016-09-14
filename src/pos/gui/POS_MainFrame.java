@@ -7,6 +7,7 @@ package pos.gui;
 
 import fnss.functions.DB;
 import fnss.functions.DocNumGenerator;
+import fnss.functions.ReportGenerator;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -1122,10 +1123,14 @@ public class POS_MainFrame extends javax.swing.JFrame {
                     + "(`pos_id`, `customer_id`, `itemcount`, `total`, `paid`, `balance`, `discount`,`payMethod`) VALUES "
                     + "('" + POS_ID + "','" + customer_id + "'," + billTable.size() + "," + BillTotal + "," + paid + "," + balance + "," + discount + ",'" + PaymentMethod + "')";
             System.out.println(DB.getDbCon().insert(sql));
-            infoMsg(POS_ID + " is Successfully Settled!");
+            infoMsg(POS_ID + " is Successfully Settled!\n Bill Printing...");
+            Map map = new HashMap();
+            map.put("pos_id",POS_ID);
+            new ReportGenerator().printReport("MainBill",map);
             POS_ID = "";
             billTable =  new HashMap<>();
             BillTotal = 0.00;
+            
             resetAllFields();
         } catch (SQLException ex) {
             Logger.getLogger(POS_MainFrame.class.getName()).log(Level.SEVERE, null, ex);

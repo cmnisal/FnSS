@@ -2,7 +2,10 @@ package fnss.test;
 
 import fnss.functions.DB;
 import fnss.functions.DocNumGenerator;
+import fnss.functions.ReportGenerator;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,12 +16,9 @@ import java.util.logging.Logger;
 public class TestDB {
 
     public static void main(String[] args) {
-        try {
-            System.out.println("HIRE curVal : "+new DocNumGenerator().curVal("HIRE"));
-            System.out.println("HIRE nextVal : "+new DocNumGenerator().nextVal("HIRE"));
-        } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Map map = new HashMap();
+        map.put("pos_id","POS1002");
+        new ReportGenerator().printReport("MainBill",map);
 
        
     }
