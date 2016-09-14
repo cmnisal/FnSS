@@ -191,6 +191,12 @@ catch(Exception e)
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("User");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
+
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
@@ -252,7 +258,7 @@ catch(Exception e)
         cmbSup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
         jPanel2.add(cmbSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
-        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setBackground(new java.awt.Color(52, 73, 94));
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -353,6 +359,16 @@ catch(Exception e)
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
+          char c = evt.getKeyChar();
+        //if(Character.isDigit(c)||(Character.is))
+        if(!(Character.isAlphabetic(c)))
+        {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtUserKeyTyped
 
     /**
      * @param args the command line arguments

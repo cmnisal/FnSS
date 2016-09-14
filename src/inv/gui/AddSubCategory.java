@@ -129,6 +129,12 @@ catch(Exception e)
             }
         });
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 100, 60));
+
+        txtSubCatName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSubCatNameKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtSubCatName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 161, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
@@ -193,6 +199,16 @@ catch(Exception e)
         new StockManagement().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblBack1MouseClicked
+
+    private void txtSubCatNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSubCatNameKeyTyped
+        char c = evt.getKeyChar();
+        //if(Character.isDigit(c)||(Character.is))
+        if(!(Character.isAlphabetic(c)))
+        {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtSubCatNameKeyTyped
 
     /**
      * @param args the command line arguments
