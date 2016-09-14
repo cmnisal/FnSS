@@ -6,7 +6,12 @@
 package inv.gui;
 
 import fnss.functions.DB;
+import fnss.functions.DocNumGenerator;
+import fnss.test.TestDB;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -23,6 +28,12 @@ public class AddCategory extends javax.swing.JFrame {
     public AddCategory() {
         initComponents();
         this.setLocationRelativeTo(null);
+        try {
+            txtCategoryID.setText((new DocNumGenerator().curVal("CAT")));
+            txtCategoryID.setText((new DocNumGenerator().nextVal("CAT")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

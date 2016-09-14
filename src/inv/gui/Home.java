@@ -99,7 +99,6 @@ public class Home extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(189, 195, 199));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(231, 76, 60));

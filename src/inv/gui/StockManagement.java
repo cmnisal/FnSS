@@ -77,9 +77,10 @@ public class StockManagement extends javax.swing.JFrame {
         });
         jPanel1.add(lblBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 32, 50, -1));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, -1));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 100));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(189, 195, 199));
+
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Bright", 1, 22)); // NOI18N
