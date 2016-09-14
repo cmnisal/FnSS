@@ -26,9 +26,7 @@ public class SearchUpdate extends javax.swing.JFrame {
             String q1="SELECT *  FROM employee  ";
             
             rset = DB.getDbCon().query(q1);
-            jTable1.setModel(DbUtils.resultSetToTableModel(rset));
-            
-            
+            jTable1.setModel(DbUtils.resultSetToTableModel(rset));                      
             
         } catch (SQLException ex) {
             Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,6 +69,8 @@ public class SearchUpdate extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -180,7 +180,7 @@ public class SearchUpdate extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel10.setText("DOB");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
         jLabel11.setText("Address");
@@ -264,8 +264,21 @@ public class SearchUpdate extends javax.swing.JFrame {
             basic.setText("");
             dob.setText("");
             search.setText("");
+            search.setText("Enter Employee ID..");
             
             JOptionPane.showMessageDialog(null, "Record Update Successful");
+            
+            //reloading the table data
+             try {
+            String q1="SELECT *  FROM employee  ";
+            
+            rset = DB.getDbCon().query(q1);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rset));                      
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                   
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Record Update Failed!");
              Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);

@@ -4,6 +4,8 @@ package emp;
 import fnss.functions.DB;
 import javax.swing.ButtonGroup;
 import com.sun.glass.events.KeyEvent;
+import fnss.functions.DocNumGenerator;
+import fnss.test.TestDB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,12 @@ public class AddEmp extends javax.swing.JFrame {
         initComponents();
         groupButton();
         this.setLocationRelativeTo(null);
+        try {
+            eid.setText(new DocNumGenerator().generateID("EMP"));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
       
        
     }
@@ -74,6 +82,7 @@ public class AddEmp extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 650));
 
@@ -217,7 +226,7 @@ public class AddEmp extends javax.swing.JFrame {
         });
         jPanel1.add(power, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, -1));
 
-        jLabel14.setBackground(new java.awt.Color(105, 145, 152));
+        jLabel14.setBackground(new java.awt.Color(52, 73, 94));
         jLabel14.setOpaque(true);
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 160));
 
@@ -319,7 +328,7 @@ public class AddEmp extends javax.swing.JFrame {
             if (null != m)
                 switch (m) {
                     case "JAN":
-                        mon="01";
+                        mon="01";   
                         break;
                     case "FEB":
                         mon="02";

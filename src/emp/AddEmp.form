@@ -17,6 +17,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[600, 650]"/>
@@ -530,7 +531,7 @@
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="98" green="91" red="69" type="rgb"/>
+                  <Color blue="5e" green="49" red="34" type="rgb"/>
                 </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>

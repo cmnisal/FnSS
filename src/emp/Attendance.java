@@ -6,6 +6,7 @@
 package emp;
 
 import fnss.functions.DB;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -13,15 +14,15 @@ import java.util.Date;
 import java.util.Calendar;;
 
 public class Attendance extends javax.swing.JFrame {
-
+ private ResultSet rset;
    
     public Attendance() {
         initComponents();
         
-        DateFormat dateformat = new SimpleDateFormat() ;
-        Date date = new Date();
-        String d = date.toString();
-        datetime.setText(d);
+       Date now = new Date();
+        //Set date format as you want
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+        datetime.setText(sf.format(now));
         this.setLocationRelativeTo(null);
         
     }
@@ -45,6 +46,7 @@ public class Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,6 +58,7 @@ public class Attendance extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         eid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        eid.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         eid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eidActionPerformed(evt);
@@ -111,7 +114,7 @@ public class Attendance extends javax.swing.JFrame {
         });
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 40));
 
-        jLabel6.setBackground(new java.awt.Color(105, 145, 152));
+        jLabel6.setBackground(new java.awt.Color(52, 73, 94));
         jLabel6.setOpaque(true);
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 220));
 
@@ -145,6 +148,13 @@ public class Attendance extends javax.swing.JFrame {
         if(EID.length()==0)
         {JOptionPane.showMessageDialog(null, "Enter the Employee ID!"); status=-1; }
        
+        try{
+        String q2="Select EID from employee Where EID='"+eid.getText()+"'";
+        rset = DB.getDbCon().query(q2);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a Valid Employee ID!");
+               }
+        
         if(status!= -1){
             try {
                 String q="INSERT INTO attendance (EID)"
@@ -157,7 +167,7 @@ public class Attendance extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter a Valid Employee ID!");
                }
             
-       
+       eid.setText("");
         }
      
         

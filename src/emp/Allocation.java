@@ -24,6 +24,7 @@ String slot = null;
         initComponents();
         groupButton();
         this.setLocationRelativeTo(null);
+        eid.setText("Enter the Employee ID..");
     }
     
         private void groupButton()
@@ -55,9 +56,9 @@ String slot = null;
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel16 = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         eid = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -89,10 +90,10 @@ String slot = null;
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -114,6 +115,9 @@ String slot = null;
         });
         jDesktopPane1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jPanel2.setBackground(new java.awt.Color(236, 240, 241));
         jPanel2.setMaximumSize(new java.awt.Dimension(130, 70));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,11 +127,19 @@ String slot = null;
         jLabel2.setText("Attendants Allocation");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Lato Medium", 0, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText(" Employee ID");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 80, -1));
-        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 200, -1));
+        eid.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        eid.setForeground(new java.awt.Color(102, 102, 102));
+        eid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eidMouseClicked(evt);
+            }
+        });
+        eid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eidKeyPressed(evt);
+            }
+        });
+        jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 200, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 90, 80));
@@ -201,7 +213,7 @@ String slot = null;
                 jLabel17MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 90, 30));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 90, 30));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel2.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 50, -1));
@@ -215,7 +227,7 @@ String slot = null;
         jLabel18.setBackground(new java.awt.Color(102, 153, 255));
         jLabel18.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Check Allocations");
+        jLabel18.setText("Allocations History");
         jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         jLabel18.setOpaque(true);
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,7 +235,7 @@ String slot = null;
                 jLabel18MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 420, 120, 30));
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 120, 30));
 
         jLabel19.setFont(new java.awt.Font("Lato Medium", 0, 12)); // NOI18N
         jLabel19.setText("Pick the date");
@@ -243,10 +255,7 @@ String slot = null;
         jLabel24.setText("P-Sup-01");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
 
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 770, 470));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 770, 470));
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
@@ -283,7 +292,7 @@ String slot = null;
     
     
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-    
+    int status=0;
         try {
              //assigned location(pump)
            
@@ -310,8 +319,13 @@ String slot = null;
             { this.slot="Ser-01" ; this.loc="Service Station";}
             else if(s2.isSelected())
             { this.slot="Ser-02" ;  this.loc="Service Station";}
+            else
+            {JOptionPane.showMessageDialog(null, "Please pick a slot!"); status=2;}
             
+             if(EID.length()==0)
+           {JOptionPane.showMessageDialog(null, "Please Enter the Employee ID!"); status=2;}
            
+             if(status !=2){
         
             
             String q="INSERT INTO allocation (EID,Date,Location,Slot) VALUES('"+EID+"','"+YY+"-"+MM+"-"+DD+"','"+this.loc+"','"+this.slot+"')";
@@ -324,10 +338,10 @@ String slot = null;
                    JOptionPane.showMessageDialog(null, "Allocation Successful");
                    
                } catch (SQLException ex) {
-                  JOptionPane.showMessageDialog(null, "Failed to Allocate!");
+                  JOptionPane.showMessageDialog(null, "Please Enter a Valid Employee ID!");
                    Logger.getLogger(Allocation.class.getName()).log(Level.SEVERE, null, ex);
                }
-           }
+           }}
             
         } catch (SQLException ex) {
             Logger.getLogger(Allocation.class.getName()).log(Level.SEVERE, null, ex);
@@ -338,6 +352,14 @@ String slot = null;
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
        new CheckAllocation().setVisible(true);
     }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void eidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eidKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eidKeyPressed
+
+    private void eidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eidMouseClicked
+       eid.setText("");
+    }//GEN-LAST:event_eidMouseClicked
 
     public class Function{   
             String mon;
@@ -458,7 +480,6 @@ String slot = null;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

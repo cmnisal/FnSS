@@ -60,6 +60,8 @@ public class CheckAllocation extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -123,7 +125,7 @@ public class CheckAllocation extends javax.swing.JFrame {
                 searchMouseClicked(evt);
             }
         });
-        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 190, -1));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 190, -1));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel1.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 50, -1));
@@ -156,9 +158,9 @@ public class CheckAllocation extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(52, 73, 94));
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 200));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 200));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 480));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
