@@ -1,11 +1,14 @@
 package tms.gui;
+
 import fnss.functions.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -22,22 +25,18 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
             initComponents();
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
-            
-            manageVehiclesTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hirevehicle`.`vehicleRegNo`,\n" +
-                                                                "    `tms_hirevehicle`.`type`,\n" +
-                                                                "    `tms_hirevehicle`.`capacity`,\n" +
-                                                                "    `tms_hirevehicle`.`milage`,\n" +
-                                                                "    `tms_hirevehicle`.`hourlyRate`,\n" +
-                                                                "    `tms_hirevehicle`.`dailyRate`\n" +
-                                                                " FROM `fnss`.`tms_hirevehicle`;")));
-            
-            
+
+            manageVehiclesTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT * FROM tms_hirevehicle")));
+
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (SQLException ex) {
             Logger.getLogger(TMS_manageVehicles.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    //TMS_addUpadateVehicle object
+    TMS_addUpdateVehicle updateVehicle = new TMS_addUpdateVehicle();
+
     //close button function
     private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
@@ -110,20 +109,20 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Manage Vehicles");
 
-        manageVehiclesTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        manageVehiclesTable.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
         manageVehiclesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Reg. Number", "Type", "Capacity", "Current Milage", "Hourly Rate", "Daily Rate"
+                "Reg. Number", "Type", "Capacity", "Current Milage", "Hourly Rate", "Daily Rate", "Availability"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -138,6 +137,14 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         manageVehiclesTable.setRowHeight(26);
         manageVehiclesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         manageVehiclesTable.getTableHeader().setReorderingAllowed(false);
+        manageVehiclesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageVehiclesTableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                manageVehiclesTableMouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(manageVehiclesTable);
         if (manageVehiclesTable.getColumnModel().getColumnCount() > 0) {
             manageVehiclesTable.getColumnModel().getColumn(0).setResizable(false);
@@ -146,20 +153,21 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
             manageVehiclesTable.getColumnModel().getColumn(3).setResizable(false);
             manageVehiclesTable.getColumnModel().getColumn(4).setResizable(false);
             manageVehiclesTable.getColumnModel().getColumn(5).setResizable(false);
+            manageVehiclesTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout WhiteAreaLayout = new javax.swing.GroupLayout(WhiteArea);
         WhiteArea.setLayout(WhiteAreaLayout);
         WhiteAreaLayout.setHorizontalGroup(
             WhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WhiteAreaLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WhiteAreaLayout.createSequentialGroup()
                 .addGap(269, 269, 269)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(269, 269, 269))
+            .addGroup(WhiteAreaLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         WhiteAreaLayout.setVerticalGroup(
             WhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,9 +184,9 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         ContentAreaLayout.setHorizontalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentAreaLayout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
+                .addContainerGap(231, Short.MAX_VALUE)
                 .addComponent(WhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         ContentAreaLayout.setVerticalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +353,34 @@ public class TMS_manageVehicles extends javax.swing.JFrame {
         new TMS_addUpdateVehicle(this).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addButtonMouseReleased
+
+    private void manageVehiclesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageVehiclesTableMouseClicked
+        int index = manageVehiclesTable.getSelectedRow();
+        TableModel model = manageVehiclesTable.getModel();
+
+        String regNo = model.getValueAt(index, 0).toString();/**/
+        String vtype = model.getValueAt(index, 1).toString();/**/
+        String capacity = model.getValueAt(index, 2).toString();
+        String milage = model.getValueAt(index, 3).toString();
+        String hourly = model.getValueAt(index, 4).toString();
+        String daily = model.getValueAt(index, 5).toString();
+        String available = model.getValueAt(index, 6).toString();
+
+        updateVehicle.setVisible(true);
+        this.dispose();
+
+        updateVehicle.vehicleNumberTxt.setText(regNo);
+        updateVehicle.typeComboBox.setSelectedItem(vtype);
+        updateVehicle.capacityTxt.setText(capacity);
+        updateVehicle.currentMilateTxt.setText(milage);
+        updateVehicle.hourlyRateTxt.setText(hourly);
+        updateVehicle.dailyRateTxt.setText(daily);
+        updateVehicle.vehicleAvailabilityTxt.setText(available);
+    }//GEN-LAST:event_manageVehiclesTableMouseClicked
+
+    private void manageVehiclesTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageVehiclesTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageVehiclesTableMouseEntered
 
     /**
      * @param args the command line arguments
