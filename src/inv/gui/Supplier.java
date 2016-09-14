@@ -8,9 +8,14 @@ package inv.gui;
 
 import com.sun.glass.events.KeyEvent;
 import fnss.functions.DB;
+import fnss.functions.DocNumGenerator;
+import fnss.test.TestDB;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -32,6 +37,12 @@ public class Supplier extends javax.swing.JFrame {
         //Set date format as you want
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
         txtSupDate.setText(sf.format(now));
+          try {
+            txtSupID.setText((new DocNumGenerator().curVal("SUP")));
+            txtSupID.setText((new DocNumGenerator().nextVal("SUP")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -127,7 +138,7 @@ public class Supplier extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 83, 35));
 
         tblSupplier.setBackground(new java.awt.Color(52, 73, 94));
-        tblSupplier.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        tblSupplier.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tblSupplier.setForeground(new java.awt.Color(255, 255, 255));
         tblSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
