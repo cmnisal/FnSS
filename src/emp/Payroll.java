@@ -17,52 +17,46 @@ import javax.swing.JOptionPane;
 
 public class Payroll extends javax.swing.JFrame {
 
-    ResultSet rset,rset2;
-    
-    Double tot=0.0; //gross salary
-    Double Basic=0.0; //basic salary
+    ResultSet rset, rset2;
+
+    Double tot = 0.0; //gross salary
+    Double Basic = 0.0; //basic salary
     String EID;
     String Description;
     String Accountant;  //accountant ID of the accoountant who genarated the bill 
-    Double TotAllowance=0.0;    
-    Double EPF=0.0; //epf deduction
-    Double totalSal=0.0;    //netSalary
+    Double TotAllowance = 0.0;
+    Double EPF = 0.0; //epf deduction
+    Double totalSal = 0.0;    //netSalary
     String q1, q2, q3;
-    String MM,YY;
+    String MM, YY;
     String PID; //payroll ID
-  
 
     public Payroll() {
         initComponents();
         this.setLocationRelativeTo(null);
         accountant.setText("Enter Accountant ID..");
         eid.setText("Enter Employee ID..");
-        
-         try {
-            pid.setText(new DocNumGenerator().generateID("PAY"));
+
+        try {
+            pid.setText(new DocNumGenerator().curVal("PAY"));
         } catch (SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         
-         
-         
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Allowance", "Description"
-            }
+                new Object[][]{
+                    {null, null},
+                    {null, null},
+                    {null, null},
+                    {null, null}
+                },
+                new String[]{
+                    "Allowance", "Description"
+                }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,6 +123,8 @@ public class Payroll extends javax.swing.JFrame {
         mmCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
         jPanel2.add(mmCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
 
+        eid.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        eid.setForeground(new java.awt.Color(102, 102, 102));
         eid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eidMouseClicked(evt);
@@ -317,80 +313,82 @@ public class Payroll extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-                
-            //retrieving entered values from the table
-           int count = jTable1.getRowCount();
-            Double[] col2 = new Double[count];
-            String[] col1 = new String[count];
-            
-            for (int i = 0; i < jTable1.getRowCount(); i++) {
-                if (jTable1.getValueAt(i, 0) != null) {
-                col2[i] = Double.parseDouble(jTable1.getValueAt(i, 0).toString());
-                col1[i] = (String)(jTable1.getValueAt(i, 1).toString());
-            } else {
-                col2[i] = 0.00;
-            }                
-             }
-                   totAllowance.setText(""+sum(col2));
-                   Double TotAllowance=sum(col2); 
-        
-        try {                                     
+
+        //retrieving entered values from the table
+        Double totalall = 0.00;
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            if (jTable1.getValueAt(i, 0) != null && jTable1.getValueAt(i, 1) != null) {
+
+                totalall += Double.parseDouble(jTable1.getValueAt(i, 0).toString());
+
+                try {
+                    String q3 = "INSERT INTO allowances (PID,Amount,Description) VALUES ('"
+                            + pid.getText() + "'," + Double.parseDouble(jTable1.getValueAt(i, 0).toString())
+                            + ",'" + jTable1.getValueAt(i, 1).toString() + "')";
+                    DB.getDbCon().insert(q3);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
+        totAllowance.setText("" + totalall);
+        Double TotAllowance = totalall;
+
+        try {
             Function f = new Function();
-                     
+
             EID = eid.getText();
             YY = yyCombo.getSelectedItem().toString();
-            MM = f.month(mmCombo.getSelectedItem().toString());            
-            Accountant = accountant.getText();            
-      
-               //field validation
-            if(EID.length()==0)
-            {JOptionPane.showMessageDialog(null, "Employee ID can't be empty!"); }
-            
-           try{
-           q1="SELECT BasicSalary FROM employee WHERE EID='"+EID+"'";
-           rset = DB.getDbCon().query(q1);
-           
-            if(rset.next()){
-               Basic= Double.parseDouble(rset.getString("BasicSalary"));
-              basic.setText(rset.getString("BasicSalary"));  
+            MM = f.month(mmCombo.getSelectedItem().toString());
+            Accountant = accountant.getText();
+
+            //field validation
+            if (EID.length() == 0) {
+                JOptionPane.showMessageDialog(null, "Employee ID can't be empty!");
             }
-           
-            tot=Basic+ TotAllowance;
-            EPF=Basic*0.08;
-            epf.setText(EPF.toString());
-            
-            totalSal=tot-EPF;
-            total.setText(totalSal.toString());
-            
-            Accountant=accountant.getText();
-            
-           
-           } catch (SQLException ex) {
-            Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
-           }         
-           
-             try{
-           q3="SELECT PID FROM payroll WHERE EID='"+EID+"',BasicSalary="+Basic+",EPF="+EPF+",TotalAllowance="+TotAllowance+",TotalSalary="+totalSal+",AccountantID='"+Accountant+"',Month='"+MM+"',Year='"+YY+"')"; 
-           rset2 = DB.getDbCon().query(q1);
-           
-            if(rset2.next()){
-               PID= rset2.getString("BasicSalary");  
-            }
-          
+
+            try {
+                q1 = "SELECT BasicSalary FROM employee WHERE EID='" + EID + "'";
+                rset = DB.getDbCon().query(q1);
+
+                if (rset.next()) {
+                    Basic = Double.parseDouble(rset.getString("BasicSalary"));
+                    basic.setText(rset.getString("BasicSalary"));
+                }
+
+                tot = Basic + TotAllowance;
+                EPF = Basic * 0.08;
+                epf.setText(EPF.toString());
+
+                totalSal = tot - EPF;
+                total.setText(totalSal.toString());
+
+                Accountant = accountant.getText();
+
             } catch (SQLException ex) {
-            Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
             }
-             
+
+            try {
+                q3 = "SELECT PID FROM payroll WHERE EID='" + EID + "',BasicSalary=" + Basic + ",EPF=" + EPF + ",TotalAllowance=" + TotAllowance + ",TotalSalary=" + totalSal + ",AccountantID='" + Accountant + "',Month='" + MM + "',Year='" + YY + "')";
+                rset2 = DB.getDbCon().query(q1);
+
+                if (rset2.next()) {
+                    PID = rset2.getString("BasicSalary");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-             
 
-        
-        
     }//GEN-LAST:event_jLabel9MouseClicked
-   public static double sum(Double[] values) {
+    public static double sum(Double[] values) {
         double result = 0;
         for (double value : values) {
             result += value;
@@ -398,66 +396,68 @@ public class Payroll extends javax.swing.JFrame {
         return result;
     }
 
-    
-    
+
     private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
 
     }//GEN-LAST:event_totalActionPerformed
 
-      public class Function{   
+    public class Function {
+
         String mon;
-    public String month(String m) throws SQLException{
-      
-        if (null != m)
-            switch (m) {
-                case "JAN":
-                    mon="01";
-                    break;
-                case "FEB":
-                    mon="02";
-                    break;
-                case "MAR":
-                    mon="03";
-                    break;
-                case "APR":
-                    mon="04";
-                    break;
-        
-                case "MAY":
-                    mon="05";
-                    break;
-                case "JUN":                  
-                    mon="06"; 
-                      break;
-                case "JUL": 
-                    mon="07";    
-                      break;
-                case "AUG": 
-                    mon="08";    
-                      break;
-                case "SEP": 
-                    mon="09";    
-                      break;
-                case "OCT": 
-                    mon="10";    
-                      break;
-                case "NOV": 
-                    mon="11";
-                      break;
-                case "DEC": 
-                    mon="12"; 
-                      break;
-               
-                default:
-                    break;
+
+        public String month(String m) throws SQLException {
+
+            if (null != m) {
+                switch (m) {
+                    case "JAN":
+                        mon = "01";
+                        break;
+                    case "FEB":
+                        mon = "02";
+                        break;
+                    case "MAR":
+                        mon = "03";
+                        break;
+                    case "APR":
+                        mon = "04";
+                        break;
+
+                    case "MAY":
+                        mon = "05";
+                        break;
+                    case "JUN":
+                        mon = "06";
+                        break;
+                    case "JUL":
+                        mon = "07";
+                        break;
+                    case "AUG":
+                        mon = "08";
+                        break;
+                    case "SEP":
+                        mon = "09";
+                        break;
+                    case "OCT":
+                        mon = "10";
+                        break;
+                    case "NOV":
+                        mon = "11";
+                        break;
+                    case "DEC":
+                        mon = "12";
+                        break;
+
+                    default:
+                        break;
+                }
             }
-     
-        return mon;
+
+            return mon;
+        }
     }
-}
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         new PayrollDetails().setVisible(true);
-       
+
 
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -466,27 +466,27 @@ public class Payroll extends javax.swing.JFrame {
     }//GEN-LAST:event_powerMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-         new Emp().setVisible(true);
+        new Emp().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-         try {
-              q2="INSERT INTO payroll (EID,Basic,EPF,TotAllowance,TotalSalary,AccountantID,Month,Year) VALUES ('"+EID+"',"+Basic+","+EPF+","+TotAllowance+","+totalSal+",'"+Accountant+"','"+MM+"','"+YY+"')";  
-              DB.getDbCon().insert(q2);
-               
-              JOptionPane.showMessageDialog(null, "Successfully Submitted");
-              
-            } catch (Exception ex) {
-                
-             Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(null, "Failed to Submit!!");
-            }
-            
+        try {
+            q2 = "INSERT INTO payroll (EID,Basic,EPF,TotAllowance,TotalSalary,AccountantID,Month,Year) VALUES ('" + EID + "'," + Basic + "," + EPF + "," + TotAllowance + "," + totalSal + ",'" + Accountant + "','" + MM + "','" + YY + "')";
+            DB.getDbCon().insert(q2);
+
+            JOptionPane.showMessageDialog(null, "Successfully Submitted");
+
+        } catch (Exception ex) {
+
+            Logger.getLogger(SearchUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Failed to Submit!!");
+        }
+
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void eidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eidMouseClicked
-       eid.setText("");
+        eid.setText("");
     }//GEN-LAST:event_eidMouseClicked
 
     private void close() {
