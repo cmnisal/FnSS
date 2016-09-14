@@ -112,8 +112,11 @@ public class OrderRecieving extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Order ID");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 50, 88, -1));
+
+        txtOrderRID.setEditable(false);
         jPanel2.add(txtOrderRID, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 50, 133, -1));
 
+        txtOrderRSupplier.setEditable(false);
         txtOrderRSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOrderRSupplierActionPerformed(evt);
@@ -126,6 +129,7 @@ public class OrderRecieving extends javax.swing.JFrame {
         jLabel3.setText("Supplier");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 133, -1, -1));
 
+        txtOrderRDate.setEditable(false);
         txtOrderRDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOrderRDateActionPerformed(evt);
@@ -160,25 +164,35 @@ public class OrderRecieving extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Item Code");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, -1, -1));
+
+        txtOrdItm.setEditable(false);
         jPanel2.add(txtOrdItm, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 138, -1));
 
         jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Quantity");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 228, -1, -1));
+
+        txtqty.setEditable(false);
         jPanel2.add(txtqty, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Unit");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
+
+        txtunit.setEditable(false);
         jPanel2.add(txtunit, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 80, -1));
 
         jLabel10.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Unit Price");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, 20));
+
+        unitprice.setEditable(false);
         jPanel2.add(unitprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 140, -1));
+
+        txtTot.setEditable(false);
         jPanel2.add(txtTot, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 230, -1));
 
         jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 940, 520));

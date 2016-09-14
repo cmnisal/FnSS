@@ -150,6 +150,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtOrderRID">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -160,6 +163,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtOrderRSupplier">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrderRSupplierActionPerformed"/>
               </Events>
@@ -189,6 +195,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtOrderRDate">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrderRDateActionPerformed"/>
               </Events>
@@ -271,6 +280,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtOrdItm">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -297,6 +309,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtqty">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -323,6 +338,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtunit">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -349,6 +367,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="unitprice">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
@@ -359,6 +380,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTot">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>

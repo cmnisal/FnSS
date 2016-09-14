@@ -85,12 +85,7 @@ public class Items extends javax.swing.JFrame {
             System.out.println(e);
         }
         
-    try {
-            txtItemCode.setText((new DocNumGenerator().curVal("ITM")));
-            txtItemCode.setText((new DocNumGenerator().nextVal("ITM")));
-        } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   
       
     }
 
@@ -136,6 +131,7 @@ public class Items extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtReOrder = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -151,18 +147,18 @@ public class Items extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(810, 690));
+        setMaximumSize(new java.awt.Dimension(1180, 750));
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
-        jDesktopPane1.setMaximumSize(new java.awt.Dimension(810, 690));
+        jDesktopPane1.setMaximumSize(new java.awt.Dimension(1180, 750));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(810, 690));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 365, 1000, 10));
+        jDesktopPane1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 365, 1180, 10));
 
         jPanel1.setBackground(new java.awt.Color(52, 73, 94));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -177,7 +173,7 @@ public class Items extends javax.swing.JFrame {
                 lblUserMouseClicked(evt);
             }
         });
-        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 54, 50));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 20, 54, 50));
 
         lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inv/gui/back (3).png"))); // NOI18N
         lblBack.setText("Back");
@@ -192,45 +188,49 @@ public class Items extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Rockwell", 1, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ITEMS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, -1, -1));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 90));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 90));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Item Name");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 87, -1, -1));
-        jPanel2.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 86, 124, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jPanel2.add(txtItemName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 124, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Item Code");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 35, -1, 25));
-        jPanel2.add(txtItemCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 37, 124, -1));
-        jPanel2.add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 133, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 25));
+
+        txtItemCode.setEditable(false);
+        jPanel2.add(txtItemCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 124, -1));
+
+        txtDate.setEditable(false);
+        jPanel2.add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 133, -1));
 
         jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Date");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Category");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 91, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 91, -1));
 
         iCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-        jPanel2.add(iCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 120, -1));
+        jPanel2.add(iCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 120, -1));
 
         iSubCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select" }));
-        jPanel2.add(iSubCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 99, -1));
+        jPanel2.add(iSubCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 99, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Sub-Category");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(52, 73, 94));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -243,7 +243,7 @@ public class Items extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 123, 40));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 123, 40));
 
         jLabel8.setBackground(new java.awt.Color(52, 73, 94));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -256,7 +256,7 @@ public class Items extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 118, 40));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 118, 40));
 
         jLabel9.setBackground(new java.awt.Color(52, 73, 94));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -269,12 +269,12 @@ public class Items extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 122, 40));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 220, 122, 40));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Buying Price");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 40, -1, -1));
 
         txtBuyingPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,19 +286,19 @@ public class Items extends javax.swing.JFrame {
                 txtBuyingPriceKeyTyped(evt);
             }
         });
-        jPanel2.add(txtBuyingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 131, -1));
+        jPanel2.add(txtBuyingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 40, 131, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(102, 102, 102));
         jLabel15.setText("Selling Price");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, -1, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, -1, -1));
 
         txtSellingPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSellingPriceKeyTyped(evt);
             }
         });
-        jPanel2.add(txtSellingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 131, -1));
+        jPanel2.add(txtSellingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 131, -1));
 
         tblItems.setBackground(new java.awt.Color(52, 73, 94));
         tblItems.setForeground(new java.awt.Color(255, 255, 255));
@@ -326,7 +326,7 @@ public class Items extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblItems);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 440, 870, 194));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 960, 194));
 
         jLabel10.setBackground(new java.awt.Color(52, 73, 94));
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -339,20 +339,20 @@ public class Items extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 84, 40));
-        jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 450, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 84, 40));
+        jPanel2.add(txtSearchItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 450, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("ReorderLevel");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
 
         txtReOrder.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtReOrderKeyTyped(evt);
             }
         });
-        jPanel2.add(txtReOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 80, -1));
+        jPanel2.add(txtReOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, 80, -1));
 
         jLabel11.setBackground(new java.awt.Color(255, 0, 0));
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -365,18 +365,31 @@ public class Items extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, 190, 40));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 360, 190, 40));
 
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 660));
+        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Generate Code");
+        jLabel12.setOpaque(true);
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 120, 30));
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 750));
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1180, 660));
+
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
        String srch=new String(txtSearchItems.getText());
-       String sql= "SELECT ItemCode,ItemName,Date,Quantity,BuyingPrice,SellingPrice,Category,SubCategory,ReorderLevel FROM `stock` where ItemName LIKE '%"+srch+"%' and Quantity>ReorderLevel";
+       String sql= "SELECT ItemCode,ItemName,Date,Quantity,BuyingPrice,SellingPrice,Category,SubCategory,ReorderLevel FROM `stock` where ItemName LIKE '%"+srch+"%' and Quantity>ReorderLevel and Status=1";
        try
        {
            ResultSet rs=DB.getDbCon().query(sql);
@@ -546,6 +559,15 @@ public class Items extends javax.swing.JFrame {
      this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+ try {
+            txtItemCode.setText((new DocNumGenerator().curVal("ITM")));
+            txtItemCode.setText((new DocNumGenerator().nextVal("ITM")));
+        } catch (SQLException ex) {
+            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_jLabel12MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -588,6 +610,7 @@ public class Items extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
