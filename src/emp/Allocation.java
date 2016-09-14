@@ -227,7 +227,7 @@ String slot = null;
         jLabel18.setBackground(new java.awt.Color(102, 153, 255));
         jLabel18.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Check Allocations");
+        jLabel18.setText("Allocations History");
         jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
         jLabel18.setOpaque(true);
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {

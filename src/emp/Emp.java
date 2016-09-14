@@ -70,7 +70,7 @@ public class Emp extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 150, 40));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 150, 35));
 
         jLabel2.setBackground(new java.awt.Color(102, 153, 255));
         jLabel2.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
@@ -78,12 +78,13 @@ public class Emp extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Payroll");
         jLabel2.setOpaque(true);
+        jLabel2.setPreferredSize(new java.awt.Dimension(106, 17));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 150, 30));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 150, 35));
 
         jLabel3.setBackground(new java.awt.Color(102, 153, 255));
         jLabel3.setFont(new java.awt.Font("Lato Semibold", 0, 14)); // NOI18N
@@ -96,7 +97,7 @@ public class Emp extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 150, 31));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 150, 35));
 
         jLabel4.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(44, 62, 80));
@@ -109,12 +110,13 @@ public class Emp extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Attendants Allocation");
         jLabel6.setOpaque(true);
+        jLabel6.setPreferredSize(new java.awt.Dimension(106, 17));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 150, 31));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 150, 35));
 
         face.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\face.png")); // NOI18N
         jPanel3.add(face, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, -10, 120, 130));
@@ -130,7 +132,7 @@ public class Emp extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 150, 30));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 150, 35));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 580, 440));
 

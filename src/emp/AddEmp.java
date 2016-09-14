@@ -328,7 +328,7 @@ public class AddEmp extends javax.swing.JFrame {
             if (null != m)
                 switch (m) {
                     case "JAN":
-                        mon="01";
+                        mon="01";   
                         break;
                     case "FEB":
                         mon="02";
