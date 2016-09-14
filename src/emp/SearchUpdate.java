@@ -16,7 +16,6 @@ import net.proteanit.sql.DbUtils;
 public class SearchUpdate extends javax.swing.JFrame {
   
     private ResultSet rset;
-    private PreparedStatement pst;
     
     public SearchUpdate() {
         initComponents();
@@ -89,7 +88,7 @@ public class SearchUpdate extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(52, 73, 94));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Update Employee ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 220, 41));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 220, 41));
 
         search.setBackground(new java.awt.Color(204, 218, 220));
         search.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -243,15 +242,7 @@ public class SearchUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        try {
-            category.setText("");
-            name.setText("");
-            address.setText("");
-            nic.setText("");
-            phone.setText("");
-            basic.setText("");
-            dob.setText("");
-            
+        try {                  
             String Category = category.getText();
             String Name = name.getText();
             String Address = address.getText();
@@ -263,6 +254,14 @@ public class SearchUpdate extends javax.swing.JFrame {
             String q2="UPDATE employee SET Name='"+Name+"',Category='"+Category+"',Phone="+Phone+ ",Address='"+Address+"',NIC='"+NIC+"',BasicSalary="+Basic+" Where EID LIKE '"+Search+"'";
             DB.getDbCon().insert(q2);
             
+            category.setText("");
+            name.setText("");
+            address.setText("");
+            nic.setText("");
+            phone.setText("");
+            basic.setText("");
+            dob.setText("");
+            search.setText("");
             
             JOptionPane.showMessageDialog(null, "Record Update Successful");
         } catch (SQLException ex) {

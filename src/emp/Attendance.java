@@ -44,6 +44,7 @@ public class Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

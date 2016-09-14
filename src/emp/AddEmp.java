@@ -73,6 +73,7 @@ public class AddEmp extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(600, 650));
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));

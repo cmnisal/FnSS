@@ -22,6 +22,7 @@ String slot = null;
     
     public Allocation() {
         initComponents();
+        groupButton();
     }
     
         private void groupButton()
@@ -91,6 +92,7 @@ String slot = null;
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,6 +140,7 @@ String slot = null;
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/pipe-p.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
+        r1.setActionCommand("P-A-01");
         r1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 r1ActionPerformed(evt);
@@ -308,7 +311,7 @@ String slot = null;
            
         
             
-            String q="INSERT INTO attendance (EID,Date,Location,Slot) VALUES('"+EID+"','"+YY+"-"+MM+"-"+DD+"','"+this.loc+"','"+this.slot+"')";
+            String q="INSERT INTO allocation (EID,Date,Location,Slot) VALUES('"+EID+"','"+YY+"-"+MM+"-"+DD+"','"+this.loc+"','"+this.slot+"')";
             
             int dOption = JOptionPane.showConfirmDialog(null, "Confirm Allocation?");
            if (dOption == JOptionPane.YES_OPTION) {
@@ -319,6 +322,7 @@ String slot = null;
                    
                } catch (SQLException ex) {
                   JOptionPane.showMessageDialog(null, "Failed to Allocate!");
+                   Logger.getLogger(Allocation.class.getName()).log(Level.SEVERE, null, ex);
                }
            }
             

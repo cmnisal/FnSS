@@ -3,6 +3,7 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -171,6 +172,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JRadioButton" name="r1">
+              <Properties>
+                <Property name="actionCommand" type="java.lang.String" value="P-A-01"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="r1ActionPerformed"/>
               </Events>

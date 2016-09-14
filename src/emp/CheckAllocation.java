@@ -16,14 +16,14 @@ import net.proteanit.sql.DbUtils;
 
 public class CheckAllocation extends javax.swing.JFrame {
  private ResultSet rset;
- 
+ private ResultSet rset1;
    
     public CheckAllocation() {
         initComponents();
         
         search.setText("Enter the EID..");
         
-        String q1="SELECT EID,Date,Slot FROM allocation";
+        String q1="SELECT EID,Date,Slot,Location FROM allocation";
             
      try {
          rset = DB.getDbCon().query(q1);
@@ -65,36 +65,37 @@ public class CheckAllocation extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "EID", "Date", "Slot"
+                "EID", "Date", "Slot", "Location"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -200,7 +201,8 @@ public class CheckAllocation extends javax.swing.JFrame {
             if(status!=-1)
             {
                 String q2="SELECT EID,Date,Slot FROM allocation WHERE EID='"+Search+"' AND Date='"+YY+"-"+MM+"-"+DD+"'";
-                DB.getDbCon().query(q2);
+               rset1 = DB.getDbCon().query(q2);
+                 jTable1.setModel(DbUtils.resultSetToTableModel(rset1));
             }
             
         } catch (SQLException ex) {

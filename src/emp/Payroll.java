@@ -72,6 +72,7 @@ public class Payroll extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 153, 153));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(600, 600));
@@ -158,8 +159,9 @@ public class Payroll extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(44, 62, 80));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Payroll Generation");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 280, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 280, -1));
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
