@@ -30,82 +30,177 @@ public class sstHome extends javax.swing.JFrame {
 
         jRadioButton1 = new javax.swing.JRadioButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel2 = new javax.swing.JLabel();
+        backbtn = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         newjob = new javax.swing.JLabel();
         manage = new javax.swing.JLabel();
         history = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         cus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1170, 620));
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(600, 500));
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1170, 620));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newjob.setBackground(new java.awt.Color(255, 0, 0));
-        newjob.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sstlogo.png"))); // NOI18N
+        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 130, 120));
+
+        backbtn.setBackground(new java.awt.Color(231, 76, 60));
+        backbtn.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        backbtn.setForeground(new java.awt.Color(255, 255, 255));
+        backbtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back.png"))); // NOI18N
+        backbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbtnMouseClicked(evt);
+            }
+        });
+        jDesktopPane1.add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 50));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
+        jDesktopPane1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 10, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        newjob.setBackground(new java.awt.Color(127, 140, 141));
+        newjob.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        newjob.setForeground(new java.awt.Color(255, 255, 255));
+        newjob.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newjob.setText("Add Job");
+        newjob.setOpaque(true);
         newjob.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newjobMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(newjob, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 140, 40));
 
-        manage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manage.setBackground(new java.awt.Color(127, 140, 141));
+        manage.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        manage.setForeground(new java.awt.Color(255, 255, 255));
+        manage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manage.setText("Manage Job");
+        manage.setOpaque(true);
         manage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manageMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(manage, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 240, 160, 40));
 
-        history.setBackground(new java.awt.Color(0, 51, 255));
-        history.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        history.setBackground(new java.awt.Color(127, 140, 141));
+        history.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        history.setForeground(new java.awt.Color(255, 255, 255));
+        history.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        history.setText("Service History");
+        history.setOpaque(true);
         history.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 historyMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(history, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 160, 40));
 
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 30, 20));
-
+        cus.setBackground(new java.awt.Color(127, 140, 141));
+        cus.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        cus.setForeground(new java.awt.Color(255, 255, 255));
+        cus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cus.setText("Customer");
+        cus.setOpaque(true);
         cus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cusMouseClicked(evt);
             }
         });
-        jDesktopPane1.add(cus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 160, 40));
 
-        jLabel5.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel5.setFont(new java.awt.Font("Lato Medium", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Constantia", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(127, 140, 141));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Customer");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jLabel5.setOpaque(true);
-        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 160, 40));
+        jLabel5.setText("Service Station");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sst/gui/IMG-20160822-WA0001.jpg"))); // NOI18N
-        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 700, 470));
+        jLabel1.setBackground(new java.awt.Color(127, 140, 141));
+        jLabel1.setFont(new java.awt.Font("Lato Heavy", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Service Station Sales");
+        jLabel1.setOpaque(true);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(history, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(newjob, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(newjob, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(manage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(history, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 620, 430));
+
+        jLabel3.setBackground(new java.awt.Color(236, 240, 241));
+        jLabel3.setOpaque(true);
+        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 1240, 510));
+
+        jLabel4.setBackground(new java.awt.Color(44, 62, 80));
+        jLabel4.setOpaque(true);
+        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,21 +220,37 @@ public class sstHome extends javax.swing.JFrame {
 
     private void newjobMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newjobMouseClicked
         // TODO add your handling code here:
-        new sstAddJob().setVisible(true);
+        sstAddJob add = new sstAddJob();
+        add.addjob_Update.hide();
+        add.setVisible(true);
         this.dispose();
+        
+        
     }//GEN-LAST:event_newjobMouseClicked
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        new fnss.gui.Home().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void cusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusMouseClicked
         // TODO add your handling code here:
         new sstCustomer().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cusMouseClicked
+
+    private void backbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbtnMouseClicked
+        // TODO add your handling code here:
+        new fnss.gui.Home().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backbtnMouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        new sstServiceSales().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,12 +291,17 @@ public class sstHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backbtn;
     private javax.swing.JLabel cus;
     private javax.swing.JLabel history;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel manage;
     private javax.swing.JLabel newjob;
