@@ -21,7 +21,7 @@ public class AddEmp extends javax.swing.JFrame {
         groupButton();
         this.setLocationRelativeTo(null);
         try {
-            eid.setText(new DocNumGenerator().curVal("EMP"));
+            eid.setText(new DocNumGenerator().nextVal("EMP"));
         } catch (SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }

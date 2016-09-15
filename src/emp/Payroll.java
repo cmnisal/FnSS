@@ -38,7 +38,7 @@ public class Payroll extends javax.swing.JFrame {
         eid.setText("Enter Employee ID..");
 
         try {
-            pid.setText(new DocNumGenerator().curVal("PAY"));
+            pid.setText(new DocNumGenerator().nextVal("PAY"));
         } catch (SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
