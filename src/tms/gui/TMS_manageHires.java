@@ -1,4 +1,5 @@
 package tms.gui;
+
 import fnss.functions.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -6,6 +7,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -22,23 +24,27 @@ public class TMS_manageHires extends javax.swing.JFrame {
             initComponents();
             this.setLocationRelativeTo(null);
             this.setExtendedState(MAXIMIZED_BOTH);
-            
-            manageHiresTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT `tms_hiretransaction`.`hireID`,\n" +
-                                                                "    `tms_hiretransaction`.`cusID`,\n" +
-                                                                "    `tms_hiretransaction`.`vehicleReg`,\n" +
-                                                                "    `tms_hiretransaction`.`duration`,\n" +
-                                                                "    `tms_hiretransaction`.`travelledMilage`,\n" +
-                                                                "    `tms_hiretransaction`.`actualRental`,\n" +
-                                                                "    `tms_hiretransaction`.`calcMethod`\n" +
-                                                                "FROM `fnss`.`tms_hiretransaction`;")));
-            
-            
+
+            manageHiresTable.setModel(DbUtils.resultSetToTableModel(DB.getDbCon().query("SELECT "
+                    + "    `tms_hire`.`hireID` AS 'Hire ID',\n"
+                    + "    `tms_hire`.`vehicleRegNo` AS 'Vehicle No.',\n"
+                    + "    cus.`CustomerName` AS 'Customer Name',\n"
+                    + "    `tms_hire`.`startDate` AS 'Start',\n"
+                    + "    `tms_hire`.`estimatedEnd` AS 'Estd. End',\n"
+                    + "    `tms_hire`.`calcMethod` AS 'Calc. Mthd',\n"
+                    + "    `tms_hire`.`estimatedRental` AS 'Estimte'\n"
+                    + " FROM `fnss`.`tms_hire`  LEFT JOIN `fnss`.`customer` cus\n ON `tms_hire`.cusID = cus.CustomerID"
+                    + " WHERE `tms_hire`.`active` = 1 ;")));
+
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (SQLException ex) {
             Logger.getLogger(TMS_manageHires.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    //TMS_newHire object
+    TMS_newHire hireUpdate = new TMS_newHire();
+
     //close button function
     private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
@@ -111,20 +117,20 @@ public class TMS_manageHires extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Manage Hires");
 
-        manageHiresTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        manageHiresTable.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
         manageHiresTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method"
+                "Hire ID", "Vehicle Number", "Customer Name", "Start", "Est. End Date", "Calc. Method", "Estimated Rental"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -139,6 +145,11 @@ public class TMS_manageHires extends javax.swing.JFrame {
         manageHiresTable.setRowHeight(26);
         manageHiresTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         manageHiresTable.getTableHeader().setReorderingAllowed(false);
+        manageHiresTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageHiresTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(manageHiresTable);
         if (manageHiresTable.getColumnModel().getColumnCount() > 0) {
             manageHiresTable.getColumnModel().getColumn(0).setResizable(false);
@@ -147,20 +158,21 @@ public class TMS_manageHires extends javax.swing.JFrame {
             manageHiresTable.getColumnModel().getColumn(3).setResizable(false);
             manageHiresTable.getColumnModel().getColumn(4).setResizable(false);
             manageHiresTable.getColumnModel().getColumn(5).setResizable(false);
+            manageHiresTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout WhiteAreaLayout = new javax.swing.GroupLayout(WhiteArea);
         WhiteArea.setLayout(WhiteAreaLayout);
         WhiteAreaLayout.setHorizontalGroup(
             WhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WhiteAreaLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WhiteAreaLayout.createSequentialGroup()
-                .addGap(269, 269, 269)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(WhiteAreaLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         WhiteAreaLayout.setVerticalGroup(
             WhiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,16 +189,16 @@ public class TMS_manageHires extends javax.swing.JFrame {
         ContentAreaLayout.setHorizontalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentAreaLayout.createSequentialGroup()
-                .addContainerGap(234, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(WhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         ContentAreaLayout.setVerticalGroup(
             ContentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentAreaLayout.createSequentialGroup()
                 .addGap(177, 177, 177)
                 .addComponent(WhiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(ContentArea);
@@ -208,7 +220,7 @@ public class TMS_manageHires extends javax.swing.JFrame {
         SideButtonsLayout.setHorizontalGroup(
             SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SideButtonsLayout.createSequentialGroup()
-                .addContainerGap(1039, Short.MAX_VALUE)
+                .addContainerGap(413, Short.MAX_VALUE)
                 .addGroup(SideButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchButton)
                     .addComponent(addButton))
@@ -221,7 +233,7 @@ public class TMS_manageHires extends javax.swing.JFrame {
                 .addComponent(addButton)
                 .addGap(30, 30, 30)
                 .addComponent(searchButton)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(SideButtons);
@@ -343,9 +355,16 @@ public class TMS_manageHires extends javax.swing.JFrame {
     }//GEN-LAST:event_lblBackMouseReleased
 
     private void addButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButtonMouseReleased
-        new TMS_newHire(this).setVisible(true);
+        new TMS_newHire().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addButtonMouseReleased
+
+    private void manageHiresTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageHiresTableMouseClicked
+        if (evt.getClickCount() == 2) {
+            new TMS_newHire((String) manageHiresTable.getValueAt(manageHiresTable.getSelectedRow(), 0)).setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_manageHiresTableMouseClicked
 
     /**
      * @param args the command line arguments

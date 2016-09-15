@@ -52,11 +52,9 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         contentArea = new javax.swing.JPanel();
         whiteArea = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        lblUpdateButton = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        typeTxt = new javax.swing.JTextField();
         capacityTxt = new javax.swing.JTextField();
         currentMilateTxt = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -68,6 +66,9 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         dailyRateTxt = new javax.swing.JTextField();
         lblDeleteButton = new javax.swing.JLabel();
         vehicleNumberTxt = new javax.swing.JTextField();
+        lblUpdateButton = new javax.swing.JLabel();
+        lblAddButton = new javax.swing.JLabel();
+        typeComboBox = new javax.swing.JComboBox<>();
         exitButton = new javax.swing.JPanel();
         exitButtonLable = new javax.swing.JLabel();
         backButton = new javax.swing.JPanel();
@@ -99,7 +100,7 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
             .addGroup(functionImageLayout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(functionImage);
@@ -112,18 +113,6 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(71, 71, 71));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Vehicle");
-
-        lblUpdateButton.setBackground(new java.awt.Color(231, 76, 60));
-        lblUpdateButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
-        lblUpdateButton.setForeground(new java.awt.Color(255, 255, 255));
-        lblUpdateButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUpdateButton.setText("Update");
-        lblUpdateButton.setOpaque(true);
-        lblUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblUpdateButtonMouseReleased(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(71, 71, 71));
@@ -155,35 +144,59 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(71, 71, 71));
         jLabel15.setText("Daily Rate");
 
-        lblDeleteButton.setBackground(new java.awt.Color(231, 76, 60));
+        lblDeleteButton.setBackground(new java.awt.Color(0, 153, 153));
         lblDeleteButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
         lblDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
         lblDeleteButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDeleteButton.setText("Delete");
         lblDeleteButton.setOpaque(true);
+        lblDeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblDeleteButtonMouseReleased(evt);
+            }
+        });
+
+        lblUpdateButton.setBackground(new java.awt.Color(231, 76, 60));
+        lblUpdateButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        lblUpdateButton.setForeground(new java.awt.Color(255, 255, 255));
+        lblUpdateButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUpdateButton.setText("Update");
+        lblUpdateButton.setOpaque(true);
+        lblUpdateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblUpdateButtonMouseReleased(evt);
+            }
+        });
+
+        lblAddButton.setBackground(new java.awt.Color(231, 76, 60));
+        lblAddButton.setFont(new java.awt.Font("Lato Semibold", 0, 24)); // NOI18N
+        lblAddButton.setForeground(new java.awt.Color(255, 255, 255));
+        lblAddButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddButton.setText("Add");
+        lblAddButton.setOpaque(true);
+        lblAddButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblAddButtonMouseReleased(evt);
+            }
+        });
+
+        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fuel Tanker", "Oil Tanker" }));
 
         javax.swing.GroupLayout whiteAreaLayout = new javax.swing.GroupLayout(whiteArea);
         whiteArea.setLayout(whiteAreaLayout);
         whiteAreaLayout.setHorizontalGroup(
             whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(whiteAreaLayout.createSequentialGroup()
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(whiteAreaLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(42, 42, 42)
-                                .addComponent(vehicleAvailabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(whiteAreaLayout.createSequentialGroup()
-                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel14)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(57, 57, 57)
-                                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(hourlyRateTxt)
-                                        .addComponent(dailyRateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, whiteAreaLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(lblDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(whiteAreaLayout.createSequentialGroup()
+                            .addGap(80, 80, 80)
+                            .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(whiteAreaLayout.createSequentialGroup()
                                     .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
@@ -192,38 +205,50 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addGap(42, 42, 42)
                                     .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(capacityTxt, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(currentMilateTxt)
-                                        .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(whiteAreaLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(lblUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(100, 100, 100))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, whiteAreaLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+                                        .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                        .addComponent(typeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(whiteAreaLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addGap(106, 106, 106)
+                                        .addComponent(vehicleAvailabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(whiteAreaLayout.createSequentialGroup()
+                                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(57, 57, 57)
+                                        .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(hourlyRateTxt)
+                                            .addComponent(dailyRateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, whiteAreaLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(lblAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(80, 80, 80))
         );
         whiteAreaLayout.setVerticalGroup(
             whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(whiteAreaLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jLabel6)
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblDeleteButton))
                 .addGap(18, 18, 18)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(vehicleNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(capacityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currentMilateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -239,11 +264,11 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vehicleAvailabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
-                .addGap(32, 32, 32)
+                .addGap(36, 36, 36)
                 .addGroup(whiteAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout contentAreaLayout = new javax.swing.GroupLayout(contentArea);
@@ -292,7 +317,7 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
             .addGroup(exitButtonLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(exitButtonLable)
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addContainerGap(609, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(exitButton);
@@ -320,7 +345,7 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
             .addGroup(backButtonLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(lblBack)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(499, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(backButton);
@@ -344,7 +369,7 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
             .addGroup(blueStripLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(lblBlueStrip, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(blueStrip);
@@ -375,17 +400,17 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
 
     private void lblBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseReleased
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
-            parentUI.setVisible(true);
+            new TMS_manageVehicles().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_lblBackMouseReleased
 
-    private void lblUpdateButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUpdateButtonMouseReleased
+    private void lblAddButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddButtonMouseReleased
         String query = "INSERT INTO `fnss`.`tms_hirevehicle`\n"
                 + "(`vehicleRegNo`, `type`, `capacity`, `milage`, `hourlyRate`, `dailyRate`)\n"
                 + "VALUES\n"
-                + "('"+ vehicleNumberTxt.getText() +"', "
-                + "'" + typeTxt.getText() + "', "
+                + "('" + vehicleNumberTxt.getText() + "', "
+                + "'" + typeComboBox.getSelectedItem().toString()+ "', "
                 + "" + capacityTxt.getText() + ","
                 + "" + currentMilateTxt.getText() + ", "
                 + "" + hourlyRateTxt.getText() + ","
@@ -393,11 +418,60 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
 
         try {
             DB.getDbCon().insert(query);
-            JOptionPane.showMessageDialog(this, "New Vehicle Saved!");
+
+            if (JOptionPane.showConfirmDialog(null, "Proceed?") == JOptionPane.OK_OPTION) {
+                JOptionPane.showMessageDialog(this, "New Vehicle Saved!");
+                new TMS_manageVehicles().setVisible(true);
+                this.dispose();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblAddButtonMouseReleased
+
+    private void lblUpdateButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUpdateButtonMouseReleased
+        String query = "UPDATE `fnss`.`tms_hirevehicle`\n"
+                + "SET\n"
+                + "`type` = '" + typeComboBox.getSelectedItem().toString()+ "',\n"
+                + "`capacity` = " + capacityTxt.getText() + ",\n"
+                + "`milage` = " + currentMilateTxt.getText() + ",\n"
+                + "`hourlyRate` = " + hourlyRateTxt.getText() + ",\n"
+                + "`dailyRate` = " + dailyRateTxt.getText() + "\n"
+                + "WHERE `vehicleRegNo` = '" + vehicleNumberTxt.getText() + "';";
+
+        try {
+            DB.getDbCon().insert(query);
+
+            if (JOptionPane.showConfirmDialog(null, "Proceed?") == JOptionPane.OK_OPTION) {
+                JOptionPane.showMessageDialog(this, "Vehicle Updated!");
+                new TMS_manageVehicles().setVisible(true);
+                this.dispose();
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblUpdateButtonMouseReleased
+
+    private void lblDeleteButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteButtonMouseReleased
+
+        String query = "DELETE FROM `fnss`.`tms_hirevehicle`\n"
+                + "WHERE `vehicleRegNo` = '" + vehicleNumberTxt.getText() + "'";
+
+        try {
+            DB.getDbCon().insert(query);
+
+            if (JOptionPane.showConfirmDialog(null, "Confirm Delete Vehicle?") == JOptionPane.OK_OPTION) {
+                JOptionPane.showMessageDialog(this, "Vehicle Successfully Deleted!");
+                new TMS_manageVehicles().setVisible(true);
+                this.dispose();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TMS_addUpdateVehicle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblDeleteButtonMouseReleased
 
     /**
      * @param args the command line arguments
@@ -444,14 +518,14 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backButton;
     private javax.swing.JPanel blueStrip;
-    private javax.swing.JTextField capacityTxt;
+    public javax.swing.JTextField capacityTxt;
     private javax.swing.JPanel contentArea;
-    private javax.swing.JTextField currentMilateTxt;
-    private javax.swing.JTextField dailyRateTxt;
+    public javax.swing.JTextField currentMilateTxt;
+    public javax.swing.JTextField dailyRateTxt;
     private javax.swing.JPanel exitButton;
     private javax.swing.JLabel exitButtonLable;
     private javax.swing.JPanel functionImage;
-    private javax.swing.JTextField hourlyRateTxt;
+    public javax.swing.JTextField hourlyRateTxt;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -461,14 +535,15 @@ public class TMS_addUpdateVehicle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLabel lblAddButton;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblBlueStrip;
     private javax.swing.JLabel lblDeleteButton;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblUpdateButton;
-    private javax.swing.JTextField typeTxt;
-    private javax.swing.JTextField vehicleAvailabilityTxt;
-    private javax.swing.JTextField vehicleNumberTxt;
+    public javax.swing.JComboBox<String> typeComboBox;
+    public javax.swing.JTextField vehicleAvailabilityTxt;
+    public javax.swing.JTextField vehicleNumberTxt;
     private javax.swing.JPanel whiteArea;
     // End of variables declaration//GEN-END:variables
 }

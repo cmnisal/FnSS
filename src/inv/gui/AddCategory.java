@@ -103,6 +103,11 @@ public class AddCategory extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(236, 240, 241));
 
         txtCategoryName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtCategoryName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCategoryNameKeyTyped(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(52, 73, 94));
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 15)); // NOI18N
@@ -196,6 +201,16 @@ public class AddCategory extends javax.swing.JFrame {
         new StockManagement().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblBackMouseClicked
+
+    private void txtCategoryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoryNameKeyTyped
+        char c = evt.getKeyChar();
+        //if(Character.isDigit(c)||(Character.is))
+        if(!(Character.isAlphabetic(c)))
+        {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_txtCategoryNameKeyTyped
 
     /**
      * @param args the command line arguments

@@ -367,7 +367,7 @@ public class Items extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 360, 190, 40));
 
-        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setBackground(new java.awt.Color(52, 73, 94));
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
