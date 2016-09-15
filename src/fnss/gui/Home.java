@@ -51,16 +51,13 @@ public class Home extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         HomePageContents = new javax.swing.JPanel();
-        desktopPane = new javax.swing.JPanel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         controlPanel = new javax.swing.JPanel();
         btnTMS = new javax.swing.JLabel();
         btnPOS = new javax.swing.JLabel();
         btnINV = new javax.swing.JLabel();
         btnEMP = new javax.swing.JLabel();
         btnSST = new javax.swing.JLabel();
-        btnSST2 = new javax.swing.JLabel();
-        btnSST3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         exitButton = new javax.swing.JPanel();
         exitButtonLable = new javax.swing.JLabel();
         btnAdmin = new javax.swing.JLabel();
@@ -75,44 +72,11 @@ public class Home extends javax.swing.JFrame {
 
         HomePageContents.setOpaque(false);
 
-        desktopPane.setOpaque(false);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1762, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
-        desktopPane.setLayout(desktopPaneLayout);
-        desktopPaneLayout.setHorizontalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1762, Short.MAX_VALUE)
-            .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(desktopPaneLayout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addComponent(jDesktopPane1)
-                    .addGap(0, 0, 0)))
-        );
-        desktopPaneLayout.setVerticalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-            .addGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(desktopPaneLayout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addComponent(jDesktopPane1)
-                    .addGap(0, 0, 0)))
-        );
-
         controlPanel.setOpaque(false);
 
+        btnTMS.setForeground(new java.awt.Color(204, 204, 204));
         btnTMS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnTMS.setText("TMS");
+        btnTMS.setText("Vehicle Hire");
         btnTMS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnTMS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,6 +84,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnPOS.setForeground(new java.awt.Color(204, 204, 204));
         btnPOS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnPOS.setText("POS");
         btnPOS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -129,8 +94,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnINV.setForeground(new java.awt.Color(204, 204, 204));
         btnINV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnINV.setText("INV");
+        btnINV.setText("Inventory Management");
         btnINV.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnINV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,8 +104,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnEMP.setForeground(new java.awt.Color(204, 204, 204));
         btnEMP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnEMP.setText("EMP");
+        btnEMP.setText("Employee Management");
         btnEMP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnEMP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -147,8 +114,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnSST.setForeground(new java.awt.Color(204, 204, 204));
         btnSST.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSST.setText("SST");
+        btnSST.setText("Stock & Order Management");
         btnSST.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSST.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -156,48 +124,33 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnSST2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSST2.setText("test");
-        btnSST2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSST2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSST2MouseClicked(evt);
-            }
-        });
-
-        btnSST3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnSST3.setText("SST");
-        btnSST3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnSST3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSST3MouseClicked(evt);
-            }
-        });
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPOS, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                            .addComponent(btnTMS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnINV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(btnSST, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addComponent(btnSST2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSST3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnPOS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTMS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnINV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSST, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEMP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPOS, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,33 +160,21 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(btnINV, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSST, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSST2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSST3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout HomePageContentsLayout = new javax.swing.GroupLayout(HomePageContents);
         HomePageContents.setLayout(HomePageContentsLayout);
         HomePageContentsLayout.setHorizontalGroup(
             HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HomePageContentsLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePageContentsLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1776, Short.MAX_VALUE))
-            .addGroup(HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePageContentsLayout.createSequentialGroup()
-                    .addGap(260, 260, 260)
-                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         HomePageContentsLayout.setVerticalGroup(
             HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(controlPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(HomePageContentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePageContentsLayout.createSequentialGroup()
-                    .addGap(136, 136, 136)
-                    .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLayeredPane1.add(HomePageContents);
@@ -367,14 +308,6 @@ public class Home extends javax.swing.JFrame {
         sst.setVisible(true);
     }//GEN-LAST:event_btnSSTMouseClicked
 
-    private void btnSST2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSST2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSST2MouseClicked
-
-    private void btnSST3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSST3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSST3MouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -433,14 +366,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel btnINV;
     private javax.swing.JLabel btnPOS;
     private javax.swing.JLabel btnSST;
-    private javax.swing.JLabel btnSST2;
-    private javax.swing.JLabel btnSST3;
     private javax.swing.JLabel btnTMS;
     private javax.swing.JPanel controlPanel;
-    private javax.swing.JPanel desktopPane;
     private javax.swing.JPanel exitButton;
     private javax.swing.JLabel exitButtonLable;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel lblBlueStrip;
     // End of variables declaration//GEN-END:variables
