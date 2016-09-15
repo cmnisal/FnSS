@@ -71,7 +71,7 @@ public class TMS_home extends javax.swing.JFrame {
             .addGroup(panelFunctionImageLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addComponent(jLabel2)
-                .addGap(820, 820, 820))
+                .addContainerGap(954, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(panelFunctionImage);
