@@ -344,8 +344,12 @@ public class POS_MainFrame extends javax.swing.JFrame {
         btnCreditCard.setForeground(new java.awt.Color(255, 255, 255));
         btnCreditCard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCreditCard.setText("Credit Card");
-        btnCreditCard.setEnabled(false);
         btnCreditCard.setOpaque(true);
+        btnCreditCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCreditCardMouseClicked(evt);
+            }
+        });
         pricingPanel3.add(btnCreditCard);
 
         btnCash.setBackground(new java.awt.Color(52, 152, 219));
@@ -922,6 +926,19 @@ public class POS_MainFrame extends javax.swing.JFrame {
     private void btnItemSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemSearchMouseExited
         btnItemSearch.setBackground(defColor);// TODO add your handling code here:
     }//GEN-LAST:event_btnItemSearchMouseExited
+
+    private void btnCreditCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreditCardMouseClicked
+        if (jTable1.getRowCount() != 0) {
+            lblTime.setText("");
+            if (new CreditCard(POS_ID, customer_id, user, BillTotal, billTable).showDialog()) {
+                resetAllFields();
+                resetTextFields();
+            }
+
+        } else {
+            errorMsg("No Items in Bill");
+        }
+    }//GEN-LAST:event_btnCreditCardMouseClicked
 
     private void errorMsg(String msg) {
         JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);

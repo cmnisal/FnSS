@@ -1002,6 +1002,7 @@ public class POS_MainFrame1 extends javax.swing.JFrame {
             resetTextFields();
         }
     }
+    public static boolean settled = false;
     Item currentItem = null;
     Map<String, BillItem> billTable = new HashMap<>();
     private void btnItemSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItemSearchMouseClicked
@@ -1059,6 +1060,7 @@ public class POS_MainFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseClicked
+        settled = false;
         if (jTable1.getRowCount() != 0) {
             lblTime.setText("");
             proceedPayment("CASH");
@@ -1107,7 +1109,7 @@ public class POS_MainFrame1 extends javax.swing.JFrame {
     }
     public String customer_id = "";
 
-    private void proceedPayment(String PaymentMethod) {
+    public void proceedPayment(String PaymentMethod) {
         try {
             POS_ID = new DocNumGenerator().nextVal("POS");
             BillTotal = 0.00;
