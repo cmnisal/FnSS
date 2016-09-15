@@ -5,11 +5,26 @@
  */
 package sst.gui;
 
+import com.mysql.jdbc.Connection;
+import com.sun.glass.events.KeyEvent;
+import fnss.functions.DB;
+import java.lang.Character;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.util.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import javax.swing.JTextField;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author CheeBhagyani
  */
 public class sstAddJob extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form sstManagJobs
@@ -17,7 +32,11 @@ public class sstAddJob extends javax.swing.JFrame {
     public sstAddJob() {
         initComponents();
         this.setLocationRelativeTo(null);
+        fillcombo();
+        
     }
+    
+    sstGenerateBill bill = new sstGenerateBill();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,224 +47,459 @@ public class sstAddJob extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        chkslot2 = new javax.swing.JLabel();
+        slot2 = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        slot1 = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cusTyp = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         vehno = new javax.swing.JTextField();
-        cusname = new javax.swing.JTextField();
-        vehtyp = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jLabel13 = new javax.swing.JLabel();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel12 = new javax.swing.JLabel();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        cb1 = new javax.swing.JCheckBox();
+        cb2 = new javax.swing.JCheckBox();
+        cb3 = new javax.swing.JCheckBox();
+        vehtype = new javax.swing.JTextField();
+        jobcusid = new javax.swing.JComboBox<>();
+        addcus = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        raBtn = new javax.swing.JRadioButton();
+        allDate = new org.jdesktop.swingx.JXDatePicker();
+        booked = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        addjob_addjob = new javax.swing.JLabel();
+        addjob_finish = new javax.swing.JLabel();
+        addjob_Update = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jCheckBox9 = new javax.swing.JCheckBox();
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
+        jLabel17 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jDesktopPane1.setBackground(new java.awt.Color(46, 204, 113));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sstlogo.png"))); // NOI18N
+        jDesktopPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, -20, 160, 170));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Customer Name");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jLabel16.setFont(new java.awt.Font("Constantia", 1, 28)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(127, 140, 141));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Add Job");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 220, -1));
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Service Slots"));
+
+        chkslot2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car_1.png"))); // NOI18N
+        chkslot2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkslot2MouseClicked(evt);
+            }
+        });
+
+        slot2.setText("2");
+        slot2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slot2ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car_1.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+
+        slot1.setText("1");
+        slot1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slot1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(slot2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(chkslot2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(slot1)))
+                .addGap(73, 73, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(slot1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chkslot2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(slot2)
+                .addGap(81, 81, 81))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 200, 370));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Service Information"));
+
+        jLabel1.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        jLabel1.setText("Customer Type");
+
+        cusTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registered customer", "Unregistered customer" }));
+        cusTyp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cusTypItemStateChanged(evt);
+            }
+        });
+        cusTyp.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cusTypPropertyChange(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        jLabel19.setText("Customer ID");
+
+        jLabel3.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel3.setText("Vehicle Number");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         vehno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vehnoActionPerformed(evt);
             }
         });
-        jPanel1.add(vehno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 192, -1));
-
-        cusname.setToolTipText("");
-        cusname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cusnameActionPerformed(evt);
+        vehno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                vehnoKeyTyped(evt);
             }
         });
-        jPanel1.add(cusname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 192, -1));
 
-        vehtyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Car", "Van ", "Three wheeler", " " }));
-        jPanel1.add(vehtyp, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 194, -1));
-
+        jLabel2.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
         jLabel2.setText("Vehicle Type");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 88, -1));
 
-        jCheckBox7.setText("Change the engin oil");
-        jPanel1.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        jLabel6.setText("Service Type");
+        jLabel6.setToolTipText("");
 
-        jCheckBox5.setText("Interior cleaning");
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
-
-        jCheckBox3.setText("Replace the air filter");
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
-
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jCheckBox6.setText("Full service");
-        jPanel1.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
-
-        jCheckBox2.setText("Replace the oil filter");
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-
-        jCheckBox4.setText("Body wash");
-        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
-
-        jLabel13.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Finish Job");
-        jLabel13.setOpaque(true);
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        cb1.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
+        cb1.setText("Repairing");
+        cb1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                cb1MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 120, 28));
+        cb1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb1ActionPerformed(evt);
+            }
+        });
 
-        jCheckBox12.setText("3");
-        jPanel1.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
+        cb2.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
+        cb2.setText("Cleaning");
+        cb2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb2MouseClicked(evt);
+            }
+        });
+        cb2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb2ActionPerformed(evt);
+            }
+        });
 
-        jCheckBox11.setText("5");
-        jPanel1.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, -1, -1));
+        cb3.setFont(new java.awt.Font("Lato Light", 1, 12)); // NOI18N
+        cb3.setText("Full service");
+        cb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb3MouseClicked(evt);
+            }
+        });
+        cb3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb3ActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setText("2");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
+        jobcusid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobcusidActionPerformed(evt);
+            }
+        });
 
-        jLabel12.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Book");
-        jLabel12.setOpaque(true);
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 110, 28));
+        addcus.setBackground(new java.awt.Color(153, 153, 153));
+        addcus.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        addcus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addcus.setText("Add ");
+        addcus.setOpaque(true);
+        addcus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addcusMouseClicked(evt);
+            }
+        });
 
-        jCheckBox8.setText("1");
-        jPanel1.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cusTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vehtype)
+                            .addComponent(vehno)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cb3)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cb2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cb1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(56, 56, 56)
+                        .addComponent(jobcusid, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addcus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cusTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addcus))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jobcusid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vehno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(vehtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb1)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addComponent(cb2)
+                .addGap(18, 18, 18)
+                .addComponent(cb3)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
-        jCheckBox10.setText("4");
-        jPanel1.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 450, 370));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Bookings"));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-        jLabel4.setToolTipText("");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 70, 50));
+        raBtn.setText("Make Bookings");
+        raBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raBtnActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
+        allDate.setToolTipText("");
+        allDate.setName(""); // NOI18N
+        allDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allDateActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 60, 60));
+        booked.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sst car.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 60, 60));
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(raBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(allDate, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(booked, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(raBtn)
+                    .addComponent(allDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(booked, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mansc\\Desktop\\sst car.png")); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 60, 60));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 300, 120));
 
-        jCheckBox13.setText("6");
-        jPanel1.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Commands"));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 640, 360));
+        addjob_addjob.setBackground(new java.awt.Color(149, 165, 166));
+        addjob_addjob.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
+        addjob_addjob.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addjob_addjob.setText("Add Job");
+        addjob_addjob.setOpaque(true);
+        addjob_addjob.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addjob_addjobMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addjob_addjobMouseEntered(evt);
+            }
+        });
+        addjob_addjob.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                addjob_addjobKeyPressed(evt);
+            }
+        });
 
-        jLabel16.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Add Job");
-        jDesktopPane1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 140, 30));
+        addjob_finish.setBackground(new java.awt.Color(149, 165, 166));
+        addjob_finish.setFont(new java.awt.Font("Lato Light", 0, 12)); // NOI18N
+        addjob_finish.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addjob_finish.setText("Finish Job");
+        addjob_finish.setOpaque(true);
+        addjob_finish.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addjob_finishMouseClicked(evt);
+            }
+        });
+
+        addjob_Update.setBackground(new java.awt.Color(153, 153, 153));
+        addjob_Update.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addjob_Update.setText("Update Job");
+        addjob_Update.setOpaque(true);
+        addjob_Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addjob_UpdateMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(76, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addjob_addjob, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addjob_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addjob_finish, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(addjob_addjob, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(addjob_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(addjob_finish, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 300, 250));
+
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 1030, 500));
+
+        jLabel15.setBackground(new java.awt.Color(236, 240, 241));
+        jLabel15.setOpaque(true);
+        jDesktopPane1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 1170, 520));
 
         jLabel17.setBackground(new java.awt.Color(255, 0, 51));
         jLabel17.setFont(new java.awt.Font("Lato", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Back");
-        jLabel17.setOpaque(true);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back.png"))); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel17MouseClicked(evt);
             }
         });
-        jDesktopPane1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 90, 30));
+        jDesktopPane1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 50, 50));
 
-        jLabel14.setBackground(new java.awt.Color(46, 204, 113));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jDesktopPane1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
+
+        jLabel14.setBackground(new java.awt.Color(44, 62, 80));
         jLabel14.setOpaque(true);
-        jDesktopPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 150));
-
-        jLabel15.setBackground(new java.awt.Color(236, 240, 241));
-        jLabel15.setOpaque(true);
-        jDesktopPane1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 770, 360));
-        jDesktopPane1.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
+        jDesktopPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cusnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cusnameActionPerformed
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_cusnameActionPerformed
-
-    private void vehnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vehnoActionPerformed
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        // TODO add your handling code here:
-        new sstGenerateBill().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel13MouseClicked
+        new sstHome().setVisible(true);
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
@@ -253,7 +507,349 @@ public class sstAddJob extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel17MouseClicked
 
+    private void allDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allDateActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_allDateActionPerformed
+
+    private void chkslot2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkslot2MouseClicked
+        slot2.setSelected(!slot2.isSelected());
+    }//GEN-LAST:event_chkslot2MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        slot1.setSelected(!slot1.isSelected());
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void slot1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slot1ActionPerformed
+        // TODO add your handling code here:
+        chck_slot = "1";
+        slot2.setSelected(false);
+    }//GEN-LAST:event_slot1ActionPerformed
+
+    private void addjob_addjobKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addjob_addjobKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addjob_addjobKeyPressed
+
+    private void addjob_addjobMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addjob_addjobMouseClicked
+        // TODO add your handling code here:
+      
+            
+            if(!(raBtn.isSelected()))
+            {
+                JOptionPane.showMessageDialog(null, "Make the booking first!");
+            }
+            
+            else{
+                
+                int a = JOptionPane.showConfirmDialog(null, "Confirm Booking?");
+                
+                if(a == 0){
+                    String cusType = cusTyp.getSelectedItem().toString();
+                    String id;
+                    if(cusType.equals("Unregistered customer")){
+                    id = "No id";
+                    }
+                    
+                    else{
+                    id = jobcusid.getSelectedItem().toString();
+                    }
+                    
+                    String veh = vehno.getText();
+                    String vehicletyp = vehtype.getText();
+                    String serviceSlot = chck_slot;
+                    String servtyp = serv;
+                    
+                    String alldate = new SimpleDateFormat("YYYY/MM/DD").format(allDate.getDate());
+                    
+                    try{
+                        
+                        String sql = "INSERT INTO service(AllocatedTime,ServiceType,SlotNumber,VehicleNumber,VehicleType,CustomerId) "
+                                + "values('"+alldate+"','"+servtyp+"','"+serviceSlot+"','"+veh+"','"+vehicletyp+"','"+id+"')";
+                        
+                        DB.getDbCon().insert(sql);
+                        //ResultSet rs=DB.getDbCon().query(sql1);
+                        
+                        JOptionPane.showMessageDialog(null,"Booking successfull");
+                        
+                        vehno.setText("");
+                        vehtype.setText("");
+                        slot1.setSelected(false);
+                        slot2.setSelected(false);
+                        cb1.setSelected(false);
+                        cb2.setSelected(false);
+                        cb3.setSelected(false);
+                        raBtn.setSelected(false);
+                        allDate.setDate(null);
+                        jobcusid.setSelectedIndex(0);
+                        
+                    }catch(Exception e)
+                    {
+                    }
+                  
+                    
+                }
+                
+            }
+        
+    }//GEN-LAST:event_addjob_addjobMouseClicked
+
+    private void slot2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slot2ActionPerformed
+        // TODO add your handling code here:
+        chck_slot = "2";
+        slot1.setSelected(false);
+    }//GEN-LAST:event_slot2ActionPerformed
+
+    private void addjob_finishMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addjob_finishMouseClicked
+        // TODO add your handling code here:
+       
+        if((raBtn.isSelected())){
+        JOptionPane.showMessageDialog(null, "Make the booking!");
+        }
+        
+        else{
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure??!!");
+        if(m==0) {
+ 
+            bill.setVisible(true);
+            this.dispose();
+            double total;
+            double subtotal=0;
+            //final double resourseChargeRate = 0.5;
+            //double tax;
+
+                if(cb1.isSelected())
+                {
+                subtotal = subtotal + 3000;
+                bill.servtype.setText("Reparing");
+                }
+                
+                else if(cb2.isSelected())
+                {
+                subtotal = subtotal + 2000;
+                bill.servtype.setText("Cleaning");
+                }
+                
+                else if(cb3.isSelected())
+                {
+                subtotal = subtotal + 5000;
+                bill.servtype.setText("Full Sevice");
+                }
+
+                bill.charge.setText(Double.toString(subtotal));
+             
+                if(slot1.isSelected())
+                {
+                    bill.slot.setText("Slot1");
+                }
+
+                else if(slot2.isSelected())
+                {
+                    bill.slot.setText("Slot2");
+                }
+                      
+                
+        String id ;
+        id = jobcusid.getSelectedItem().toString();
+        bill.ID.setText(id);
+        
+        int id1 =  Integer.parseInt(id);
+        try{
+          
+           String sql = "Select CustomerName from customer where CustomerID = '"+id1+"' ";
+           ResultSet rs=DB.getDbCon().query(sql);
+           
+           if(rs.next())
+           {
+           bill.cusname.setText(rs.getString("CustomerName"));  
+           }
+   
+        }catch(Exception e)
+        {
+        }
+        
+        
+                    String veh = vehno.getText();
+                    String vehicletyp = vehtype.getText();
+                    String serviceSlot = chck_slot;
+                    String servtyp = serv;
+                    String idd = jobcusid.getSelectedItem().toString();
+                  //  String alldate = new SimpleDateFormat("YYYY/MM/DD").format(allDate.getDate());
+                    
+                    try{
+                        
+                        String sql = "INSERT INTO service(ServiceType,SlotNumber,VehicleNumber,VehicleType,CustomerId,Sales) "
+                                + "values('"+servtyp+"','"+serviceSlot+"','"+veh+"','"+vehicletyp+"','"+idd+"','"+subtotal+"')";
+                        
+                        DB.getDbCon().insert(sql);
+                        //ResultSet rs=DB.getDbCon().query(sql1);
+
+                        vehno.setText("");
+                        vehtype.setText("");
+                        slot1.setSelected(false);
+                        slot2.setSelected(false);
+                        cb1.setSelected(false);
+                        cb2.setSelected(false);
+                        cb3.setSelected(false);
+                        raBtn.setSelected(false);
+                        allDate.setDate(null);
+                        jobcusid.setSelectedIndex(0);
+                        
+                    }catch(Exception e)
+                    {
+                    }
+                    
+                    
+                   
+ 
+        }
+    }
+            
+        
+        
+    }//GEN-LAST:event_addjob_finishMouseClicked
+
+    private void cb2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb2ActionPerformed
+        // TODO add your handling code here:
+        serv = "Cleaning";
+        cb1.setSelected(false);
+        cb3.setSelected(false);
+    }//GEN-LAST:event_cb2ActionPerformed
+
+    private void cb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb2MouseClicked
+
+    private void cb3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb3ActionPerformed
+        serv = "Full Service";
+        cb2.setSelected(false);
+        cb1.setSelected(false);
+    }//GEN-LAST:event_cb3ActionPerformed
+
+    private void cb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb3MouseClicked
+
+    private void cb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb1ActionPerformed
+        // TODO add your handling code here:
+        serv = "Reparing";
+        cb2.setSelected(false);
+        cb3.setSelected(false);
+    }//GEN-LAST:event_cb1ActionPerformed
+
+    private void cb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb1MouseClicked
+
+    }//GEN-LAST:event_cb1MouseClicked
+
+    private void vehnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vehnoKeyTyped
+        char c = evt.getKeyChar();
+        if(!((Character.isLetterOrDigit(c)) || (c==KeyEvent.VK_BACKSPACE)
+            || (c==KeyEvent.VK_DELETE) || (c==KeyEvent.VK_SPACE) )){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_vehnoKeyTyped
+
+    private void vehnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vehnoActionPerformed
+
+    private void cusTypPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cusTypPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cusTypPropertyChange
+ 
+    private void cusTypItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cusTypItemStateChanged
+        // TODO add your handling code here:
+        Object selectedIndex = cusTyp.getSelectedItem();
+        
+        if(selectedIndex.toString().equals("Unregistered customer")){
+            jobcusid.disable();
+            //cusname.disable();
+        }
+        if(selectedIndex.toString().equals("Registered customer")){
+            jobcusid.enable();
+            //cusname.disable();
+        }
+        
+    }//GEN-LAST:event_cusTypItemStateChanged
+
+    private void raBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_raBtnActionPerformed
+
+    private void addjob_addjobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addjob_addjobMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addjob_addjobMouseEntered
+    
+    private void fillcombo(){
+        try{
+        String q = "select * from customer";
+        ResultSet res;
+        res = DB.getDbCon().query(q);
+        
+            while(res.next())
+            {
+            String ID = res.getString("CustomerID");
+            jobcusid.addItem(ID);
+            }
+        
+        }catch(Exception e){
+        }
+    
+    }
+    
+    private void jobcusidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobcusidActionPerformed
+     /*  try{
+        String q = "select * from customer where CustomerID = ?";
+        ResultSet res;
+        jobcusid.getSelectedItem().toString();
+        res = DB.getDbCon().query(q);
+        
+            while(res.next())
+            {
+            cusname.setText(res.getString("CustomerName"));
+            }
+        
+        }catch(Exception e){
+        }*/
+    }//GEN-LAST:event_jobcusidActionPerformed
+
+    private void addcusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addcusMouseClicked
+        // TODO add your handling code here:
+        new sstCustomer().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addcusMouseClicked
+
+    private void addjob_UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addjob_UpdateMouseClicked
+        // TODO add your handling code here:
+          int y = JOptionPane.showConfirmDialog(null,"Confirm update");
+        
+        if( y == 0){
+        
+        String veh = vehno.getText();
+        String vehicletyp = vehtype.getText();
+        String serviceSlot = chck_slot;
+        String servtyp = serv;
+      //String allocation = allDate.toString();
+        String id = jobcusid.getSelectedItem().toString();
+        
+        
+        String sql2 = "UPDATE `customer` SET ServiceType='"+servtyp+"', SlotNumber = '"+serviceSlot+"', VehicleNumber='"+veh+"',VehicleType = '"+vehicletyp+"') where CustomerId = '"+id+"' ";
+        
+        try{
+        DB.getDbCon().insert(sql2);
+ 
+        JOptionPane.showMessageDialog(null, "Update Successfull!");
+       
+        }
+        catch(Exception e){
+        }
+        
+        }
+    }//GEN-LAST:event_addjob_UpdateMouseClicked
+
     /**
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -304,44 +900,45 @@ public class sstAddJob extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField cusname;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JLabel addcus;
+    public javax.swing.JLabel addjob_Update;
+    public javax.swing.JLabel addjob_addjob;
+    private javax.swing.JLabel addjob_finish;
+    public org.jdesktop.swingx.JXDatePicker allDate;
+    public javax.swing.JLabel booked;
+    public javax.swing.JCheckBox cb1;
+    public javax.swing.JCheckBox cb2;
+    public javax.swing.JCheckBox cb3;
+    private javax.swing.JLabel chkslot2;
+    private javax.swing.JComboBox<String> cusTyp;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField vehno;
-    private javax.swing.JComboBox<String> vehtyp;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    public javax.swing.JComboBox<String> jobcusid;
+    public javax.swing.JRadioButton raBtn;
+    public javax.swing.JCheckBox slot1;
+    public javax.swing.JCheckBox slot2;
+    public javax.swing.JTextField vehno;
+    public javax.swing.JTextField vehtype;
     // End of variables declaration//GEN-END:variables
+
+
+private String serv;
+private String chck_slot;
+
 }
