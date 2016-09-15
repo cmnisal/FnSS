@@ -80,6 +80,7 @@ public class AddEmp extends javax.swing.JFrame {
         power = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -203,6 +204,16 @@ public class AddEmp extends javax.swing.JFrame {
         jPanel2.add(yyCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 70, -1));
 
         ddCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        ddCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ddComboMouseClicked(evt);
+            }
+        });
+        ddCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ddComboActionPerformed(evt);
+            }
+        });
         jPanel2.add(ddCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 50, -1));
 
         face.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/face.png"))); // NOI18N
@@ -237,6 +248,14 @@ public class AddEmp extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 11, 36, 32));
+
+        jButton1.setText("Demo");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 580, -1, -1));
 
         jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 610));
 
@@ -405,6 +424,34 @@ public class AddEmp extends javax.swing.JFrame {
           close();
     }//GEN-LAST:event_powerMouseClicked
 
+    private void ddComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddComboActionPerformed
+      String m= mmCombo.getSelectedItem().toString();
+      
+       if(m=="1" )
+       { for(int i=1; 1<=31; i++)
+         {ddCombo.addItem(""+i);        }
+       }
+    }//GEN-LAST:event_ddComboActionPerformed
+
+    private void ddComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ddComboMouseClicked
+       String m= mmCombo.getSelectedItem().toString();
+      
+       if(m=="1" )
+       { for(int i=1; 1<=31; i++)
+         {ddCombo.addItem(""+i);        }
+       }
+    }//GEN-LAST:event_ddComboMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+      name.setText("Mulan Cho");
+      category.setText("Attendant");
+      nic.setText("90252325V");
+      address.setText("Colombo");
+      basic.setText("35000");
+      phone.setText("0778678543");
+      
+    }//GEN-LAST:event_jButton1MouseClicked
+
       private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
             this.dispose();
@@ -463,6 +510,7 @@ public class AddEmp extends javax.swing.JFrame {
     private javax.swing.JTextField eid;
     private javax.swing.JRadioButton fRButton;
     private javax.swing.JLabel face;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
