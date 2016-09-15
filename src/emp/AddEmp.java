@@ -136,7 +136,22 @@ public class AddEmp extends javax.swing.JFrame {
             }
         });
         jPanel2.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 230, -1));
+
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameKeyTyped(evt);
+            }
+        });
         jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 230, -1));
+
+        category.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                categoryKeyTyped(evt);
+            }
+        });
         jPanel2.add(category, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 230, -1));
 
         basic.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +172,12 @@ public class AddEmp extends javax.swing.JFrame {
             }
         });
         jPanel2.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 230, -1));
+
+        phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                phoneKeyTyped(evt);
+            }
+        });
         jPanel2.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 230, -1));
 
         jLabel9.setFont(new java.awt.Font("Lato Heavy", 0, 24)); // NOI18N
@@ -470,6 +491,37 @@ public class AddEmp extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_basicKeyTyped
+
+    private void categoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_categoryKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isAlphabetic(c)) 
+               || (c==KeyEvent.VK_DELETE)){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_categoryKeyTyped
+
+    private void nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameKeyPressed
+
+    private void nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyTyped
+           char c = evt.getKeyChar();
+        if(!(Character.isAlphabetic(c)) 
+               || (c==KeyEvent.VK_DELETE)){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_nameKeyTyped
+
+    private void phoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyTyped
+         char c = evt.getKeyChar();
+        if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
+               || (c==KeyEvent.VK_DELETE))){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_phoneKeyTyped
 
     
     
