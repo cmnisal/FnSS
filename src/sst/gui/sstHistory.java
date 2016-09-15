@@ -6,6 +6,8 @@
 package sst.gui;
 
 import com.mysql.jdbc.Connection;
+import com.sun.glass.events.KeyEvent;
+import fnss.functions.DB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import net.proteanit.sql.DbUtils;
@@ -17,17 +19,26 @@ import java.sql.*;
  */
 public class sstHistory extends javax.swing.JFrame {
 
-   Connection con = null;
-   PreparedStatement stm = null;
-   ResultSet rs = null;
+  
     /**
      * Creates new form sstHistory
      */
     public sstHistory() {
         initComponents();
         this.setLocationRelativeTo(null);
-        dbconnect db = new dbconnect(); 
-        con=db.getConnection();
+        Load_jobTable();
+    }
+    
+    private void Load_jobTable(){
+        try{
+            
+            String sql = "select ServiceID,AllocatedTime,ServiceType,SlotNumber,VehicleNumber,VehicleType,Date,CustomerID from service ";
+            //DB.getDbCon().insert(sql1);
+           ResultSet res;
+            res = DB.getDbCon().query(sql);
+            historytable.setModel(DbUtils.resultSetToTableModel(res));
+        }
+        catch(Exception e){}
     }
 
     /**
@@ -40,36 +51,62 @@ public class sstHistory extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        functionImage = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        contentArea = new javax.swing.JPanel();
+        whiteArea = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         historytable = new javax.swing.JTable();
         cusid = new javax.swing.JTextField();
         search = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        ExitButton = new javax.swing.JPanel();
+        lblExitButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JPanel();
+        lblbackButton = new javax.swing.JLabel();
+        greenStrip = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1170, 620));
+        setResizable(false);
 
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDesktopPane1.setBackground(new java.awt.Color(149, 165, 166));
+
+        jLayeredPane1.setRequestFocusEnabled(false);
+        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
+
+        functionImage.setOpaque(false);
+        functionImage.setPreferredSize(new java.awt.Dimension(1169, 434));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/sstlogo.png"))); // NOI18N
-        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 160, 90));
 
-        jButton4.setText("Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jDesktopPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        javax.swing.GroupLayout functionImageLayout = new javax.swing.GroupLayout(functionImage);
+        functionImage.setLayout(functionImageLayout);
+        functionImageLayout.setHorizontalGroup(
+            functionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(functionImageLayout.createSequentialGroup()
+                .addGap(525, 525, 525)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(481, Short.MAX_VALUE))
+        );
+        functionImageLayout.setVerticalGroup(
+            functionImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(functionImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(684, Short.MAX_VALUE))
+        );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLayeredPane1.add(functionImage);
+
+        contentArea.setOpaque(false);
+
+        whiteArea.setBackground(new java.awt.Color(255, 255, 255));
+        whiteArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         historytable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,19 +116,24 @@ public class sstHistory extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "", "", "", "", "", " ", "", ""
+                "ServiceID", "AllocatedTime", "ServiceType", "SlotNumber", "VehicleNumber", " VehicleType", "Date", "CustomerID"
             }
         ));
         jScrollPane1.setViewportView(historytable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 720, 210));
+        whiteArea.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 890, 260));
 
         cusid.setForeground(new java.awt.Color(204, 204, 204));
         cusid.setText("Search by customer ID..");
-        jPanel1.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 550, 30));
+        cusid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cusidKeyTyped(evt);
+            }
+        });
+        whiteArea.add(cusid, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 570, 30));
 
         search.setBackground(new java.awt.Color(231, 76, 60));
-        search.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        search.setFont(new java.awt.Font("Lato Light", 1, 14)); // NOI18N
         search.setForeground(new java.awt.Color(255, 255, 255));
         search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         search.setText("Search");
@@ -101,10 +143,10 @@ public class sstHistory extends javax.swing.JFrame {
                 searchMouseClicked(evt);
             }
         });
-        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 150, 30));
+        whiteArea.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 170, 30));
 
         jLabel2.setBackground(new java.awt.Color(231, 76, 60));
-        jLabel2.setFont(new java.awt.Font("Lato Light", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lato Light", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("View Full History");
@@ -114,57 +156,157 @@ public class sstHistory extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 110, 40));
+        whiteArea.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 170, 40));
 
-        jLabel1.setFont(new java.awt.Font("Lato Heavy", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Constantia", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(127, 140, 141));
         jLabel1.setText("Service History");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 174, 47));
+        whiteArea.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 280, 47));
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 810, 420));
+        javax.swing.GroupLayout contentAreaLayout = new javax.swing.GroupLayout(contentArea);
+        contentArea.setLayout(contentAreaLayout);
+        contentAreaLayout.setHorizontalGroup(
+            contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentAreaLayout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        contentAreaLayout.setVerticalGroup(
+            contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentAreaLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(whiteArea, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
 
-        jLabel5.setBackground(new java.awt.Color(236, 240, 241));
-        jLabel5.setOpaque(true);
-        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 160, 860, 410));
+        jLayeredPane1.add(contentArea);
 
-        jLabel3.setBackground(new java.awt.Color(46, 204, 113));
+        ExitButton.setOpaque(false);
+
+        lblExitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/close.png"))); // NOI18N
+        lblExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ExitButtonLayout = new javax.swing.GroupLayout(ExitButton);
+        ExitButton.setLayout(ExitButtonLayout);
+        ExitButtonLayout.setHorizontalGroup(
+            ExitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ExitButtonLayout.createSequentialGroup()
+                .addContainerGap(1108, Short.MAX_VALUE)
+                .addComponent(lblExitButton)
+                .addGap(41, 41, 41))
+        );
+        ExitButtonLayout.setVerticalGroup(
+            ExitButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ExitButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(749, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(ExitButton);
+
+        backButton.setOpaque(false);
+
+        lblbackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back.png"))); // NOI18N
+        lblbackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblbackButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout backButtonLayout = new javax.swing.GroupLayout(backButton);
+        backButton.setLayout(backButtonLayout);
+        backButtonLayout.setHorizontalGroup(
+            backButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backButtonLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(lblbackButton)
+                .addContainerGap(1084, Short.MAX_VALUE))
+        );
+        backButtonLayout.setVerticalGroup(
+            backButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backButtonLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblbackButton)
+                .addGap(0, 721, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(backButton);
+
+        greenStrip.setBackground(new java.awt.Color(44, 62, 80));
+        greenStrip.setPreferredSize(new java.awt.Dimension(200, 800));
+
         jLabel3.setOpaque(true);
-        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 850, 240));
+
+        javax.swing.GroupLayout greenStripLayout = new javax.swing.GroupLayout(greenStrip);
+        greenStrip.setLayout(greenStripLayout);
+        greenStripLayout.setHorizontalGroup(
+            greenStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)
+        );
+        greenStripLayout.setVerticalGroup(
+            greenStripLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, greenStripLayout.createSequentialGroup()
+                .addGap(0, 392, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jLayeredPane1.add(greenStrip);
+
+        jDesktopPane1.setLayer(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane1)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        new sstHome().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
         // TODO add your handling code here:
-        String name = cusid.getText();
-        String sql = "Select * from service where CustomerID = '"+name+"' ";
+        String customerID = cusid.getText();
+        String sql = "Select ServiceID,AllocatedTime,ServiceType,SlotNumber,VehicleNumber,VehicleType,Date,CustomerID from service where CustomerID = '"+customerID+"' ";
         
         try{
             
             //dbconnect db = new dbconnect();
             //this.con = db.getConnection();
-            stm = con.prepareStatement(sql);
-            rs = stm.executeQuery(sql);
+            
+            ResultSet res;
+            res = DB.getDbCon().query(sql);
             
             cusid.setText("");
             
-            historytable.setModel(DbUtils.resultSetToTableModel(rs));
+            historytable.setModel(DbUtils.resultSetToTableModel(res));
                      
             
         }catch(Exception e){
@@ -173,20 +315,39 @@ public class sstHistory extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        String sql2 = "select * from service";
+        String sql2 = "select ServiceID,AllocatedTime,ServiceType,SlotNumber,VehicleNumber,VehicleType,Date,CustomerID from service";
         
         try{    
             
           //  dbconnect db = new dbconnect();
            // this.con = db.getConnection();
-            stm = con.prepareStatement(sql2);
-            rs = stm.executeQuery(sql2);
-                
-           historytable.setModel(DbUtils.resultSetToTableModel(rs));
+            
+                ResultSet res;
+            res = DB.getDbCon().query(sql2);
+           historytable.setModel(DbUtils.resultSetToTableModel(res));
         }
         catch(Exception e){
         }
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void lblbackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblbackButtonMouseClicked
+        new sstHome().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblbackButtonMouseClicked
+
+    private void cusidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cusidKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_cusidKeyTyped
+
+    private void lblExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitButtonMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new sstHome().setVisible(true);
+    }//GEN-LAST:event_lblExitButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -227,17 +388,23 @@ public class sstHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ExitButton;
+    private javax.swing.JPanel backButton;
+    private javax.swing.JPanel contentArea;
     private javax.swing.JTextField cusid;
+    private javax.swing.JPanel functionImage;
+    private javax.swing.JPanel greenStrip;
     private javax.swing.JTable historytable;
-    private javax.swing.JButton jButton4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblExitButton;
+    private javax.swing.JLabel lblbackButton;
     private javax.swing.JLabel search;
+    private javax.swing.JPanel whiteArea;
     // End of variables declaration//GEN-END:variables
 }
