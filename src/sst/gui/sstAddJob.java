@@ -584,6 +584,7 @@ public class sstAddJob extends javax.swing.JFrame {
                         
                     }catch(Exception e)
                     {
+                        e.printStackTrace();
                     }
                   
                     
