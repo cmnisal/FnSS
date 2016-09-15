@@ -144,6 +144,11 @@ public class AddEmp extends javax.swing.JFrame {
                 basicActionPerformed(evt);
             }
         });
+        basic.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                basicKeyTyped(evt);
+            }
+        });
         jPanel2.add(basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 230, -1));
 
         address.addActionListener(new java.awt.event.ActionListener() {
@@ -451,12 +456,22 @@ public class AddEmp extends javax.swing.JFrame {
       phone.setText("0778678543");
       
     }//GEN-LAST:event_jButton1MouseClicked
-
-      private void close() {
+  private void close() {
         if (JOptionPane.showConfirmDialog(null, "Are you Sure?") == JOptionPane.OK_OPTION) {
             this.dispose();
         }
       }
+    private void basicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_basicKeyTyped
+         char c = evt.getKeyChar();
+        if(!((Character.isDigit(c)) || (c==KeyEvent.VK_BACKSPACE) 
+               || (c==KeyEvent.VK_DELETE))){
+        getToolkit().beep();
+        evt.consume();
+        }
+        
+    }//GEN-LAST:event_basicKeyTyped
+
+    
     
     
     /**
