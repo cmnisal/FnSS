@@ -107,7 +107,7 @@ String slot = null;
         });
         jDesktopPane1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 40, 40));
 
-        back.setIcon(new javax.swing.ImageIcon("E:\\ITP GitHub\\UI images\\back.png")); // NOI18N
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fnss/images/back_1.png"))); // NOI18N
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);
