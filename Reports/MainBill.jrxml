@@ -102,7 +102,7 @@ WHERE
 		<band height="106" splitType="Stretch">
 			<image>
 				<reportElement x="88" y="-10" width="84" height="50" uuid="f586bce6-b04c-4860-8caf-1c106824ec9d"/>
-				<imageExpression><![CDATA["C:\\Users\\Nisal\\Desktop\\logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="1" y="40" width="259" height="66" uuid="71e8673b-14ed-416b-901a-7bbb258f4ff5"/>
